@@ -1,0 +1,417 @@
+﻿
+Software Requirements Specification 
+for
+Coffee Ordering Websites, Release 1.0
+Version 1.0 approved
+Prepared by Group 5
+October 25, 2020
+
+Table of Contents
+Coffee Ordering Websites, Release 1.0i
+Version 1.0 approvedi
+Prepared by Group 5i
+Revision Historyiii
+1.Introduction1
+1.1Purpose1
+1.2Document Conventions1
+1.3Project Scope and Product Features1
+1.4References1
+2.Overall Description1
+2.1Product Perspective1
+2.2User Classes and Characteristics2
+2.3Operating Environment2
+2.4Design and Implementation Constraints3
+2.5Assumptions and Dependencies3
+3.System Features3
+3.1Order Product from Coffee store:3
+3.1.1Description3
+3.1.2Functional Requirements3
+3.2Buy products directly4
+3.3Create, View, Modify, and Delete Accounts4
+3.4Create, View, Modify, and Delete Products5
+3.5Create, View, Modify, and Delete Order5
+4.Data Requirements6
+4.1Logical Data Model6
+4.2Data Dictionary6
+4.3Reports8
+4.3.1Ordered Product History Report8
+4.4Data Integrity, Retention, and Disposal8
+5.External Interface Requirements8
+5.1User Interfaces8
+5.2Software Interfaces9
+5.3Hardware Interfaces10
+5.4Communications Interfaces10
+6.Quality Attributes10
+6.1Usability Requirements10
+6.2Performance Requirements10
+6.3Security Requirements10
+6.4Safety Requirements11
+6.5Availability Requirements11
+6.6Robustness Requirements11
+Appendix A: Analysis Models11
+
+
+
+
+Revision History
+Name
+Date
+Reason For Changes
+Version
+BaoNQ, HaoVN
+22/09/2020
+initial draft
+1.0 draft 1
+All Team
+25/10/2020
+changes after inspection
+1.0 approved
+
+
+Introduction
+Purpose 
+This SRS describes the functional and nonfunctional requirements for software release 1.0 of the Coffee Ordering Websites (COW). This document is intended to be used by the members of the project team who will implement and verify the correct functioning of the system. Unless otherwise noted, all requirements specified here are committed for release 1.0.
+Document Conventions
+No special typographical conventions are used in this SRS.
+Project Scope and Product Features
+COW will allow customers to order coffee online from the Coffee Ordering Websites and be delivered and paid by a salesperson at home or purchased and paid for directly in the store. A detailed description is available in the Coffee Ordering Websites Scope and Vision Document [1], along with features scheduled for full or partial rollout in this release.
+References
+No.
+Name of document
+Link to document
+1
+Vision and Scope Document
+https://bitly.com.vn/LbdLS
+2
+List of Business Rules
+https://bitly.com.vn/wGMZk
+3
+Use Case
+https://bitly.com.vn/SEmZx
+4
+The worksheet contains list of requirements â€“ not ordered
+https://bitly.com.vn/You1g
+
+Overall Description
+Product Perspective
+Coffee Ordering Websites is a new software system that replaces the traditional way of buying in a customer's store by allowing viewing, ordering and home delivery. The context diagram in Figure 1 illustrates the external entities and the system interface for version 1.0.
+
+Figure 1. Context diagram for release 1.0 of the Coffee Ordering Websites.
+User Classes and Characteristics
+Customer
+Customers are those who buy goods directly at the store or order online from the store's website. An estimated 60% of orders come from online ordering through the website. The remaining 40% of orders come from direct in-store purchases.
+Staff
+The store employs about 5 employees, who sell directly at the store or take orders from COW, prepare products, pack for delivery. Tracking and updating order status will be done by staff. Most Store Staff will need training on how to use hardware and software for COW.
+Manager
+The Product Managers is a store employee who sets up and maintains a store's business products. Some products may not be available for delivery. Product Managers will need to periodically edit the product listings on the system.
+Product Deliverer
+When a Staff prepares an order for delivery, they will send a delivery request to the carrier. Postman will pick up the product and deliver it to the customer.
+
+Operating Environment 
+OE-1:The COW shall operate correctly with the following web browsers: Firefox versions 12 through 26; Google Chrome (all versions).
+OE-2:The COW shall operate on a server running the current corporate-approved versions of Red Hat Linux and Apache HTTP Server.
+OE-3:The COW shall permit user access from a VPN Internet connection, and by Android, IOS, and Windows smartphones and tablets.
+Design and Implementation Constraints
+CO-1:The systemâ€™s design, code, and maintenance documentation shall conform to the Process Impact Intranet Development Standard, Version 1.3 [2].
+CO-2:The system shall use SQL Server database engine.
+CO-3:All HTML code shall conform to the HTML 5.0 standard.
+Assumptions and Dependencies
+AS-1:The store will be open from 9:00am to 8:00pm. The website will always be open for customers to visit and place an order. The order method will be available from 9:00am to 8:00pm.
+DE-1:Staff must make sure are always available when customer place an order.
+System Features
+Order Product from Coffee store:
+Description
+A store whose identity has been verified may order product either to be delivered to the customersâ€™ place. Customers may cancel or change a product order if it has not yet been sent to the post office. (Priority = High).
+Functional Requirements
+Order.Place: Placing a product order
+.Register:COW will confirm that the customer is logged into the system.(For online only)
+.No:If the customer hasn't signed up yet, the COW will give the customer the options to sign up now and login to continue ordering or exiting.
+
+Order.Deliver: Delivery
+.input:Customers who place an order will provide the phone number and delivery address
+.no input:If the customer does not provide information, the system will not allow the order
+
+Order.Menu: Viewing a product menu
+.view:COW will display the store's product menu.
+.Available:The product menu shows only available products.
+Order.Units: Ordering multiple products
+.Multiple:COW will allow the user to order multiple identical items, up to the least available quantity of any item on the menu.
+.TooMany:If a customer orders more product units than the store's existing number of units, the COW will notify the customer of the maximum number of product units they can order.
+Order.Confirm: Confirming an order
+.Display:When the customer wants to place an order, COW will display the products ordered, the price of each item and the payment amount charged for the invoice.
+.Prompt:The COW shall prompt the customer to confirm the product order.
+.Response:The Customer can cancel the order.
+Order.Done: Confirm order
+.Store:When customers order confirmation, the order will be sent to the system and stored with the status of "accepted".
+.Confirm:Staff will confirm delivery information is valid. Then package the product and deliver it to the carrier.
+    .Invalid:The staff will refuse the delivery and update order status of â€œ refuseâ€
+Order.Cancel: Cancel order
+.Request:when the customer requests to cancel the order. The system will check if the order has not been delivered to the carrier, it will allow to cancel the order
+.No:when the customer requests to cancel the order. The system will check if the order has not been delivered to the carrier, it will allow to cancel the order
+    
+Buy products directly
+Order.Select: Select product in store
+.Select:the customer chooses the product in the store. Then bring products to staff to create orders and pay directly.
+
+Create, View, Modify, and Delete Accounts
+Account.Create: Create new account
+.create:To create an account for your employees, you must be logged in with an administrator account. Enter the required information.
+.No:If you do not logged in with an administrator account, system will not allow you to create account.
+Account.View: View list account
+.view:Must be logged by admin account
+.no:If you do not logged in with an administrator account, system will not allow you to view account.
+Account.Modify: Modify account
+.modify:Must be logged by admin account
+.no:If you do not logged in with an administrator account, system will not allow you to modify account.
+Account.Delete: Delete account
+.delete:Must be logged by admin account
+.no:If you do not logged in with an administrator account, system will not allow delete account.
+
+Create, View, Modify, and Delete Products
+Products.Create: Create new product
+.create:To create a product, you must be logged in with an product manager account admin account. Enter the required information.
+.No:If you do not logged in with a product manager account or admin account, system will not allow you to create product.
+Products.View: View list product
+.view:Must be logged by product manager account or admin account
+.no:If you do not logged in with a product manager account or admin account, system will not allow you to view product.
+Product.Modify: Modify product
+.modify:Must be logged by product manager account or admin account
+.no:If you do not logged in with a product manager account or admin account, system will not allow you to modify product.
+Product.Delete: Delete product
+.delete:        Must be logged by product manager account or admin account
+.no:If you do not logged in with a product manager account or admin account, system will not allow you to delete product.
+Create, View, Modify, and Delete Order
+Products.Create: Create new order
+.create:To create a product, you must be logged in with a staff account admin account. Enter the required information.
+.No:If you do not logged in with a staff account or admin account, system will not allow you to create order.
+Products.View: View list order
+.view:Must be logged by staff account or admin account. Staff cannot modify price product and invoice.
+.no:If you do not logged in with a staff account or admin account, system will not allow you to view order.
+Product.Modify: Modify order
+.modify:Must be logged by product manager account or admin account
+.no:If you do not logged in with a product manager account or admin account, system will not allow you to modify order.
+Product.Delete: Delete order
+.delete:        Must be logged by product manager account or admin account
+.no:If you do not logged in with a product manager account or admin account, system will not allow you to delete order.
+Data Requirements
+Logical Data Model
+
+Figure 2: Partial data model of the Cafe Ordering System.
+Data Dictionary
+Data Element
+Description
+Composition or Data Type
+Length
+Values
+delivery instruction
+where and to whom a product is to be delivered, if it isn't being picked up in the cafe store
++customer name
++ customer phone number
++delivery location
++delivery date
++delivery time window
+
+
+delivery location
+building and room to which an ordered product is to be delivered
+alphanumeric
+100
+hyphens and commas permitted
+delivery time window
+business hours of the day of receipt for which the customer is scheduled by the store
+time
+hh:mm
+local time; hh = 0-23 inclusive; mm = 00, 15, 30, or 45
+employee ID
+company ID number of the employee who placed a product order
+integer
+5
+
+item description
+description of an item
+alphabetic
+255
+
+item price
+pre-tax COW of a single unit of item
+numeric, dollars and cents
+dd.cc
+
+delivery date
+the date the product is to be delivered
+date, MM/DD/YYYY
+10
+default = current date if the current time is before the order cutoff time, else the next day; cannot be prior to current date
+product order
+details about a product ordered
+product order number
++ order date
++ delivery date
++ 1:m{ordered item}
++ delivery instruction
++ product order status
+
+
+product order number
+unique ID that assigns to each accepted order
+integer
+7
+initial value is 1
+order status
+status of a product order that initiated
+alphabetic
+16
+incomplete, accepted, prepared, pending delivery, delivered, canceled
+product payment
+information about a payment accepted
+payment amount
++ payment method
++ transaction number
+
+
+order date
+the date on which placed a product order
+date, MM/DD/YYYY
+10
+
+ordered product item
+one menu item that requested
+list item
++ quantity ordered
+
+
+customer email
+email address of the customer who placed a product order
+alphanumeric
+50
+
+customer location
+building and room numbers of the customer who placed a product order
+alphanumeric
+50
+hyphens and commas permitted
+customer name
+name of the customer who placed a product order
+alphabetic
+30
+
+customer phone number
+telephone number of the customer who placed a product order
+10 or 11 number, start with 0
+11
+
+payment amount
+total price of an order in dollars and cents, calculated per MG-05(BR)
+numeric, dollars and cents
+dddd.cc
+
+payment method
+how the customer is paying for a product he ordered
+alphabetic
+16
+payroll deduction, cash, credit card, debit card
+transaction number
+unique sequence number that assigns to each payment transaction
+integer
+12
+
+Reports
+Monthly Best-Selling Product Report 
+Report ID:
+MBS-R-1
+Report Title:
+Report the best-selling product of the month
+Report Purpose:
+The manager want to see the information about best-selling product of the month
+Priority:
+High
+Report Users:
+Manager
+Data Sources:
+Database of previously activities of that month.
+Frequency and Disposition:
+Report is generated on demand by Manager. Data in the report is static. Report is displayed on user's web browser screen on a computer.
+Latency:
+Complete report must be displayed to Manager within 3 seconds after it is requested. 
+Visual Layout:
+Portrait mode (A4)
+Header and Footer:
+Report header shall contain the report title, month specified.
+Report Body:
+Fields shown and column headings: 
+Product ID
+Product Name
+Product Price
+Number of product sold in this month
+The revenue earned from that product
+Interactivity:
+The customer can drill down to see revenue and information about best-selling product of the month. 
+Security Access Restrictions:
+Manager can see all information about the product that exist in the database and revenue earned by that in this month.
+
+Data Integrity, Retention, and Disposal
+DIS-01:System Database will retain Individual Customer orders for 10 months following the delivery date.
+DIS-02:The system shall retain data of promotion for one year following the promotion ended.
+External Interface Requirements
+ User Interfaces
+UI-01:The system shall provide a help link from each displayed webpage to explain how to use that page.
+UI-02:The webpages shall permit complete navigation and food item selection by using the keyboard alone, in addition to using mouse and keyboard combinations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 3: Prototype 1
+
+Figure 4: Prototype 2
+ Software Interfaces
+SI-01:Store Inventory System
+SI-011:The System shall transmit the quantities of product items ordered to the Store Inventory System through a programmatic interface.
+SI-012:The System shall poll the Store Inventory System to determine whether a requested product item is available.
+SI-013:When the Store Inventory System notifies the system that a specific product item is run out, the system shall hidden that product item in the website for the current date.
+SI-02:Payroll System
+The system shall communicate with the Payroll System through a programmatic interface for the following operations:
+
+SI-021:To allow a customer to register and disable their account.
+SI-022:To submit a payment request for a purchased order.
+SI-023:To reverse all or part of a previous charge because a customer rejected a product or wasnâ€™t satisfied with quality of product and back the product to the store.
+Hardware Interfaces
+Our clientâ€™s hardware components must meet the minimum requirements of our system.
+Communications Interfaces
+CI-01:The system shall send an email (based on user account) to the customer to confirm acceptance of an order, online bill of the order. 
+CI-02:The system shall send an email (based on user account) to the customer to report any problems with the product order or delivery.
+Quality Attributes
+Usability Requirements
+USE-01:The system shall allow a customer to reorder the previous product ordered with a single interaction.
+USE-02:85% of new users shall be able to successfully order a product without errors on their first try.
+Performance Requirements
+PR-01:The system shall accommodate a total of 100 users and a maximum of 40 concurrent users.
+PR-02:95% of webpages generated by the system shall download completely within 10 seconds from the time the user requests the page over a 15Mbps or faster Internet connection.
+PR-03:The system shall display confirmation messages to users within an average of 5 seconds and a maximum of 10seconds after the user submits information to the system.
+Security Requirements
+SEC-01:All network transactions that involve financial information or personally identifiable information shall be encrypted per MD5 encryption method.
+SEC-02:Users shall be required to log on to the website for all operations except viewing information of products or promotions.
+SEC-03:Only Managers can be permitted to work with product list.
+SEC-04:The system shall permit customer to view only orders that they submitted.
+Safety Requirements
+SAF-01:The user shall be able to see a list of all ingredients in any product, with ingredients highlighted that are known to cause allergic reactions with children or some special people.
+Availability Requirements
+AVL-01:The order feature will available from 7:00AM to 8:00PM, excluding scheduled maintenance windows.
+Robustness Requirements
+ROB-01:If the connection between the user and the website is broken prior to a new order being either confirmed or terminated, the system shall enable the user to recover an incomplete order and continue working on it.
+
+Appendix A: Analysis Models
+Figure 3 is a state-transition diagram that shows the possible product order statuses and the allowed changes in status.
+
+Figure 5. State-transition diagram for product order status.
+

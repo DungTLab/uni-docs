@@ -1,0 +1,14 @@
+After inserting 30:
+30 
+
+After inserting 20:
+30 20 
+
+After inserting 10:
+20 10 30 
+
+After inserting 25:
+20 10 30 25 
+
+After inserting 40:
+20 10 30 25 40

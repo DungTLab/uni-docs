@@ -1,0 +1,775 @@
+Use Cases
+for
+Mini Fahasa System, Release 1.0
+Version 1.0 approved
+Prepared by Group 1
+June 25th, 2026
+ 
+Name
+Date
+Reason For Changes
+Version
+Nguyễn Phú Trọng
+23/06/2026
+First draft
+1.0 draft 1
+Nguyễn Phú Trọng
+25/06/2026
+Second draft
+1.0 draft 2
+ 
+ 
+ 
+Primary Actor
+Use Cases
+ Guest
+UC-01. Browse Product Catalog
+UC-02. Search Products
+UC-03. View Product Details
+UC-04. Browse Categories
+UC-05. Register Account
+UC-06. Login 
+Customer
+UC-01. Browse Product Catalog
+UC-02. Search Products
+UC-03. View Product Details
+UC-04. Browse Categories
+UC-07. View Cart
+UC-08. Update Cart
+UC-09. Logout
+UC-10. View/Edit Profile
+UC-11. View Loyalty Points Balance
+UC-12. Place Order
+UC-13. Apply Discount Codes
+UC-14. Redeem Loyalty Points
+UC-15. Process Payment
+UC-16. View Order History
+UC-17. View Order Details
+UC-18. Track Order Status
+UC-19. Cancel Order
+UC-20. Submit Support Request
+UC-21. View Support Request Status
+UC-22. Request Return Or Exchange
+Sale Staff
+UC-09. Logout
+UC-23. View Order List
+UC-24. View Order Details
+UC-25. Process Order Status
+UC-26. Cancel Order
+UC-27. Process Return
+UC-28. Process Exchange
+UC-29. View Return And Exchange Requests
+UC-30. Approve Return Or Exchange Request
+UC-31. Reject Return Or Exchange Request
+UC-32. Manage Discount Code
+CS Staff
+UC-09. Logout
+UC-33. View Support Ticket List
+UC-34. View Support Ticket Details
+UC-35. Reply to Support Request
+UC-36. Track Ticket SLA
+UC-37. View Support  Ticket Statistics
+UC-38. Verify Return/Exchange Status
+UC-39. Initiate Return Or Exchange Request
+UC-40. View Customer Transaction History
+UC-41. View Invoices And Order Details
+Manager
+UC-09. Logout
+UC-42. Manage Product
+UC-43. Manage Categories
+UC-44. Manage Authors
+UC-45. Manage Publishers
+UC-46. Manage Brands
+UC-47. View Stock 
+UC-48. Import Stock
+UC-49. Adjust Stock
+UC-50. Transfer Stock Between Braches
+UC-51. View Stock Transaction Logs
+UC-52. View Stock Alerts
+UC-53. Manage Holiday Campaign
+UC-54. View Revenue Report
+UC-55. View Stock Report
+UC-56. View Order Report
+UC-57. View Payment Reconciliation Report
+Admin
+UC-09. Logout
+UC-58. Manage Customer Accounts
+UC-59. Manage Staff Accounts
+UC-60. Configure System Parameters
+UC-61. View System Audit Log
+ 
+ 
+ 
+ 
+ 
+VẼ USE CASE
+ 
+  
+ID and Name:
+UC-05. Register Account
+Created By:
+Nguyễn Phú Trọng
+Date Created:
+23/06/2026
+Primary Actor:
+Guest
+Secondary Actors:
+None
+Description:
+Allows a Guest to create a new Customer account in the system by providing their personal information (Name, Phone number, Email, Password) or by using their Google account via Single Sign-On (SSO). 
+Trigger:
+The Guest clicks on the "Register" button on the Storefront homepage or login page. 
+Preconditions:
+PRE-1. The Guest has an active internet connection.
+PRE-2. The Guest does not currently have an active account associated with the provided email address. 
+Post conditions:
+POST-1. A new Customer account is created and saved in the database.
+POST-2. Upon successful registration, the user can log into the system. 
+Normal Flow:
+1. The Guest accesses the Registration page.
+2. The Guest enters the required information: Full Name, Phone Number, Email Address, Password, and Confirm Password.
+3. The Guest clicks the "Create Account" button.
+4. The system validates the entered data format (e.g., valid email format, password strength matches BR-16).
+5. The system checks the database to ensure the email address is not already registered.
+6. The system encrypts (hashes) the password and saves the new account information into the database.
+7. The system displays a success message: "Account registered successfully" and redirects the user to the Login page. 
+Alternative Flows:
+AF-1. Register using Google SSO (Release 3):
+1a. The Guest clicks the "Continue with Google" button on the Registration page.
+1b. The system redirects the user to the Google authentication page.
+1c. The Guest selects their Google account and grants permission.
+1d. The system receives the user's profile information (Email, Name) from Google.
+1e. The system checks if the email is already registered. If not, it automatically creates a new Customer account using the Google profile data.
+1f. The system redirects the user to the Storefront homepage (automatically logged in). 
+Exceptions:
+EX-1. Invalid Data Format: At Step 4, if the data is invalid (e.g., weak password, mismatched passwords, invalid phone number), the system highlights the erroneous fields, displays specific error messages, and asks the user to re-enter.
+EX-2. Email Already Exists: At Step 5, if the email is already registered, the system displays an error: "This email address is already in use. Please log in or use a different email."
+EX-3. Missing Mandatory Fields: The system disables the "Create Account" button or shows an error message indicating which required fields are blank. 
+EX-4. Underage User: At Step 4, if the calculated age is under 15 years old, the system rejects the registration and displays an error message: "You must be at least 15 years old to register an account." 
+Business Rules:
+ BR16
+Priority:
+High
+Other Information:
+Passwords must be securely hashed before storing. Passwords should meet minimum security requirements (at least 8 characters, including letters and numbers). 
+  
+ 
+ID and Name:
+UC-06
+Created By:
+Nguyễn Phú Trọng
+Date Created:
+23/06/2026
+Primary Actor:
+Guest
+Secondary Actors:
+None
+Description:
+Allow a user to input their credentials (Email and Password) to authenticate and access the system with permissions corresponding to their assigned Role.
+Trigger:
+The User clicks on the "Login" button on the Storefront homepage.
+Preconditions:
+PRE-1. The User has an active internet connection.
+PRE-2. The User has a valid, registered account in the system
+Post conditions:
+POST-1. The user is successfully authenticated.
+POST-2. The system redirects the user to the appropriate interface based on their role (Customer -> Storefront; Staff/Manager/Admin -> Dashboard). 
+Normal Flow:
+1. The user accesses the Login Page.
+2. The user enters their Email Address and Password.
+ 3. The user clicks the “Login” button.
+ 4. The system checks if the Email exists in the database.
+ 5. The system verifies that the entered Password matches the hashed password record.
+ 6. The system generates a JWT token and establishes a user session.
+ 7. The system identifies the user’s Role and redirects them accordingly:
+        + Customer: Redirected to the Storefront homepage
+                 + Sale Staff / CS Staff / Manager / Admin: Redirected to The Dashboard.
+Alternative Flows:
+AF-1. Login using Google SSO (Release 3):
+1a. The user clicks the “Login with Google” button
+ 1b. The system redirects the user to the Google authentication page.
+ 1c. The user selects their Google account and grants permissions.
+ 1d. The system receives the user data from Google.
+ 1e. The system automatically logs the user in and proceeds from Step 5 of the Normal Flow.
+Exceptions:
+EX-1. Invalid Credentials: At Step 4, if the email does not exist or the password is incorrect, the system halts the login process and displays a generic error message: “Invalid email or password”.
+EX-2. Unregistered Google Email (for AF-1): At step 1d, if the Google email is not linked to any existing account in the system, the system redirects the user to the Registration page.
+Business Rules:
+ None
+Priority:
+High
+Other Information:
+The system uses JSON Web Token (JWT) for authentication. Tokens have a standard expiration time of 24 hours.
+ID and Name:
+UC-12. Place Order 
+Created By:
+Nguyễn Phú Trọng
+Date Created:
+23/06/2026
+Primary Actor:
+Customer
+Secondary Actors:
+None
+Description:
+Allows a Customer to checkout the items in their shopping cart, specify skipping information, apply discount codes or redeem loyalty points (if applicable), choose a payment method, and complete the order
+Trigger:
+The Customer clicks the “Proceed to Checkout” button 
+Preconditions:
+PRE-1. The Customer is logged into the system 
+PRE-2. The Customer’s cart contains at least on in-stock item
+Post conditions:
+POST-1. A new Order record is created in the database with the status “Processing”
+POST-2. The inventory stock for the ordered products is officially deducted.
+POST-3. Loyalty points are awarded to the Customer (1,000 VND = 1 point) (BR-10)
+POST-4. The system sends an order confirmation email to the Customer.
+Normal Flow:
+1. The Customer accesses the Checkout page.
+2. The system retrieves and displays the Customer’s default shipping address and order items.
+3. The Customer confirms the default shipping address.
+4. The system calculates and displays the shipping fee and order summary.
+5. The Customer selects “COD” as the payment method
+6. The Customer clicks the “Place Order” button 
+7. The system validates the order information and product inventory availability.
+8. The system deducts the product stock from inventory.
+9. The system generates a unique Order ID and saves the order to the database
+10. The system calculates and credits loyalty points to the Customer’s account.
+11. The system redirects the Customer to the Order Confirmation page and sends a confirmation email.
+Alternative Flows:
+AF-1. Change Shipping Address:
+1a. At Step 3, The Customer clicks “Change Address”. 
+1b. The Customer selects a different saved address to enters a new one.
+1c. The system recalculates the shipping fee and updates the order summary.
+1d. The flow continues from Step 5.
+AF-2. Redeem Discount Code:
+2a. At Step 4, The Customer enters a discount code and clicks “Apply”.
+2b. The system validates the discount code.
+2c. The system updates the order summary reflecting the discount.
+2d. The flow continues from Step 5.
+AF-3. Redeem Loyalty Points (BR-11):
+3a. At Step 4, The customer selects to redeem loyalty points.
+3b. The system checks the Customer’s points balance and applies discount.
+3c. The system updates the order summary.
+3d. The flow continues from Step 5.
+AF-4. Online Payment:
+4a. At Step 5, The customer selects “Online Payment (via VNPay)”.
+4b. After step 7, The system invokes UC-15. Process Payment to handle transaction.
+Once payment is confirmed, the flow continues from Step 8.
+Exceptions:
+EX-1. Item Out of Stock: At Step 7, if any item in the order becomes out of stock, the system halts the order process, displays a message: "Item [Product Name] is no longer available in stock", and redirects the user back to the Cart.
+EX-2. Invalid Discount Code (for AF-2): At Step 2b, if the discount code is invalid, expired, or doesn't meet the order minimum, the system displays an error: "Invalid or expired discount code" and does not apply the discount.
+EX-3. Insufficient Loyalty Points (for AF-3): At Step 3b, if the Customer's loyalty points balance is less than 5,000, the system displays: "Minimum 5,000 points required to redeem."
+EX-4. Discount Limit Exceeded (for AF-2/AF-3): At Step 2b or 3b, if the total discount exceeds 10% of the order value, the system limits the discount to exactly 10% (BR-11, BR-14).
+EX-5. Online Payment Failed (for AF-4): At Step 4b, if the online payment fails or is canceled by the user, the system halts the order process, releases any reserved inventory, displays an error message: "Online payment failed or canceled. Please try again.", and redirects the Customer back to the Checkout page. 
+Business Rules:
+ BR10, BR-11, BR-14
+Priority:
+High
+Other Information:
+None
+ID and Name:
+UC-12. Process Payment
+Created By:
+Nguyễn Phú Trọng
+Date Created:
+23/06/2026
+Primary Actor:
+Customer
+Secondary Actors:
+None
+Description:
+Handles the online payment transaction for the Customer's order using the VNPay gateway. 
+Trigger:
+The system invokes this Use Case from UC-12 (Step 4b of Alternative Flow AF-4) when the Customer chooses Online Payment. 
+Preconditions:
+PRE-1. The Customer is logged into the system 
+PRE-2. The Customer’s cart contains at least on in-stock item
+Post conditions:
+POST-1. A new Order record is created in the database with the status “Processing”
+POST-2. The inventory stock for the ordered products is officially deducted.
+POST-3. Loyalty points are awarded to the Customer (1,000 VND = 1 point) (BR-10)
+POST-4. The system sends an order confirmation email to the Customer.
+Normal Flow:
+1. The Customer accesses the Checkout page.
+2. The system retrieves and displays the Customer’s default shipping address and order items.
+3. The Customer confirms the default shipping address.
+4. The system calculates and displays the shipping fee and order summary.
+5. The Customer selects “COD” as the payment method
+6. The Customer clicks the “Place Order” button 
+7. The system validates the order information and product inventory availability.
+8. The system deducts the product stock from inventory.
+9. The system generates a unique Order ID and saves the order to the database
+10. The system calculates and credits loyalty points to the Customer’s account.
+11. The system redirects the Customer to the Order Confirmation page and sends a confirmation email.
+Alternative Flows:
+AF-1. Change Shipping Address:
+1a. At Step 3, The Customer clicks “Change Address”. 
+1b. The Customer selects a different saved address to enters a new one.
+1c. The system recalculates the shipping fee and updates the order summary.
+1d. The flow continues from Step 5.
+AF-2. Redeem Discount Code:
+2a. At Step 4, The Customer enters a discount code and clicks “Apply”.
+2b. The system validates the discount code.
+2c. The system updates the order summary reflecting the discount.
+2d. The flow continues from Step 5.
+AF-3. Redeem Loyalty Points (BR-11):
+3a. At Step 4, The customer selects to redeem loyalty points.
+3b. The system checks the Customer’s points balance and applies discount.
+3c. The system updates the order summary.
+3d. The flow continues from Step 5.
+AF-4. Online Payment:
+4a. At Step 5, The customer selects “Online Payment (via VNPay)”.
+4b. After step 7, The system invokes UC-15. Process Payment to handle transaction.
+Once payment is confirmed, the flow continues from Step 8.
+Exceptions:
+EX-1. Item Out of Stock: At Step 7, if any item in the order becomes out of stock, the system halts the order process, displays a message: "Item [Product Name] is no longer available in stock", and redirects the user back to the Cart.
+EX-2. Invalid Discount Code (for AF-2): At Step 2b, if the discount code is invalid, expired, or doesn't meet the order minimum, the system displays an error: "Invalid or expired discount code" and does not apply the discount.
+EX-3. Insufficient Loyalty Points (for AF-3): At Step 3b, if the Customer's loyalty points balance is less than 5,000, the system displays: "Minimum 5,000 points required to redeem."
+EX-4. Discount Limit Exceeded (for AF-2/AF-3): At Step 2b or 3b, if the total discount exceeds 10% of the order value, the system limits the discount to exactly 10% (BR-11, BR-14).
+EX-5. Online Payment Failed (for AF-4): At Step 4b, if the online payment fails or is canceled by the user, the system halts the order process, releases any reserved inventory, displays an error message: "Online payment failed or canceled. Please try again.", and redirects the Customer back to the Checkout page. 
+Business Rules:
+ BR10, BR-11, BR-14
+Priority:
+High
+Other Information:
+None
+ID and Name:
+UC-22. Request Return or Exchange
+Created By:
+Nguyễn Phú Trọng
+Date Created:
+23/06/2026
+Primary Actor:
+Customer
+Secondary Actors:
+None
+Description:
+Allows a Customer to submit a request to return or exchange products from a delivered order if the items are defective, damaged, or do not match the description. 
+Trigger:
+The Customer clicks the "Request Return/Exchange" button on the Order Detail page. 
+Preconditions:
+PRE-1. The Customer is logged into the system (UC-06).
+PRE-2. The order status is "Delivered". 
+Post conditions:
+POST-1. A Return/Exchange Ticket is created in the database with the status "Pending".
+POST-2. The system notifies the Sales Staff of the new request. 
+Normal Flow:
+1. The Customer accesses the Order History page and selects a delivered order.
+2. The Customer clicks the "Request Return/Exchange" button.
+3. The system validates the order's eligibility for return/exchange (within the 7-day period).
+4. The system displays the Return/Exchange request form.
+5. The Customer selects the specific items and quantities they wish to return.
+6. The Customer selects a reason from the dropdown, uploads supporting photos of the items, and inputs description text.
+7. The Customer selects the resolution type as "Return & Refund".
+8. The Customer clicks the "Submit Request" button.
+9. The system validates that all mandatory information is provided.
+10. The system generates a Return Ticket with a "Pending" status and logs the request.
+11. The system displays a submission confirmation message to the Customer. 
+Alternative Flows:
+AF-1. Request Exchange:
+1a. At Step 7, the Customer selects "Exchange" as the resolution type.
+1b. The system displays the exchange options (e.g., replacement for the same item or color/size option).
+1c. The Customer selects the desired replacement option.
+1d. The flow continues from Step 8. 
+Exceptions:
+EX-1. Return Period Expired: At Step 3, if the delivery date exceeds the 7-day window (BR-12), the system displays the message: "This order is no longer eligible for return or exchange (7-day limit exceeded)" and cancels the process.
+EX-2. Duplicate Request: At Step 3, if a return/exchange request already exists for the selected items in the database, the system displays: "A return or exchange request is already in progress for this order" and halts the process.
+EX-3. Missing Mandatory Fields: At Step 9, if the Customer fails to select items, select a reason, or upload required photos, the system highlights the missing fields, displays: "Please fill out all required fields and upload at least one photo.", and does not submit the request. 
+Business Rules:
+ BR-12
+Priority:
+Medium
+Other Information:
+None
+ID and Name:
+UC-25. Process Order Status
+Created By:
+Nguyễn Phú Trọng
+Date Created:
+23/06/2026
+Primary Actor:
+Sale Staff
+Secondary Actors:
+None
+Description:
+Allows a Customer to submit a request to return or exchange products from a delivered order if the items are defective, damaged, or do not match the description. 
+Trigger:
+The Sale Staff selects a pending or active order from the Order List on the Dashboard. 
+Preconditions:
+PRE-1. The Sale Staff is logged into the Dashboard (UC-06).
+PRE-2. The target order exists in the system with a status that allows transition. 
+Post conditions:
+POST-1. The order status is successfully updated in the database.
+POST-2. The system logs the change (audit trail) with the staff member's ID and timestamp.
+POST-3. The system sends an automated status update email to the Customer. 
+Normal Flow:
+1. The Sale Staff accesses the Order Management page on the Dashboard.
+2. The system retrieves and displays the list of all orders.
+3. The Sale Staff selects a "Pending" order to process.
+4. The system displays the Order Details.
+5. The Sale Staff clicks the "Confirm Order" button.
+6. The system validates the product inventory availability.
+7. The system updates the order status to "Confirmed" in the database.
+8. The system sends an automated email notification to the Customer about the confirmation. 
+Alternative Flows:
+AF-1. Update Order to "Shipping":
+1a. At Step 3, the Sale Staff selects a "Confirmed" order.
+1b. The Sale Staff clicks the "Ship Order" button and inputs shipping partner details (Courier Name and Tracking ID).
+1c. The system updates the order status to "Shipping".
+1d. The flow continues from Step 8.
+AF-2. Update Order to "Delivered":
+2a. At Step 3, the Sale Staff selects a "Shipping" order.
+2b. The Sale Staff clicks the "Mark as Delivered" button.
+2c. The system updates the order status to "Delivered" and logs the delivery timestamp.
+2d. The flow continues from Step 8. 
+Exceptions:
+EX-1. Insufficient Inventory: At Step 6, if any item in the order has insufficient stock in the warehouse, the system halts the update, displays: "Cannot confirm order. Product [Product Name] has insufficient stock.", and keeps the order status as "Pending".
+EX-2. Invalid Status Transition: If a user attempts to bypass the order lifecycle (e.g., marking a "Pending" order directly as "Delivered"), the system blocks the action and displays: "Invalid status transition request." 
+Business Rules:
+ None
+Priority:
+High
+Other Information:
+None
+ID and Name:
+UC-27. Process Return
+Created By:
+Nguyễn Phú Trọng
+Date Created:
+23/06/2026
+Primary Actor:
+Sale Staff
+Secondary Actors:
+None
+Description:
+Allows the Sale Staff to process a Customer's return request, inspect the returned items, approve or reject the request, update inventory, and initiate a refund. 
+Trigger:
+The Sale Staff selects a pending Return Request from the Return Management page on the Dashboard. 
+Preconditions:
+PRE-1. The Sale Staff is logged into the Dashboard (UC-06).
+PRE-2. A Return Ticket exists in the database with "Pending" status.
+PRE-3. The request was initiated within 7 days of delivery (BR-12). 
+Post conditions:
+POST-1. The Return Ticket status is updated to "Approved".
+POST-2. The returned products are restocked back into the inventory.
+POST-3. A refund transaction is initiated and logged.
+POST-4. The system sends an email notification with the decision to the Customer. 
+Normal Flow:
+1. The Sale Staff accesses the Return Management page on the Dashboard.
+2. The system retrieves and displays a list of pending return requests.
+3. The Sale Staff selects a pending Return Ticket.
+4. The system displays the details of the request (items, reason, uploaded photos, and original order details).
+5. The Sale Staff physically inspects the returned items and verifies they are in original condition with tags intact.
+6. The Sale Staff clicks the "Approve Return" button.
+7. The system updates the Return Ticket status to "Approved".
+8. The system updates the inventory levels of the returned items.
+9. The system initiates an automated refund request to the VNPay Payment Gateway.
+10. The system sends an email notification to the Customer confirming the return approval and refund. 
+Alternative Flows:
+AF-1. Reject Return:
+1a. At Step 5, the Sale Staff determines the items do not meet return conditions (e.g., damaged, tags removed).
+1b. The Sale Staff enters the rejection reason in the remarks field.
+1c. The Sale Staff clicks the "Reject Return" button.
+1d. The system updates the Return Ticket status to "Rejected".
+1e. The system sends an email to the Customer detailing the rejection reason.
+AF-2. Process COD Order Refund:
+2a. At Step 9, if the original payment method was COD, the system skips the VNPay gateway call.
+2b. The system prompts the Sale Staff to log the Customer's bank details for a manual bank transfer.
+2c. The flow continues from Step 10. 
+Exceptions:
+EX-1. Gateway Refund Failed: At Step 9, if the connection to VNPay fails or the refund request is rejected by the gateway, the system flags the refund status as "Manual Refund Required", logs the error, and displays a warning to the Sale Staff to handle the transfer manually. 
+Business Rules:
+ BR-08, BR-12
+Priority:
+High
+Other Information:
+None
+ID and Name:
+UC-35. Reply to Support Request
+Created By:
+Nguyễn Phú Trọng
+Date Created:
+23/06/2026
+Primary Actor:
+CS Staff
+Secondary Actors:
+None
+Description:
+This Use Case enables Customer Service (CS) Staff to manage and respond to customer inquiries, complaints, or feedback submitted through the ticketing system. It establishes a structured communication channel to resolve customer issues regarding orders, accounts, discounts, or delivery delays. The process ensures that all interactions are documented, timestamps are tracked to monitor internal SLA compliance, and historical logs are maintained for quality control and customer service audits. 
+Trigger:
+The CS Staff selects an active support ticket from the Support Queue on the Dashboard. 
+Preconditions:
+PRE-1. The CS Staff is logged into the Dashboard (UC-06).
+PRE-2. A Support Ticket exists in the database. 
+Post conditions:
+POST-1. The reply is saved and appended to the ticket history.
+POST-2. The ticket status is updated to "Resolved".
+POST-3. The system sends an email notification with the reply to the Customer. 
+Normal Flow:
+1. The CS Staff accesses the Support Queue page.
+2. The system retrieves and displays a list of active support tickets.
+3. The CS Staff selects a ticket with "Open" status.
+4. The system displays the ticket details and discussion history.
+5. The CS Staff enters the resolution response in the reply editor.
+6. The CS Staff clicks the "Send & Resolve" button.
+7. The system updates the ticket status to "Resolved" in the database.
+8. The system saves the reply text to the ticket log.
+9. The system sends an email notification containing the response to the Customer. 
+Alternative Flows:
+AF-1. Send Reply and Keep Open:
+1a. At Step 6, the CS Staff clicks the "Send Reply" button instead of resolving.
+1b. The system updates the ticket status to "In Progress".
+1c. The flow continues from Step 8.
+AF-2. Escalate Ticket:
+2a. At Step 5, the CS Staff determines the issue requires technical or managerial action (e.g., refund authorization).
+2b. The CS Staff assigns the ticket to a specific department or role (e.g., Sale Staff or Manager) and adds internal notes.
+2c. The CS Staff clicks the "Escalate" button.
+2d. The system reassigns the ticket, flags it as "Escalated", and notifies the new owner.
+2e. The flow continues from Step 8. 
+Exceptions:
+EX-1. SLA Violation Warning: At Step 3, if the ticket has been open for more than 2 working days (BR-08) without a resolution, the system displays an "SLA Breached" warning badge. The CS Staff can still reply, but the breach is logged in the system.
+EX-2. Empty Reply: At Step 6, if the reply editor is empty, the system displays: "Please enter a response before sending." and blocks the submission. 
+Business Rules:
+ BR-08
+Priority:
+High
+Other Information:
+None
+ID and Name:
+UC-39. Initiate Return or Exchange Request
+Created By:
+Nguyễn Phú Trọng
+Date Created:
+23/06/2026
+Primary Actor:
+CS Staff
+Secondary Actors:
+None
+Description:
+Allows the CS Staff to submit a return or exchange request on behalf of a Customer who contacts support directly (via phone, chat, or email). The CS Staff verifies the Customer's order history, selects eligible delivered items, and inputs the details. Once submitted, the request is queued in the standard workflow for Sale Staff approval. 
+Trigger:
+The CS Staff receives a return/exchange request from a Customer via phone, email, or chat, and clicks the "Initiate Return/Exchange" button on the Customer's Order History page. 
+Preconditions:
+PRE-1. The CS Staff is logged into the Dashboard (UC-06).
+PRE-2. The target order has been successfully delivered. 
+Post conditions:
+POST-1. A Return/Exchange Ticket is created in the database with "Pending" status, recording the CS Staff member as the initiator.
+POST-2. The request is sent to the Sale Staff queue for approval.
+POST-3. The system sends an email notification to the Customer confirming the request creation. 
+Normal Flow:
+1. The CS Staff searches for and locates the Customer's profile on the Dashboard.
+2. The system retrieves and displays the Customer's profile details and Order History.
+3. The CS Staff selects the target delivered order that is eligible for return/exchange.
+4. The CS Staff clicks the "Create Return/Exchange Request" button.
+5. The system displays the return/exchange input form.
+6. The CS Staff selects the specific items and quantities to be returned as requested by the Customer.
+7. The CS Staff selects the appropriate reason from the dropdown, uploads the photos provided by the Customer, and types in the description/notes.
+8. The CS Staff selects "Return & Refund" as the resolution type.
+9. The CS Staff clicks the "Submit Request" button.
+10. The system validates that all mandatory fields are completed.
+11. The system creates the Return Ticket with "Pending" status and logs the CS Staff ID as the creator.
+12. The system sends a confirmation email to the Customer. 
+Alternative Flows:
+AF-1. Initiate Exchange Request:
+1a. At Step 8, the CS Staff selects "Exchange" as the resolution type.
+1b. The system displays the exchange product selection options.
+1c. The CS Staff selects the replacement size, color, or item requested by the Customer.
+1d. The flow continues from Step 9. 
+Exceptions:
+EX-1. Order Ineligible (Over 7 Days): At Step 3, if the delivery date exceeds the 7-day return window (BR-12), the system disables the request button and displays: "This order is ineligible for return/exchange (7-day policy limit exceeded)".
+EX-2. Duplicate Active Ticket: At Step 3, if a return/exchange ticket is already pending or approved for the selected items, the system blocks the action and displays: "An active return or exchange request already exists for this order."
+EX-3. Missing Mandatory Fields: At Step 10, if the CS Staff fails to select items or choose a reason, the system highlights the missing fields, displays: "Please specify the items and the reason for return.", and blocks submission. 
+Business Rules:
+ BR-08, BR-12
+Priority:
+Medium
+Other Information:
+None
+ID and Name:
+UC-42. Manage Product
+Created By:
+Nguyễn Phú Trọng
+Date Created:
+23/06/2026
+Primary Actor:
+Manager
+Secondary Actors:
+None
+Description:
+Allows the Manager to perform CRUD (Create, Read, Update, Delete) operations on the product catalog. The system supports two distinct product subclasses: Books and Stationery. This ensures that the Storefront display is up-to-date and details of each product type are accurately maintained. 
+Trigger:
+The Manager clicks the "Product Management" link on the Dashboard navigation menu. 
+Preconditions:
+PRE-1. The Manager is logged into the Dashboard (UC-06). 
+Post conditions:
+POST-1. The product data is successfully created, updated, or removed in the database.
+POST-2. The changes are immediately reflected in the Storefront product listings. 
+Normal Flow:
+1. The Manager accesses the Product Management page.
+2. The system retrieves and displays the product list.
+3. The Manager clicks the "Add New Product" button.
+4. The Manager selects the product type: "Book".
+5. The Manager fills in common attributes (Name, Description, Base Price, Category, and Uploads Images) and subclass-specific attributes (Author, Publisher, Pages, ISBN, Publication Year).
+6. The Manager clicks the "Save Product" button.
+7. The system validates the entered data.
+8. The system saves the product record to the database.
+9. The system displays a success message: "Product added successfully." 
+Alternative Flows:
+AF-1. Add Stationery Product:
+1a. At Step 4, the Manager selects "Stationery" as the product type.
+1b. The Manager inputs common attributes and subclass-specific attributes (Brand, Material, Color, Origin).
+1c. The flow continues from Step 6.
+AF-2. Edit Product:
+2a. At Step 2, the Manager selects a product and clicks the "Edit" button.
+2b. The system displays the product form pre-filled with current data.
+2c. The Manager updates the fields and clicks "Save".
+2d. The flow continues from Step 7.
+AF-3. Delete Product (Soft Delete):
+3a. At Step 2, the Manager selects a product and clicks "Delete".
+3b. The system marks the product status as "Archived/Inactive" without deleting transaction history.
+3c. The flow continues from Step 8. 
+Exceptions:
+EX-1. Duplicate Product Identifier: At Step 7, if the ISBN (for Books) or Barcode (for Stationery) already exists, the system halts the save process, highlights the field, and displays: "This product code is already in use."
+EX-2. Active Order Constraint: At AF-3 Step 3b, if the product is associated with orders that are not yet delivered (e.g., Pending, Confirmed, Shipping), the system blocks the deletion and displays: "Cannot delete product. There are active orders containing this item. Please mark it as Inactive instead."
+EX-3. Missing Mandatory Fields: At Step 7, if any required field is left empty, the system displays an error and highlights the empty fields. 
+Business Rules:
+ None
+Priority:
+High
+Other Information:
+None
+ID and Name:
+UC-54. View Revenue Report
+Created By:
+Nguyễn Phú Trọng
+Date Created:
+23/06/2026
+Primary Actor:
+Manager
+Secondary Actors:
+None
+Description:
+Allows the Manager to view and analyze revenue reports across branches and customizable timeframes. The report displays key financial metrics, top-performing product categories, and transaction volume to support business decision-making. Managers can also export these reports to Excel or PDF format for offline archiving and presentation. 
+Trigger:
+The Manager clicks the "Revenue Reports" link on the Dashboard navigation menu. 
+Preconditions:
+PRE-1. The Manager is logged into the Dashboard (UC-06).
+PRE-2. Financial transaction data exists in the database. 
+Post conditions:
+POST-1. The revenue report is successfully generated and displayed on the Dashboard. 
+Normal Flow:
+1. The Manager accesses the Revenue Reports page.
+2. The system retrieves transaction records for the current calendar month from the database.
+3. The system calculates and displays key metrics (Total Revenue, Total Orders, Average Order Value).
+4. The system renders the revenue trend charts and lists the top 10 best-selling items.
+5. The Manager reviews the generated report. 
+Alternative Flows:
+AF-1. Filter Report:
+1a. At Step 3, the Manager selects a specific date range (e.g., Weekly, Quarterly, Custom) and/or chooses a specific Branch from the filter options.
+1b. The system recalculates the metrics and updates the charts based on the filters.
+1c. The flow continues from Step 5.
+AF-2. Export Report:
+2a. At Step 5, the Manager clicks the "Export" button and selects "Excel" or "PDF" format.
+2b. The system compiles the report data, generates the file, and triggers the download.
+2c. The flow continues from Step 5. 
+Exceptions:
+EX-1. No Data Available: At Step 3 (or AF-1 Step 1b), if no sales transactions exist for the selected filters, the system displays blank charts and a message: "No data available for the selected period."
+EX-2. File Generation Error: At AF-2 Step 2b, if the export process fails due to a server error, the system displays: "Failed to export report. Please try again." and does not download any file. 
+Business Rules:
+ BR-03
+Priority:
+High
+Other Information:
+None
+ID and Name:
+UC-59. Manage Staff Accounts
+Created By:
+Nguyễn Phú Trọng
+Date Created:
+23/06/2026
+Primary Actor:
+Admin
+Secondary Actors:
+None
+Description:
+Allows the Admin to manage the accounts of internal staff members (Sale Staff, CS Staff, Manager). The Admin can create new accounts, update profile details, and activate or deactivate accounts. This process ensures secure access control and proper role allocation within the internal Dashboard.  
+Trigger:
+The Admin clicks the "Staff Management" link on the Dashboard navigation menu. 
+Preconditions:
+PRE-1. The Admin is logged into the Dashboard (UC-06). 
+Post conditions:
+POST-1. The staff account data is successfully created, updated, or status-modified in the database.
+POST-2. (Upon creation) The system sends an email notification with login credentials and a temporary password to the new staff member. 
+Normal Flow:
+1. The Admin accesses the Staff Management page.
+2. The system retrieves and displays the list of all staff accounts.
+3. The Admin clicks the "Create New Account" button.
+4. The Admin enters the staff details (Full Name, Email, Phone Number) and selects the appropriate Role.
+5. The Admin clicks the "Submit" button.
+6. The system validates the inputs.
+7. The system generates a secure, random temporary password.
+8. The system saves the new account in the database with an "Active" status.
+9. The system sends an automated email to the new employee containing the login link and temporary password.
+10. The system displays a success message: "Staff account created successfully." 
+Alternative Flows:
+AF-1. Update Staff Details:
+1a. At Step 2, the Admin selects a staff account and clicks the "Edit" button.
+1b. The Admin updates the Name, Phone Number, or Role and clicks "Save".
+1c. The system validates and updates the database.
+1d. The flow continues from Step 10.
+AF-2. Deactivate Account:
+2a. At Step 2, the Admin selects a staff account and clicks "Deactivate".
+2b. The Admin confirms the deactivation in the popup prompt.
+2c. The system updates the account status to "Inactive" (preventing any login attempts).
+2d. The flow continues from Step 10. 
+Exceptions:
+EX-1. Email Already In Use: At Step 6, if the entered email is already registered, the system halts the process, highlights the field, and displays: "Email is already associated with another account."
+EX-2. Self-Deactivation Blocked: At AF-2 Step 2a, if the Admin attempts to deactivate the account they are currently logged into, the system blocks the action and displays: "You cannot deactivate your own account."
+EX-3. Missing Mandatory Fields: At Step 6, if any required field is left empty, the system displays an error and highlights the empty fields. 
+Business Rules:
+ None
+Priority:
+High
+Other Information:
+None
+ID and Name:
+UC-60. Configure System Parameters
+Created By:
+Nguyễn Phú Trọng
+Date Created:
+23/06/2026
+Primary Actor:
+Admin
+Secondary Actors:
+None
+Description:
+Allows the Admin to configure global system parameters that control the business logic and policies of the application (e.g., loyalty points ratios, stock alert thresholds, SLA response times, and return windows). This ensures that business policies can be adjusted dynamically without requiring code modifications. All parameter changes are logged in the System Audit Log for tracking and compliance. 
+Trigger:
+The Admin clicks the "System Settings" link on the Dashboard navigation menu. 
+Preconditions:
+PRE-1. The Admin is logged into the Dashboard (UC-06). 
+Post conditions:
+POST-1. The updated system parameters are saved in the database and applied immediately.
+POST-2. The configuration change is logged in the System Audit Log. 
+Normal Flow:
+1. The Admin accesses the System Settings page.
+2. The system retrieves and displays the current values of all global parameters.
+3. The Admin modifies the values of the target system parameters.
+4. The Admin clicks the "Save Configuration" button.
+5. The system validates the entered parameter values.
+6. The system updates the parameters in the database.
+7. The system writes a record to the System Audit Log, capturing the Admin ID, timestamp, changed parameters, old values, and new values.
+8. The system displays a success message: "System settings updated successfully." 
+Alternative Flows:
+AF-1. View Change History:
+1a. At Step 2, the Admin clicks the "View Change History" button.
+1b. The system retrieves and displays the audit log list of past configuration updates.
+1c. The flow continues from Step 5. 
+Exceptions:
+EX-1. Invalid Parameter Values: At Step 5, if the Admin enters an invalid value (e.g., a negative number for days, or a percentage threshold outside the 0-100% range), the system blocks the update, highlights the fields, and displays: "Invalid value entered for [Parameter Name]."
+EX-2. Blank Parameter Fields: At Step 5, if any parameter field is left empty, the system displays: "Parameters cannot be left blank." and blocks saving. 
+Business Rules:
+ BR-01, BR-04, BR-08, BR-10, BR-11, BR-12 
+Priority:
+High
+Other Information:
+None

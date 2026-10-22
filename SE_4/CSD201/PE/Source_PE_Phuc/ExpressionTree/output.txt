@@ -1,0 +1,8 @@
+Prefix:
+* + a b c
+
+Infix:
+((a + b )* c )
+
+Postfix:
+a b + c *

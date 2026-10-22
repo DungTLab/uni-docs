@@ -1,0 +1,78 @@
+1/ Khởi tạo biến và đọc dữ lieu (read) cho các dạng bài như linkedlist, tree, stack, queue (thường đề bài có dạng dòng đầu tiên là số lượng phần tử N, các dòng kế tiếp là giá trị của từng phần tử trong danh sách).
+
+int n;
+int[] data; // Hoặc dùng ArrayList<Integer> data = new ArrayList<>();
+
+if (sc.hasNextInt()) {
+    n = sc.nextInt();
+    data = new int[n];
+    for (int i = 0; i < n; i++) {
+        data[i] = sc.nextInt();
+    }
+}
+
+2/ Khởi tạo biến và đọc dữ liệu (read) cho các dạng bài như linkedlist, stack, queue (thường đề bài có dạng dòng đầu tiên là số lượng phần tử N, các dòng kế tiếp là các thao tác như: PUSH 5, ENQUEUE 10, ADDLAST 20).
+
+int n;
+ArrayList<String> commands = new ArrayList<>();
+
+if (sc.hasNextLine()) {
+    // Đọc N và xử lý trôi dòng (cực kỳ quan trọng)
+    n = Integer.parseInt(sc.nextLine().trim()); 
+    for (int i = 0; i < n; i++) {
+        if (sc.hasNextLine()) {
+            commands.add(sc.nextLine().trim());
+        }
+    }
+}
+
+3/ Khởi tạo biến và đọc dữ liệu (read) cho các dạng bài như graph - ma trận kề (adjacency matrix) ( thường đề bài có dạng đọc một ma trận vuông N x N, trong đó N là số đỉnh)
+
+int n; // Số đỉnh
+int[][] matrix; // Ma trận kề
+
+if (sc.hasNextInt()) {
+    n = sc.nextInt();
+    matrix = new int[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            matrix[i][j] = sc.nextInt();
+        }
+    }
+}
+
+4/ Khởi tạo biến và đọc dữ liệu (read) cho các dạng bài như graph - edge list (Một dạng khác của Graph là cho số đỉnh V, số cạnh E, và E dòng tiếp theo mỗi dòng chứa 1 cặp đỉnh (u, v) thể hiện cho 1 cạnh).
+
+int v, e;
+int[][] edges;
+
+if (sc.hasNextInt()) {
+    v = sc.nextInt();
+    e = sc.nextInt();
+    edges = new int[e][2];
+    for (int i = 0; i < e; i++) {
+        edges[i][0] = sc.nextInt();
+        edges[i][1] = sc.nextInt();
+    }
+}
+
+5/ Khởi tạo biến và đọc dữ liệu (read) cho các dạng bài như recursion (Bài đệ quy thường khá đơn giản ở khâu input, đề chỉ cung cấp 1, 2 hoặc 3 số nguyên trên cùng một dòng hoặc nhiều dòng).
+
+int a, b, c; // Tùy thuộc số lượng tham số đề cho
+
+if (sc.hasNextInt()) {
+    a = sc.nextInt();
+}
+if (sc.hasNextInt()) {
+    b = sc.nextInt();
+}
+// Tiếp tục nếu có c, d...
+
+6/ Trường hợp đặc biệt (Nếu đề bài yêu cầu đọc đối tượng phức tạp (VD: Dòng 1 là ID (số), dòng 2 là Tên (chuỗi)), bạn bắt buộc phải xử lý ký tự xuống dòng (Enter) còn sót lại sau khi dùng nextInt() hoặc nextDouble()).
+
+int id = sc.nextInt();
+sc.nextLine(); // DÒNG NÀY ĐỂ XÓA KÝ TỰ ENTER THỪA
+String name = sc.nextLine();
+
+or int id = Integer.parseInt(sc.nextLine().trim());
+String name = sc.nextLine().trim();

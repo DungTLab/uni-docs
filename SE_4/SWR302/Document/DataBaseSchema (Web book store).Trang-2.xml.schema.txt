@@ -1,0 +1,180 @@
+﻿
+Table: StockTransactions
+----------------------------------------
+  [PK] Id INT IDENTITY(1,1)
+  TransactionType NVARCHAR(20)
+  TransactionDate DATETIME
+  SupplierId INT FOREIGN KEY REFERENCES Suppliers(Id)
+  Quantity INT
+  HandledByUserId INT FOREIGN KEY REFERENCES Users(Id)
+  [PK] ProductId INT FOREIGN KEY REFERENCES Products(Id)
+
+Table: UserProfiles
+----------------------------------------
+  Phone NVARCHAR(20)
+  [PK] Id INT IDENTITY(1,1)
+  UserId INT FOREIGN KEY REFERENCES Users(Id)
+  Address NVARCHAR(MAX)
+  AvatarUrl NVARCHAR(255)
+  FullName NVARCHAR(100)
+
+Table: OrderItems
+----------------------------------------
+  Quantity INT
+  SubTotal DECIMAL(18,2)
+  [PK] ProductId INT FOREIGN KEY REFERENCES Products(Id)
+  UnitPrice DECIMAL(18,2)
+  OrderId INT FOREIGN KEY REFERENCES Orders(Id)
+  [PK] Id INT IDENTITY(1,1)
+
+Table: Contributor
+----------------------------------------
+  [PK] ProductID INT
+  FOREIGN KEY (ProductId) REFERENCES Products(Id)
+  FOREIGN KEY (AuthorId) REFERENCES Authors(Id)
+  [PK] AuthorID INT
+
+Table: Users
+----------------------------------------
+  RoleId INT FOREIGN KEY REFERENCES Roles(Id)
+  Email NVARCHAR(100)
+  [PK] Id INT IDENTITY(1,1)
+  Username NVARCHAR(100)
+  CreatedAt DATETIME
+  IsActive BIT
+  PasswordHash NVARCHAR(255)
+  AuthProvider NVARCHAR(50)
+
+Table: Orders
+----------------------------------------
+  UserId INT FOREIGN KEY REFERENCES Users(Id)
+  TotalAmount DECIMAL(18,2)
+  Status NVARCHAR(50)
+  CreatedAt DATETIME
+  SellerId INT FOREIGN KEY REFERENCES Users(Id)
+  DiscountId INT FOREIGN KEY REFERENCES Discounts(Id)
+  ShippingAddress NVARCHAR(MAX)
+  [PK] Id INT IDENTITY(1,1)
+
+Table: Roles
+----------------------------------------
+  Name NVARCHAR(50)
+  Description NVARCHAR(255)
+  [PK] Id INT IDENTITY(1,1)
+
+Table: Discounts
+----------------------------------------
+  IsActive BIT
+  StartDate DATETIME
+  EndDate DATETIME
+  ProductId INT FOREIGN KEY REFERENCES Products(Id)
+  MaxDiscountAmount DECIMAL(18,2)
+  [PK] Id INT IDENTITY(1,1)
+  DiscountPercent DECIMAL(5,2)
+
+Table: CartItems
+----------------------------------------
+  AddedAt DATETIME
+  [PK] ProductId INT FOREIGN KEY REFERENCES Products(Id)
+  [PK] Id INT IDENTITY(1,1)
+  CartId INT FOREIGN KEY REFERENCES Carts(Id)
+  Quantity INT
+
+Table: SupportRequests
+----------------------------------------
+  UserId INT FOREIGN KEY REFERENCES Users(Id)
+  Status NVARCHAR(50)
+  CreatedAt DATETIME
+  Message NVARCHAR(MAX)
+  [PK] Id INT IDENTITY(1,1)
+  Subject NVARCHAR(255)
+
+Table: Carts
+----------------------------------------
+  SessionId NVARCHAR(255)
+  UserId INT FOREIGN KEY REFERENCES Users(Id)
+  CreatedAt DATETIME
+  [PK] Id INT IDENTITY(1,1)
+
+Table: Products
+----------------------------------------
+  Description NVARCHAR(MAX)
+  IsActive BIT
+  Sku NVARCHAR(50)
+  SupplierId INT FOREIGN KEY REFERENCES Suppliers(Id)
+  Price DECIMAL(18,2)
+  [PK] Id INT IDENTITY(1,1)
+  Title NVARCHAR(255)
+  CategoryId INT FOREIGN KEY REFERENCES Categories(Id)
+  CreatedAt DATETIME
+
+Table: Publishers
+----------------------------------------
+  [PK] Id INT IDENTITY(1,1)
+  Address NVARCHAR(500)
+  CreatedAt DATETIME DEFAULT GETDATE()
+  Name NVARCHAR(255) NOT NULL
+
+Table: Authors
+----------------------------------------
+  Biography NVARCHAR(MAX)
+  FullName NVARCHAR(255) NOT NULL
+  [PK] AuthorId INT IDENTITY(1,1)
+  CreatedAt DATETIME DEFAULT GETDATE()
+
+Table: Categories
+----------------------------------------
+  [PK] Id INT IDENTITY(1,1)
+  parent_child
+  Name NVARCHAR(100)
+  ParentId INT FOREIGN KEY REFERENCES Categories(Id)
+
+Table: Inventory
+----------------------------------------
+  QuantityInStock INT
+  [PK] ProductId INT FOREIGN KEY REFERENCES Products(Id)
+  [PK] Id INT IDENTITY(1,1)
+  LastUpdated DATETIME
+
+Table: Suppliers
+----------------------------------------
+  Address NVARCHAR(MAX)
+  Name NVARCHAR(255)
+  [PK] Id INT IDENTITY(1,1)
+  ContactPhone NVARCHAR(20)
+  ContactEmail NVARCHAR(100)
+
+Table: Brands
+----------------------------------------
+  OriginCountry NVARCHAR(100)
+  [PK] Id INT IDENTITY(1,1)
+  Name NVARCHAR(255) NOT NULL
+  CreatedAt DATETIME DEFAULT GETDATE()
+
+Table: Books
+----------------------------------------
+  Language NVARCHAR(100) DEFAULT N'Tiáº¿ng Viá»‡t'
+  PublisherId INT FOREIGN KEY REFERENCES Publishers(Id)
+  Translator NVARCHAR(255)
+  Dimensions NVARCHAR(100)
+  FOREIGN KEY (ProductId) REFERENCES Products(Id) ON DELETE CASCADE
+  CoverType NVARCHAR(50)
+  [PK] ProductId INT
+  PublicationYear INT
+  NumberOfPages INT
+  AuthorID NVARCHAR(255)
+  Weight DECIMAL(10,2)
+
+Table: Stationeries
+----------------------------------------
+  Dimensions NVARCHAR(100)
+  Specifications NVARCHAR(MAX)
+  Origin NVARCHAR(100)
+  Warning NVARCHAR(500)
+  [PK] ProductId INT
+  Material NVARCHAR(255)
+  Color NVARCHAR(100)
+  Weight DECIMAL(10,2)
+  FOREIGN KEY (ProductId) REFERENCES Products(Id) ON DELETE CASCADE
+  BrandId INT FOREIGN KEY REFERENCES Brands(Id)
+

@@ -1,0 +1,24 @@
+﻿
+--- Sheet: Sheet1 ---
+1 | Website Thương Mại Điện Tử (chọn 1 ngành hàng) ***** |  |  | 38.5
+1 | Trang chủ, khung sườn các trang thành phần |  | Admin/Customer | 2
+2 | Đăng ký, đăng nhập, đăng xuất |  | Admin/Customer | 3
+3 | Phân quyền người dùng (khách hàng, quản trị viên...) |  | System | 1
+4 | Xem chi tiết profile, đổi thông tin cá nhân (password...) |  | Admin/Customer | 2
+5 | Quản lý sản phẩm (product): CRUD |  | Admin | 4
+ |  | Các thông tin của sản phẩm: Mã SP, Tên SP, Số lượng tồn, đơn giá... |  | 
+6 | Quản lý loại sản phẩm (category): CRUD |  | Admin | 4
+7 | Danh sách sản phẩm, kết quả tìm kiếm |  | Customer | 3
+8 | Xem chi tiết sản phẩm |  | Customer | 3
+9 | Giỏ hàng: thêm/xóa SP vào giỏ, xem chi tiết giỏ |  | Customer | 2
+10 | Đặt hàng (tạo đơn hàng) |  | Customer | 2
+ | Quản lý đơn hàng: Xem danh sách đơn, chi tiết đơn (admin) |  | Admin | 2
+ | Quản lý đơn hàng: Xem danh sách đơn, chi tiết đơn (khách) |  | Customer | 1
+ | Cập nhật Trạng thái đơn sau khi mua: quản trị có thể chuyển TT Chờ xác nhận -> Hoàn thành |  | Admin | 1
+ | Hỗ trợ trả hàng: Chỉ khả dụng đối với đơn hàng đã hoàn thành
+Khi này, trạng thái đơn sẽ chuyển thành Đã trả hàng |  | Customer | 1.5
+ | Báo cáo thống kê |  |  | 
+ |  | Báo cáo tổng doanh thu theo ngày, tháng, quý | Admin | 2
+ |  | Thống kê sản phẩm bán chạy theo ngày, tháng, quý | Admin | 2
+ | Phân trang |  |  | 3
+

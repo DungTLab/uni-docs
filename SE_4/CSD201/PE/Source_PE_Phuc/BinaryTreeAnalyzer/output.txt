@@ -1,0 +1,17 @@
+Height:
+3
+
+Size:
+8
+
+Leaves:
+3
+
+Maximum:
+90
+
+Minimum:
+10
+
+Level-order:
+50 30 70 20 40 90 10 80

@@ -1,0 +1,13 @@
+dao\ArtistDAO.class
+controller\LoginServlet.class
+model\Artist.class
+filter\AuthFilter.class
+controller\AlbumServlet.class
+controller\LogoutServlet.class
+dao\AlbumDAO.class
+dao\UserDAO.class
+filter\EncodingFilter.class
+controller\ArtistServlet.class
+db\DBContext.class
+model\Album.class
+model\User.class

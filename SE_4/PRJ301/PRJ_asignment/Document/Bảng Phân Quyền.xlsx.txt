@@ -1,0 +1,177 @@
+--- Sheet: PRJ301 ---
+ |  |  | Bảng phân quyền hệ thống  |  |  |  |  |  |  |  | 
+# | Tính năng | Chức năng | Story point | Guest
+ (Khách truy cập) | Customer | Employee | Sale Staff | Customer Support Staff | Manager | Administrator | In charge of
+1.0 | Quản lý
+ tài khoản | Thêm tài khoản mới | 2.0 | x |  |  |  |  |  | x | Lê Tiến Dũng
+2.0 |  | Sửa thông tin tài khoản | 2.0 |  | x |  | x | x | x | x | Lê Tiến Dũng
+3.0 |  | Khóa tài khoản | 2.0 |  |  |  |  |  |  | x | Lê Tiến Dũng
+4.0 |  | Xóa tài khoản | 3.0 |  | x |  |  |  |  | x | Lê Tiến Dũng
+5.0 |  | Xem danh sách tài khoản | 2.0 |  |  |  |  | x |  | x | Lê Tiến Dũng
+6.0 |  | Xem thông tin chi tiết tài khoản | 2.0 |  | x |  | x | x | x | x | Lê Tiến Dũng
+7.0 |  | Tìm kiếm tài khoản | 2.0 |  |  |  | x |  |  | x | Lê Tiến Dũng
+8.0 | Quản lý hồ sơ cá nhân (Profile) | Xem hồ sơ | 2.0 |  | x |  | x | x | x | x | Lê Tiến Dũng
+9.0 |  | Sửa thông tin hồ sơ | 2.0 |  | x |  | x | x | x | x | Lê Tiến Dũng
+10.0 |  | Đổi mật khẩu | 3.0 |  | x |  | x | x | x | x | Lê Tiến Dũng
+11.0 | Đăng nhập | Đăng nhập bằng username | 3.0 | x |  | x |  |  |  |  | Lê Tiến Dũng
+12.0 |  | Đăng nhập bằng google | 5.0 | x |  | x |  |  |  |  | Lê Tiến Dũng
+13.0 | Đăng xuất | Đăng xuất | 3.0 |  | x |  | x | x | x | x | Lê Tiến Dũng
+14.0 | Quên mật khẩu | Quên mật khẩu | 3.0 | x |  | x |  |  |  |  | Lê Tiến Dũng
+15.0 | Quản lí request of admin chung | Thêm request mới |  |  |  |  | x | x | x |  | Trần Huỳnh Giác
+16.0 |  | Sửa request |  |  |  |  | x | x | x |  | Trần Huỳnh Giác
+17.0 |  | Xoá request |  |  |  |  | x | x | x |  | Trần Huỳnh Giác
+18.0 | Quản lí nhân viên | Xem nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+19.0 |  | Sửa nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+20.0 |  | Xem toàn bộ nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+21.0 |  | Xem thông nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+22.0 |  | Tìm kiếm nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+23.0 |  | Cấp quyền nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+24.0 |  | Xóa nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+25.0 | Quản lí hàng hóa | Tạo hàng hóa |  |  |  |  |  |  | x | x | Huỳnh Nhật Duy
+26.0 |  | Xem hàng hóa |  | x | x |  | x |  | x | x | Huỳnh Nhật Duy
+27.0 |  | Xem chi tiết hàng hóa |  | x | x |  | x |  | x | x | Huỳnh Nhật Duy
+28.0 |  | Sửa thông tin hàng hóa |  |  |  |  |  |  | x | x | Huỳnh Nhật Duy
+29.0 |  | Xóa hàng hóa |  |  |  |  |  |  | x | x | Huỳnh Nhật Duy
+30.0 |  | Tìm kiếm hàng hóa |  | x | x |  | x |  | x | x | Huỳnh Nhật Duy
+31.0 | Quản lí giỏ hàng | Thêm hàng |  | x | x |  |  |  |  |  | Nguyễn Phú Trọng
+32.0 |  | Xem hàng |  | x | x |  |  |  |  |  | Nguyễn Phú Trọng
+33.0 |  | Sửa số lượng hàng |  | x | x |  |  |  |  |  | Nguyễn Phú Trọng
+34.0 |  | Xóa hàng |  | x | x |  |  |  |  |  | Nguyễn Phú Trọng
+35.0 |  | Mua hàng |  |  | x |  |  |  |  |  | Nguyễn Phú Trọng
+36.0 | Quản lí hóa đơn | Tạo hóa đơn |  |  |  |  | x |  |  | x | Nguyễn Trần Đức Anh
+37.0 |  | Xem hóa đơn |  |  | x |  | x | x |  | x | Nguyễn Trần Đức Anh
+38.0 |  | Xóa hóa đơn |  |  |  |  |  |  |  | x | Nguyễn Trần Đức Anh
+39.0 |  | Sửa hóa đơn |  |  |  |  |  |  |  | x | Nguyễn Trần Đức Anh
+40.0 |  | Tìm hóa đơn |  |  | x |  | x | x |  | x | Nguyễn Trần Đức Anh
+41.0 |  | Xuất hóa đơn |  |  |  |  | x |  |  | x | Nguyễn Trần Đức Anh
+42.0 | Quản lí yêu cầu khách hàng | Tạo yêu cầu |  |  | x |  |  |  |  | x | Trần Huỳnh Giác
+43.0 |  | Xem danh sách |  |  |  |  |  | x |  | x | Trần Huỳnh Giác
+44.0 |  | Xem nội dung yêu cầu |  |  | x |  |  | x |  | x | Trần Huỳnh Giác
+45.0 |  | Sửa nội dung |  |  | x |  |  |  |  |  | Trần Huỳnh Giác
+46.0 |  | Xóa yêu cầu |  |  | x |  |  |  |  | x | Trần Huỳnh Giác
+47.0 |  | Phản hồi yêu cầu |  |  |  |  |  | x |  | x | Trần Huỳnh Giác
+48.0 | Quản lí thanh toán | Chọn hình thức thanh toán (admin) |  |  |  |  |  |  |  | x | Nguyễn Phú Trọng
+49.0 |  | Chọn hình thức |  |  | x |  |  |  |  |  | Nguyễn Phú Trọng
+50.0 |  | Thay đổi hình thức |  |  | x |  |  |  |  |  | Nguyễn Phú Trọng
+51.0 |  | Thanh toán |  |  | x |  |  |  |  |  | Nguyễn Phú Trọng
+52.0 | Quản lý giảm giá | Tạo giảm giá |  |  |  |  |  |  | x | x | Nguyễn Trần Đức Anh
+53.0 |  | Xem giảm giá |  | x | x |  | x | x | x | x | Nguyễn Trần Đức Anh
+54.0 |  | Sửa giảm giá |  |  |  |  |  |  | x | x | Nguyễn Trần Đức Anh
+55.0 |  | Xóa giảm giá |  |  |  |  |  |  | x | x | Nguyễn Trần Đức Anh
+--- Sheet: SWP302 ---
+ |  |  | Bảng phân quyền hệ thống  |  |  |  |  |  |  |  | 
+# | Tính năng | Chức năng | Story point | Guest
+ (Khách truy cập) | Customer | Employee | Sale Staff | Customer Support Staff | Manager | Administrator | In charge of
+1.0 | Quản lý
+ tài khoản | Thêm tài khoản mới | 2.0 | x |  |  |  |  |  | x | Lê Tiến Dũng
+2.0 |  | Sửa thông tin tài khoản | 2.0 |  | x |  | x | x | x | x | Lê Tiến Dũng
+3.0 |  | Khóa tài khoản | 2.0 |  |  |  |  |  |  | x | Lê Tiến Dũng
+4.0 |  | Xóa tài khoản | 3.0 |  | x |  |  |  |  | x | Lê Tiến Dũng
+5.0 |  | Xem danh sách tài khoản | 2.0 |  |  |  |  | x |  | x | Lê Tiến Dũng
+6.0 |  | Xem thông tin chi tiết tài khoản | 2.0 |  | x |  | x | x | x | x | Lê Tiến Dũng
+7.0 |  | Tìm kiếm tài khoản | 2.0 |  |  |  | x |  |  | x | Lê Tiến Dũng
+8.0 | Quản lý hồ sơ cá nhân (Profile) | Xem hồ sơ | 2.0 |  | x |  | x | x | x | x | Lê Tiến Dũng
+9.0 |  | Sửa thông tin hồ sơ | 2.0 |  | x |  | x | x | x | x | Lê Tiến Dũng
+10.0 |  | Đổi mật khẩu | 3.0 |  | x |  | x | x | x | x | Lê Tiến Dũng
+11.0 | Đăng nhập | Đăng nhập bằng username | 3.0 | x |  | x |  |  |  |  | Lê Tiến Dũng
+12.0 |  | Đăng nhập bằng google | 5.0 | x |  | x |  |  |  |  | Lê Tiến Dũng
+13.0 | Đăng xuất | Đăng xuất | 3.0 |  | x |  | x | x | x | x | Lê Tiến Dũng
+14.0 | Quên mật khẩu | Quên mật khẩu | 3.0 | x |  | x |  |  |  |  | Lê Tiến Dũng
+15.0 | Quản lí request of admin chung | Thêm request mới |  |  |  |  | x | x | x |  | Trần Huỳnh Giác
+16.0 |  | Sửa request |  |  |  |  | x | x | x |  | Trần Huỳnh Giác
+17.0 |  | Xoá request |  |  |  |  | x | x | x |  | Trần Huỳnh Giác
+18.0 | Quản lí nhân viên | Xem nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+19.0 |  | Sửa nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+20.0 |  | Xem toàn bộ nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+21.0 |  | Xem thông nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+22.0 |  | Tìm kiếm nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+23.0 |  | Cấp quyền nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+24.0 |  | Xóa nhân viên |  |  |  |  |  |  |  | x | Lê Tiến Dũng
+25.0 | Quản lí hàng hóa | Tạo hàng hóa |  |  |  |  |  |  | x | x | Huỳnh Nhật Duy
+26.0 |  | Xem hàng hóa |  | x | x |  | x |  | x | x | Huỳnh Nhật Duy
+27.0 |  | Xem chi tiết hàng hóa |  | x | x |  | x |  | x | x | Huỳnh Nhật Duy
+28.0 |  | Sửa thông tin hàng hóa |  |  |  |  |  |  | x | x | Huỳnh Nhật Duy
+29.0 |  | Xóa hàng hóa |  |  |  |  |  |  | x | x | Huỳnh Nhật Duy
+30.0 |  | Tìm kiếm hàng hóa |  | x | x |  | x |  | x | x | Huỳnh Nhật Duy
+31.0 | Quản lí giỏ hàng | Thêm hàng |  | x | x |  |  |  |  |  | Nguyễn Phú Trọng
+32.0 |  | Xem hàng |  | x | x |  |  |  |  |  | Nguyễn Phú Trọng
+33.0 |  | Sửa số lượng hàng |  | x | x |  |  |  |  |  | Nguyễn Phú Trọng
+34.0 |  | Xóa hàng |  | x | x |  |  |  |  |  | Nguyễn Phú Trọng
+35.0 |  | Mua hàng |  |  | x |  |  |  |  |  | Nguyễn Phú Trọng
+36.0 | Quản lí hóa đơn | Tạo hóa đơn |  |  |  |  | x |  |  | x | Nguyễn Trần Đức Anh
+37.0 |  | Xem hóa đơn |  |  | x |  | x | x |  | x | Nguyễn Trần Đức Anh
+38.0 |  | Xóa hóa đơn |  |  |  |  |  |  |  | x | Nguyễn Trần Đức Anh
+39.0 |  | Sửa hóa đơn |  |  |  |  |  |  |  | x | Nguyễn Trần Đức Anh
+40.0 |  | Tìm hóa đơn |  |  | x |  | x | x |  | x | Nguyễn Trần Đức Anh
+41.0 |  | Xuất hóa đơn |  |  |  |  | x |  |  | x | Nguyễn Trần Đức Anh
+42.0 | Quản lí yêu cầu khách hàng | Tạo yêu cầu |  |  | x |  |  |  |  | x | Trần Huỳnh Giác
+43.0 |  | Xem danh sách |  |  |  |  |  | x |  | x | Trần Huỳnh Giác
+44.0 |  | Xem nội dung yêu cầu |  |  | x |  |  | x |  | x | Trần Huỳnh Giác
+45.0 |  | Sửa nội dung |  |  | x |  |  |  |  |  | Trần Huỳnh Giác
+46.0 |  | Xóa yêu cầu |  |  | x |  |  |  |  | x | Trần Huỳnh Giác
+47.0 |  | Phản hồi yêu cầu |  |  |  |  |  | x |  | x | Trần Huỳnh Giác
+48.0 | Quản lí thanh toán | Chọn hình thức thanh toán (admin) |  |  |  |  |  |  |  | x | Nguyễn Phú Trọng
+49.0 |  | Chọn hình thức |  |  | x |  |  |  |  |  | Nguyễn Phú Trọng
+50.0 |  | Thay đổi hình thức |  |  | x |  |  |  |  |  | Nguyễn Phú Trọng
+51.0 |  | Thanh toán |  |  | x |  |  |  |  |  | Nguyễn Phú Trọng
+52.0 | Quản lý giảm giá | Tạo giảm giá |  |  |  |  |  |  | x | x | Nguyễn Trần Đức Anh
+53.0 |  | Xem giảm giá |  | x | x |  | x | x | x | x | Nguyễn Trần Đức Anh
+54.0 |  | Sửa giảm giá |  |  |  |  |  |  | x | x | Nguyễn Trần Đức Anh
+55.0 |  | Xóa giảm giá |  |  |  |  |  |  | x | x | Nguyễn Trần Đức Anh
+--- Sheet: Sheet6 ---
+Feature | Function | Story Point | Guest | Customer | Employee | Sales Staff | Customer Support Staff | Manager | Administrator | In charge of
+Account Management | Add New Account |  | x |  |  |  |  |  | x | 
+Account Management | Edit Account Information |  |  | x |  | x | x | x | x | 
+Account Management | Lock Account |  |  |  |  |  |  |  | x | 
+Account Management | Delete Account |  |  | x |  |  |  |  | x | 
+Account Management | View Account List |  |  |  |  |  | x |  | x | 
+Account Management | View Account Details |  |  | x |  | x | x | x | x | 
+Account Management | Search Accounts |  |  |  |  | x |  |  | x | 
+Profile Management | View Profile |  |  | x |  | x | x | x | x | 
+Profile Management | Edit Profile Information |  |  | x |  | x | x | x | x | 
+Profile Management | Change Password |  |  | x |  | x | x | x | x | 
+Login | Login with Username |  | x |  | x |  |  |  |  | 
+Login | Login with Google |  | x |  | x |  |  |  |  | 
+Logout | Logout |  |  | x |  | x | x | x | x | 
+Forgot Password | Forgot Password |  | x |  | x |  |  |  |  | 
+General Admin Request Management | Add New Request |  |  |  |  | x | x | x |  | 
+General Admin Request Management | Edit Request |  |  |  |  | x | x | x |  | 
+General Admin Request Management | Delete Request |  |  |  |  | x | x | x |  | 
+Employee Management | View Employees |  |  |  |  |  |  |  | x | 
+Employee Management | Edit Employee |  |  |  |  |  |  |  | x | 
+Employee Management | View All Employees |  |  |  |  |  |  |  | x | 
+Employee Management | View Employee Information |  |  |  |  |  |  |  | x | 
+Employee Management | Search Employees |  |  |  |  |  |  |  | x | 
+Employee Management | Assign Employee Permissions |  |  |  |  |  |  |  | x | 
+Employee Management | Delete Employee |  |  |  |  |  |  |  | x | 
+Product Management | Create Product |  |  |  |  |  |  | x | x | 
+Product Management | View Products |  | x | x |  | x |  | x | x | 
+Product Management | View Product Details |  | x | x |  | x |  | x | x | 
+Product Management | Edit Product Information |  |  |  |  |  |  | x | x | 
+Product Management | Delete Product |  |  |  |  |  |  | x | x | 
+Product Management | Search Products |  | x | x |  | x |  | x | x | 
+Cart Management | Add to Cart |  | x | x |  |  |  |  |  | 
+Cart Management | View Cart |  | x | x |  |  |  |  |  | 
+Cart Management | Edit Item Quantity |  | x | x |  |  |  |  |  | 
+Cart Management | Remove Item |  | x | x |  |  |  |  |  | 
+Cart Management | Checkout |  |  | x |  |  |  |  |  | 
+Invoice Management | Create Invoice |  |  |  |  | x |  |  | x | 
+Invoice Management | View Invoice |  |  | x |  | x | x |  | x | 
+Invoice Management | Delete Invoice |  |  |  |  |  |  |  | x | 
+Invoice Management | Edit Invoice |  |  |  |  |  |  |  | x | 
+Invoice Management | Search Invoices |  |  | x |  | x | x |  | x | 
+Invoice Management | Export Invoice |  |  |  |  | x |  |  | x | 
+Customer Request Management | Create Request |  |  | x |  |  |  |  | x | 
+Customer Request Management | View List |  |  |  |  |  | x |  | x | 
+Customer Request Management | View Request Content |  |  | x |  |  | x |  | x | 
+Customer Request Management | Edit Content |  |  | x |  |  |  |  |  | 
+Customer Request Management | Delete Request |  |  | x |  |  |  |  | x | 
+Customer Request Management | Respond to Request |  |  |  |  |  | x |  | x | 
+Payment Management | Select Payment Method (Admin) |  |  |  |  |  |  |  | x | 
+Payment Management | Select Method |  |  | x |  |  |  |  |  | 
+Payment Management | Change Method |  |  | x |  |  |  |  |  | 
+Payment Management | Payment |  |  | x |  |  |  |  |  | 
+Discount Management | Create Discount |  |  |  |  |  |  | x | x | 
+Discount Management | View Discount |  | x | x |  | x | x | x | x | 
+Discount Management | Edit Discount |  |  |  |  |  |  | x | x | 
+Discount Management | Delete Discount |  |  |  |  |  |  | x | x | 

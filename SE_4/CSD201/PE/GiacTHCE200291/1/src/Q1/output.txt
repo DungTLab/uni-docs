@@ -1,0 +1,14 @@
+Pass 1:
+1 4 2 5 8 
+
+Pass 2:
+1 2 4 5 8 
+
+Pass 3:
+1 2 4 5 8 
+
+Pass 4:
+1 2 4 5 8 
+
+Sorted Array:
+1 2 4 5 8

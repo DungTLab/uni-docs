@@ -1,0 +1,32 @@
+:root{
+  --brand: #0d6efd;
+  --bg-soft: #f7f9fc;
+}
+
+body{
+  background: linear-gradient(180deg, #ffffff 0%, var(--bg-soft) 100%);
+  color: #1f2937;
+}
+
+.navbar .navbar-brand{
+  letter-spacing: .2px;
+}
+
+#books .card{
+  border-radius: 16px;
+}
+
+table.table{
+  border-radius: 12px;
+}
+
+/* Make table cells a bit more readable */
+table.table th, table.table td{
+  vertical-align: middle;
+}
+
+/* Simple hover highlight for clickable rows (if you add click actions later) */
+table.table tbody tr:hover{
+  background: rgba(13,110,253,0.04);
+}
+

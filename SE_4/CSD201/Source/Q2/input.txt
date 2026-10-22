@@ -1,0 +1,5 @@
+4
+AddVehicle,29-B1-123.45,Honda,Wave RSX,2022,Nguyen Van A
+AddVehicle,30-K1-555.66,Toyota,Vios,2020,Tran Thi B
+RemoveVehicle,29-B1-123.45
+PrintAllVehicles

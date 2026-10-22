@@ -1,0 +1,264 @@
+﻿
+Use Cases
+for
+Cafeteria Ordering Websites, Release 1.0
+Version 1.0 approved
+Prepared by Group 5
+October 25, 2020
+
+Revision History
+
+Name
+Date
+Reason For Changes
+Version
+All Team
+01/10/2020
+initial draft
+1.0 draft 1
+All Team
+25/10/2020
+baseline following changes after inspection
+1.0 approved
+
+
+
+Primary Actor
+Use Cases
+User
+Register Account
+Login Account (Logout)
+View product (Coffee)
+Oder product (Coffee)
+Search product
+Manipulate the shopping cart
+Admin
+Log in (Log out)
+See the history user order product
+Quarterly sales statistics
+Check the product before posting on the website (Cancel post while waiting for moderation)
+Staff
+Create new product in website
+Manage products (number of products, add or delete products).
+Order processing (accepts orders from users)
+
+
+
+
+
+Váº¼ USE CASE
+
+
+
+
+ID and Name:
+UC-1 Register Account
+Created By:
+Nguyen Quoc An
+Date Created:
+01/10/2020
+Primary Actor:
+User
+Secondary Actors:
+News System
+Description:
+To order the user needs to go to the registration page.
+Fill in full information about the account (Full name, email or phone   number phone, password, date of birth, gender, address).
+Successful registration will return to dashboard
+If registration is unsuccessful, it will ask to fill in the correct format.
+Trigger:
+Adding personal data.
+Preconditions:
+PRE-1. The user needs to have internet access. 
+Post conditions:
+POST-1. The user has now the rule â€œMemberâ€ and can manage his account.
+POST-2. This user is also now logged in.
+Normal Flow:
+Register account
+If he doesn't have an account, he can create a new one. There are two ways to do that.
+The first is that the user enters email and password to create a new account.
+Or registered user account.
+1. Open the registration page.
+2. Enter full data to post
+3. Send the registration data to the server.
+4. Create users.
+5. When redirected to the control panel successful.
+Alternative Flows:
+None
+Exceptions:
+ Should be not able to register with duplicate email.
+ Should be not able to register with missing fields.
+ Should be not able to register with duplicate username 
+
+Business Rules:
+Password must conform to the configured of PNS (Posting News System) password strength policy (such as alphabetic and non-numeric characters of a minimum length).
+Email must be unique and conform to the configured PNS manage policy (such as email: chauhuudang1702@gmail.com already created then not use email again. Must be use different email).
+Priority:
+High
+Other Information:
+None
+
+
+ID and Name:
+UC-2 Login
+Created By:
+Chau Huu Dang
+Date Created:
+1/10/2020
+Primary Actor:
+User
+Secondary Actors:
+Admin System
+Description:
+Description: If a user wants to order coffee, he or she must log in before proceeding
+Here's how to know what role the logged-in person has in the system, each role will have different permissions to manipulate the system.
+If users do not have an account in the system, they must register before logging in
+Trigger:
+None
+Preconditions:
+PRE-1. The user needs to have internet access.
+Postconditions:
+POST-2. Patron is registered for payroll deduction.
+Normal Flow:
+2.0 Login
+1. Login successfully
++ enter email or username and password
++ Send information to the system to login
++ The system will return the result, if successful, it will switch to the main page, the rest shows errors
+2. If login is successful:
++ If you are a user, you can do the following: respond, share, report, ...
++ If you are an admin, you can exercise admin rights on your site
+Alternative Flows:
+None
+Exceptions:
+Account does not exist, password does not match
+Priority:
+High
+Other Information:
+None
+
+
+
+
+
+
+
+
+
+
+ID and Name:
+UC-3 Check product post website
+Created By:
+Nguyen Quoc Bao
+Date Created:
+1/10/2020
+Primary Actor:
+Admin
+Secondary Actors:
+
+Description:
+Admin is responsible for checking customer information, checking products added, editing, or deleting by employees, Admin must check product images, product prices before posting on the display website.
+Trigger:
+None
+Preconditions:
+PRE-1. Admin is logged into website.PRE-2. Admin browses products for employees
+Postconditions:
+POST-1. Posts are stored in database with a status of â€œAcceptedâ€.
+Normal Flow:
+3.0 Product moderation
+1. Login to the system to check if you are an admin.
+2. Check if the newly added product has the right image, quantity, price, label before modifying
+3. Moderate articles and put them into the database.
+Alternative Flows:
+None
+Exceptions:
+3.0. E1 The product is not suitable, the image is wrong, the price is wrong.
+3.0. E2 Wrong quantity
+3.0. E3 Wrong supplier
+Priority:
+High
+Frequency of Use:
+Admin visit the site every day from 7:00 am to 22:00 pm to check and censorship the posts.
+Business Rules:
+Censorship in the spirit of concentration, honesty, not fraud for personal purposes.
+Other Information:
+None
+Assumptions:
+None
+
+
+
+
+
+
+ID and Name:
+UC-4 Handling products
+Created By:
+Le Minh Tri
+Date Created:
+01/10/2020
+Primary Actor:
+Staff
+Secondary Actors:
+Censor
+Description:
+Staff add product correction, moderation, and accept orders ordered by customers
+Trigger:
+Cancellation of an order when the customer is no longer placing an order and processing a canceled order
+Preconditions:
+PRE-1. Staff has logged into the website
+Postconditions:
+POST-2. Staff added products and waited for moderation
+Normal Flow:
+4.0 Cancel request to add product
+1.The system will check whether the added products are moderated by admin or not
+2. The system verifies that there are too many products to be added, it will cancel the request for more products.
+Alternative Flows:
+None
+Exceptions:
+4.0.E1 The poster is not eligible to cancel the post
+Priority:
+High
+Business Rules:
+Control the eligibility of a poster to make a poster's request to cancel a post.
+Other Information:
+Expect posters to master and use this system regularly.
+
+
+
+
+
+ID and Name:
+UC-5 Manipulate the shopping cart
+Created By:
+Vo Nhut Hao
+Date Created:
+01/10/2020
+Primary Actor:
+User
+Secondary Actors:
+Censor
+Description:
+Users who want to add products to the shopping cart are required to log in, add the number of products and reduce the number of products.
+Trigger:
+None
+Preconditions:
+PRE-1. User has logged into the website
+Postconditions:
+POST-2. User added products in to the cart
+Normal Flow:
+5.0 Manipulate the shopping cart
+1. The system will check if the user is logged in.
+2. The system will check whether the product added to the cart has a promotion, and the number of items in stock for that product.
+Alternative Flows:
+None
+Exceptions:
+4.0.E1 User not login
+4.0.E2 The product is out of stock, the user cannot add enough products to buy
+Priority:
+High
+Business Rules:
+Control user accounts and stock quantity, promotion period
+Other Information:
+None
+

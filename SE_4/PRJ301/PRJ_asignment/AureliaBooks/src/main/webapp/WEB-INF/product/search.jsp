@@ -1,0 +1,130 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+    <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+        <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+            <jsp:include page="/WEB-INF/includes/header.jsp" />
+
+
+            <div class="bg-white py-4">
+                <div class="container">
+                    <div class="border-top pt-3 mb-4">
+                        <div class="d-flex justify-content-between align-items-end gap-3 flex-wrap">
+                            <div>
+                                <h2 class="h4 mb-1">Kết quả tìm kiếm</h2>
+                                <c:choose>
+                                    <c:when test="${not empty query}">
+                                        <div class="text-secondary">Từ khóa: <strong>${query}</strong></div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="text-secondary">Tất cả sản phẩm</div>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <div class="text-secondary small">${totalProducts} sản phẩm</div>
+                        </div>
+                    </div>
+
+                    <c:choose>
+                        <c:when test="${empty products}">
+                            <div class="alert alert-info mb-0">
+                                Không tìm thấy sản phẩm phù hợp.
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3 gy-4">
+                                <c:forEach var="product" items="${products}">
+                                    <div class="col">
+                                        <a href="${pageContext.request.contextPath}/products?action=detail&id=${product.id}"
+                                            class="card h-100 text-decoration-none text-dark border-0 shadow-sm">
+                                            <div class="ratio ratio-1x1">
+                                                <c:choose>
+                                                    <c:when test="${not empty product.imageUrl && product.imageUrl.contains('/')}">
+                                                        <img src="${pageContext.request.contextPath}/uploads/${product.imageUrl}" class="card-img-top img-fluid object-fit-contain p-2 p-md-3" alt="${product.title}">
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <img src="${pageContext.request.contextPath}/assets/images/book-image/${product.imageUrl}" class="card-img-top img-fluid object-fit-contain p-2 p-md-3" alt="${product.title}">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fs-7 fs-md-6 fw-normal mb-2 text-truncate" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; white-space: normal;">${product.title}</h5>
+                                                <div class="text-danger fw-bold fs-6 fs-md-5">
+                                                    <fmt:formatNumber value="${product.price}" type="number"
+                                                        groupingUsed="true" /> đ
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:if test="${totalPages > 1}">
+                        <nav aria-label="Page navigation" class="d-flex justify-content-center py-4 mt-3">
+                            <ul class="pagination mb-0">
+
+                                <%-- Trang đầu và trang trước --%>
+                                <c:url var="firstPageUrl" value="/products">
+                                    <c:param name="query" value="${query}" />
+                                    <c:param name="categoryId" value="${categoryId}" />
+                                    <c:param name="page" value="1" />
+                                </c:url>
+                                <c:url var="prevPageUrl" value="/products">
+                                    <c:param name="query" value="${query}" />
+                                    <c:param name="categoryId" value="${categoryId}" />
+                                    <c:param name="page" value="${currentPage - 1}" />
+                                </c:url>
+                                <li class="page-item ${currentPage <= 1 ? 'disabled' : ''}">
+                                    <a class="page-link" href="${firstPageUrl}" title="Trang đầu">&laquo;&laquo;</a>
+                                </li>
+                                <li class="page-item ${currentPage <= 1 ? 'disabled' : ''}">
+                                    <a class="page-link" href="${prevPageUrl}" title="Trang trước">&laquo;</a>
+                                </li>
+
+                                <%-- Dấu ba chấm bên trái --%>
+                                <c:if test="${startPage > 1}">
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                </c:if>
+
+                                <%-- Cửa sổ số trang --%>
+                                <c:forEach begin="${startPage}" end="${endPage}" var="i">
+                                    <c:url var="pageUrl" value="/products">
+                                        <c:param name="query" value="${query}" />
+                                        <c:param name="categoryId" value="${categoryId}" />
+                                        <c:param name="page" value="${i}" />
+                                    </c:url>
+                                    <li class="page-item ${currentPage == i ? 'active' : ''}">
+                                        <a class="page-link" href="${pageUrl}"><c:out value="${i}" /></a>
+                                    </li>
+                                </c:forEach>
+
+                                <%-- Dấu ba chấm bên phải --%>
+                                <c:if test="${endPage < totalPages}">
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                </c:if>
+
+                                <c:url var="nextPageUrl" value="/products">
+                                    <c:param name="query" value="${query}" />
+                                    <c:param name="categoryId" value="${categoryId}" />
+                                    <c:param name="page" value="${currentPage + 1}" />
+                                </c:url>
+                                <c:url var="lastPageUrl" value="/products">
+                                    <c:param name="query" value="${query}" />
+                                    <c:param name="categoryId" value="${categoryId}" />
+                                    <c:param name="page" value="${totalPages}" />
+                                </c:url>
+
+                                <%-- Trang sau và trang cuối --%>
+                                <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
+                                    <a class="page-link" href="${nextPageUrl}" title="Trang sau">&raquo;</a>
+                                </li>
+                                <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
+                                    <a class="page-link" href="${lastPageUrl}" title="Trang cuối">&raquo;&raquo;</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </c:if>
+                </div>
+            </div>
+
+            <jsp:include page="/WEB-INF/includes/footer.jsp" />

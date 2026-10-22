@@ -1,0 +1,19 @@
+---PrintVehicle---
+Empty
+---
+(VT-01,Motorbike) is added
+(VT-02,Car) is added
+(29-H1-12345) is added
+(30-K2-67890) is added
+---PrintVehicle---
+(29-H1-12345,8):[Motorbike]
+(30-K2-67890,9):[Car]
+---
+---PrintVehicleType---
+(VT-01,Motorbike)
+(VT-02,Car)
+---
+---Search Result---
+(29-H1-12345,8):[Motorbike]
+---
+* Remove all vehicles

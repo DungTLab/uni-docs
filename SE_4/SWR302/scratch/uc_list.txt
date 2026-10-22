@@ -1,0 +1,114 @@
+﻿Line 381: UC-01. Browse Product Catalog
+Line 382: UC-02. Search Products
+Line 383: UC-03. View Product Details
+Line 384: UC-04. Browse Categories
+Line 385: UC-05. Register Account
+Line 386: UC-06. Login
+Line 388: UC-01. Browse Product Catalog
+Line 389: UC-02. Search Products
+Line 390: UC-03. View Product Details
+Line 391: UC-04. Browse Categories
+Line 392: UC-07. View Cart
+Line 393: UC-08. Update Cart
+Line 394: UC-09. Logout
+Line 395: UC-10. View/Edit Profile
+Line 396: UC-11. View Loyalty Points Balance
+Line 397: UC-12. Place Order
+Line 398: UC-13. Apply Discount Codes
+Line 399: UC-14. Redeem Loyalty Points
+Line 400: UC-15. Process Payment
+Line 401: UC-16. View Order History
+Line 402: UC-17. View Order Details
+Line 403: UC-18. Track Order Status
+Line 404: UC-19. Cancel Order
+Line 405: UC-20. Submit Support Request
+Line 406: UC-21. View Support Request Status
+Line 407: UC-22. Request Return Or Exchange
+Line 409: UC-09. Logout
+Line 410: UC-23. View Order List
+Line 411: UC-24. View Order Details
+Line 412: UC-25. Process Order Status
+Line 413: UC-26. Cancel Order
+Line 414: UC-27. Process Return
+Line 415: UC-28. Process Exchange
+Line 416: UC-29. View Return And Exchange Requests
+Line 417: UC-30. Approve Return Or Exchange Request
+Line 418: UC-31. Reject Return Or Exchange Request
+Line 419: UC-32. Manage Discount Code
+Line 421: UC-09. Logout
+Line 422: UC-33. View Support Ticket List
+Line 423: UC-34. View Support Ticket Details
+Line 424: UC-35. Reply to Support Request
+Line 425: UC-36. Track Ticket SLA
+Line 426: UC-37. View Support  Ticket Statistics
+Line 427: UC-38. Verify Return/Exchange Status
+Line 428: UC-39. Initiate Return Or Exchange Request
+Line 429: UC-40. View Customer Transaction History
+Line 430: UC-41. View Invoices And Order Details
+Line 432: UC-09. Logout
+Line 433: UC-42. Manage Product
+Line 434: UC-43. Manage Categories
+Line 435: UC-44. Manage Authors
+Line 436: UC-45. Manage Publishers
+Line 437: UC-46. Manage Brands
+Line 438: UC-47. View Stock
+Line 439: UC-48. Import Stock
+Line 440: UC-49. Adjust Stock
+Line 441: UC-50. Transfer Stock Between Braches
+Line 442: UC-51. View Stock Transaction Logs
+Line 443: UC-52. View Stock Alerts
+Line 444: UC-53. Manage Holiday Campaign
+Line 445: UC-54. View Revenue Report
+Line 446: UC-55. View Stock Report
+Line 447: UC-56. View Order Report
+Line 448: UC-57. View Payment Reconciliation Report
+Line 450: UC-09. Logout
+Line 451: UC-58. Manage Customer Accounts
+Line 452: UC-59. Manage Staff Accounts
+Line 453: UC-60. Configure System Parameters
+Line 454: UC-61. View System Audit Log
+Line 467: UC-05. Register Account
+Line 516: UC-06
+Line 568: UC-12. Place Order
+Line 619: * 4b. After step 7, The system invokes UC-15. Process Payment to handle transaction.
+Line 638: UC-12. Process Payment
+Line 650: The system invokes this Use Case from UC-12 (Step 4b of Alternative Flow AF-4) when the Customer chooses Online Payment.
+Line 689: * 4b. After step 7, The system invokes UC-15. Process Payment to handle transaction.
+Line 865: 3.   Use Cases Group 1 (UC-01 to UC-59[d]) (TÃ i liá»‡u ca sá»­ dá»¥ng chuáº©n táº¡i tab t.k2qvj9n2h148).
+Line 897: FR-ACC-01 (UC-05 - Register Account)
+Line 912: FR-ACC-02 (UC-06 - Login & UC-09 - Logout)
+Line 919: FR-ACC-03 (UC-58 - Manage User Account[g])
+Line 925: FR-ACC-04 (UC-59 - Manage User Role[h])
+Line 931: FR-PRO-01 (UC-42 - Manage Product)
+Line 943: FR-PRO-02 (UC-43 - Manage Categories)
+Line 944: Â·     Manager cÃ³ thá»ƒ quáº£n lÃ½ Category Ä‘á»‡ quy Ä‘a táº§ng (Parent $\rightarrow$ Child) vÃ  cÃ¡c thá»±c thá»ƒ Author, Publisher, Brand (UC-44, UC-45, UC-46[j]).
+Line 948: FR-PRO-03 (UC-01 - Browse Catalog, UC-02 - Search Products, UC-03 - View Details)
+Line 953: Â·     Bá»™ lá»c: Theo Category (UC-04), Khoáº£ng giÃ¡ (Minâ€“Max), TÃ¡c giáº£/ThÆ°Æ¡ng hiá»‡u, Sáº¯p xáº¿p (GiÃ¡ tÄƒng/giáº£m, Má»›i nháº¥t, BÃ¡n cháº¡y nháº¥t).
+Line 955: FR-PRO-04 (UC-53 - Manage Holiday Campaign[k])
+Line 963: FR-ORD-01 (UC-07 - View Cart & UC-08 - Update Cart)
+Line 964: Â·     Customer cÃ³ thá»ƒ thÃªm sáº£n pháº©m (UC-13[l]), tÄƒng/giáº£m sá»‘ lÆ°á»£ng, hoáº·c xÃ³a sáº£n pháº©m khá»i giá» hÃ ng.
+Line 971: FR-ORD-02 (UC-12 - Place Order, UC-13 - Apply Discount Codes, UC-14 - Redeem Loyalty Points)
+Line 977: Â·     BÆ°á»›c 2: Náº¿u Customer KHÃ”NG dÃ¹ng Æ°u Ä‘Ã£i sinh nháº­t $\rightarrow$ Cho phÃ©p nháº­p tá»‘i Ä‘a 3 mÃ£ Voucher (UC-13). Logic tÃ­nh: Cá»™ng dá»“n (Additive) pháº§n trÄƒm giáº£m giÃ¡ trÃªn giÃ¡ gá»‘c, tá»•ng giáº£m khÃ´ng vÆ°á»£t quÃ¡ 10% giÃ¡ trá»‹ Ä‘Æ¡n hÃ ng (BR-14).
+Line 978: Â·     BÆ°á»›c 3: Náº¿u Customer KHÃ”NG dÃ¹ng Æ°u Ä‘Ã£i sinh nháº­t VÃ€ KHÃ”NG dÃ¹ng Voucher $\rightarrow$ Cho phÃ©p Ä‘á»•i Äiá»ƒm tÃ­ch lÅ©y (UC-14, $\ge 5000$ Ä‘iá»ƒm, quy Ä‘á»•i 100 Ä‘iá»ƒm = 1.000 VNÄ, tá»‘i Ä‘a giáº£m 10% Ä‘Æ¡n hÃ ng) (BR-11).
+Line 991: FR-ORD-03 (UC-18 - Track Order Status & UC-19 - Cancel Order)
+Line 997: FR-ORD-04 (UC-23 - View Order List & UC-25 - Process Order Status)
+Line 998: Â·         Sale Staff trÃªn Dashboard xÃ¡c nháº­n Ä‘Æ¡n (UC-24 Ä‘á»ƒ xem chi tiáº¿t) vÃ  thay Ä‘á»•i tráº¡ng thÃ¡i theo luá»“ng:
+Line 1006: Â·     Manager cÃ³ quyá»n kÃ­ch hoáº¡t chÆ°Æ¡ng trÃ¬nh khuyáº¿n mÃ£i vÃ o cÃ¡c dá»‹p Lá»… Quá»‘c gia (UC-53).
+Line 1012: FR-INV-01 (UC-49 - Adjust Stock & UC-50 - Transfer Stock Between Branches)
+Line 1013: Â·     Pháº¡m vi: Chá»‰ Manager má»›i cÃ³ quyá»n thá»±c hiá»‡n (UC-47 Ä‘á»ƒ xem tá»“n kho).
+Line 1014: Â·     Chá»©c nÄƒng: Äiá»u chá»‰nh tÄƒng/giáº£m tá»“n kho thá»§ cÃ´ng (UC-49), luÃ¢n chuyá»ƒn hÃ ng giá»¯a cÃ¡c chi nhÃ¡nh (UC-50, BR-07), xem bÃ¡o cÃ¡o tá»“n kho (UC-55).
+Line 1016: Â·     HÃ ng má»›i nháº­p láº§n Ä‘áº§u (UC-48): Tá»‘i Ä‘a 100 Ä‘Æ¡n vá»‹/chi nhÃ¡nh. Ngoáº¡i lá»‡: SGK (SÃ¡ch giÃ¡o khoa) tá»‘i Ä‘a 500 Ä‘Æ¡n vá»‹/chi nhÃ¡nh (BR-01).
+Line 1023: FR-INV-02 (UC-51 - View Stock Transaction Logs)
+Line 1029: FR-PAY-01 (UC-15 - Process Payment & UC-20 - Select Payment Method[n])
+Line 1030: Â·         Há»‡ thá»‘ng cho phÃ©p Customer chá»n 1 trong 2 phÆ°Æ¡ng thá»©c (UC-20):
+Line 1032: Â·     VNPay: Chuyá»ƒn hÆ°á»›ng (Redirect) sang cá»•ng thanh toÃ¡n VNPay Sandbox (UC-21).
+Line 1033: FR-PAY-02 (UC-21 - Pay via VNPay[o])
+Line 1048: FR-SUP-01 (UC-20 - Submit Support Request)
+Line 1051: Â·     Output: Ticket Ä‘Æ°á»£c táº¡o vá»›i tráº¡ng thÃ¡i OPEN, hiá»ƒn thá»‹ mÃ£ Ticket Ä‘á»ƒ Customer theo dÃµi (UC-21).
+Line 1052: FR-SUP-02 (UC-22 - Request Return Or Exchange)
+Line 1068: FR-SUP-03 (UC-33 - View Support Ticket List & UC-35 - Reply to Support Request)
+Line 1069: Â·     CS Staff tiáº¿p nháº­n Ticket (UC-34 Ä‘á»ƒ xem chi tiáº¿t), pháº£n há»“i vÃ  Ä‘Ã³ng Ticket.
+Line 1070: Â·     SLA (Service Level Agreement): Má»i Ticket pháº£i Ä‘Æ°á»£c pháº£n há»“i láº§n Ä‘áº§u trong vÃ²ng 2 ngÃ y lÃ m viá»‡c ká»ƒ tá»« khi táº¡o (BR-08, UC-36).
+Line 1075: FR-SUP-04 (UC-27 - Process Return, UC-28 - Process Exchange, UC-30 - Approve Return/Exchange)
+Line 1076: Â·     CS Staff thá»±c hiá»‡n xÃ¡c minh chá»©ng tá»« Ä‘á»•i tráº£ (UC-38). Náº¿u Ä‘Ãºng Ä‘iá»u kiá»‡n BR-12, táº¡o lá»‡nh Ä‘á»•i tráº£ Ä‘á»ƒ chá» duyá»‡t.
+Line 1077: Â·     Manager hoáº·c Sale Staff phÃª duyá»‡t (UC-30 hoáº·c UC-31 Ä‘á»ƒ tá»« chá»‘i) trÃªn Dashboard.

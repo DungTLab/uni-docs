@@ -1,0 +1,25 @@
+<!-- =====================================================================
+     Mẹo Phòng Thi: COPY TOÀN BỘ CÁC THẺ <dependency> DƯỚI ĐÂY 
+     VÀ DÁN VÀO TRONG THẺ <dependencies> CỦA FILE pom.xml MỚI TẠO.
+     ===================================================================== -->
+
+<!-- 1. Thư viện kết nối Cơ sở dữ liệu SQL Server (MSSQL Driver) -->
+<dependency>
+    <groupId>com.microsoft.sqlserver</groupId>
+    <artifactId>mssql-jdbc</artifactId>
+    <version>12.8.0.jre11</version>
+</dependency>
+
+<!-- 2. Thư viện thẻ JSTL API (Thẻ c:forEach, c:if, fmt:formatNumber...) -->
+<dependency>
+    <groupId>jakarta.servlet.jsp.jstl</groupId>
+    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+    <version>3.0.2</version>
+</dependency>
+
+<!-- 3. Bộ cài đặt JSTL Glassfish (Bắt buộc đi kèm để JSTL hoạt động trên Tomcat) -->
+<dependency>
+    <groupId>org.glassfish.web</groupId>
+    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+    <version>3.0.1</version>
+</dependency>

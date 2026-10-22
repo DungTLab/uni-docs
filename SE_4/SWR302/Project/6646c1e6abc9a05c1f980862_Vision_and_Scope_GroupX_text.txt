@@ -1,0 +1,178 @@
+﻿  
+Vision and Scope Document
+for
+Coffee Ordering Website
+Version 1.0 approved
+Prepared by Group 5
+Process Impact
+October 25, 2020
+
+Table of Contents
+1.Business Requirements1
+1.1.Background1
+1.2.Business Opportunity1
+1.3.Business Objectives1
+1.4.Success Metrics2
+1.5.Vision Statement2
+1.6.Business Risks2
+1.7.Business Assumptions and Dependencies2
+2.Scope and Limitations3
+2.1.Major Features3
+2.2.Scope of Initial and Subsequent Releases3
+2.3.Limitations and Exclusions4
+3.Business Context4
+3.1.Stakeholder Profiles4
+3.2.Project Priorities5
+3.3.Deployment Considerations5
+
+
+
+
+
+Revision History
+
+
+Name
+Date
+Reason For Changes
+Version
+All Team
+22/09/2020
+initial draft
+1.0 draft 1
+All Team
+25/10/2020
+changes after inspection
+1.0 approved
+
+Business Requirements
+1.1. Background
+The Background my team will have interface background is white and use the main image to create a highlight for the website and web above will have a function to help users manipulate the website easily. 
+When put into use, the website will continuously update with the latest version to fix errors for users to give users the best experience.
+1.2. Business Opportunity
+Growing and trading coffee is a very "hot" business at the moment. We will find coffee shops sprouting on the streets like mushrooms. People often drink more coffee so the demand for coffee is huge. Many consumers, especially housewife and office workers, have a very high demand for convenience and quality. Our team can provide a websites sell fresh cafe with good-looking interface, but easy to manipulate, no cumbersome and also meet different search needs according to each interest. When people can place an order on the website, all the store's sales information will be quickly stored to help the sales staff save time and have time to focus on selling, which helps increase profit. The manager will be able to manage the cafe sold, reducing waste and avoid dishonest staff. No one wants to spend 1 to 2 hours to drive to the store only buy a bag of coffee, while just searching, selecting flavors, type of cafe, producer and finally a few clicks to confirm. 
+The information is that you can have a bag of fresh beans coffee immediately, but it only takes 10 to 15 minutes to wait for the shipper to deliver.
+1.3. Business Objectives
+BO-1: Reduce coffee operating cost by 17% within 12 months following initial release.
+BO-2: Increase average effective work time by 20 minutes per coffee-using employee per day
+Within 6 months following initial release.
+
+Success Metrics
+SM-1: Due to the nature of the work, about 100 people will visit the website every day to place orders to save time.
+SM-2: When there is a website, the store's product is known by many people and the number of visits also increases
+SM-3: Most of the users give high rating to the website although the website has just been put to use recently
+Vision Statement
+For users, due to the nature of the work and some other issues, they can order conveniently without much effort. The website system selling beans coffee can meet this demand of them easily. Currently due to the developing society towards modernization the above order will help everyone who saves time and reduces unnecessary risks. The system will save people time on necessities, which is a big step forward for the promotion of the traditional beans coffee business.
+Business Risks
+RI-1: Too few customer might use the system, reducing the return on investment from the system development and the changes in coffee operating procedures. (Probability = 0.3; Impact = 9).
+RI-2:The local delivery system may not meet the minimum delivery time, which means that customer would not always receive their order on time which reduces customer satisfaction with the website. (Probability = 0.5; Impact = 6).
+Business Assumptions and Dependencies
+AS-1: Systems with suitable user interfaces will be available to coffee staff to handle expected volumes ordered.
+AS-2: Delivery personnel will deliver within the specified delivery time frames within 1 day of the requested delivery time.
+DE-1: If processing a delivery via a shipper, the owner of the website must be able to communicate with that shipper bi-directionally.
+
+Scope and Limitations
+2.1. Major Features
+FE-1:Manage accounts of admins, staffs and customers
+FE-2:Admin Information as about quantity user registration will have id, name, age, email, phone, address and can add, update, delete, get notification
+FE-3:Staff Information Management.
+FE-4:Customer Information as about name, age, address, phone and can update, report about error.
+FE-5: Order Management.
+FE-6: Product Management.
+FE-7: Order product from the Product menu to be delivered.
+FE-8:View products by category.
+
+2.2. Scope of Initial and Subsequent Releases
+Feature
+Release 1
+Release 2
+Release 3
+FE-1, Manage accounts
+Allows administrators to create and delete accounts; Allow customers to create accounts.
+Allows administrators to edit accounts.
+Fully functional
+FE-2:Admin Information Management.
+Allows create and view information
+Allows edit and delete information
+
+FE-3:Staff Information Management.
+Allows create and view information
+Allows edit and delete information
+
+FE-4:Customer Information Management.
+Allows create and view information
+Allows edit and delete information
+
+FE-5: Order Management
+Implemented if time permits
+Allows create and view information
+Fully functional
+FE-6: Product Management
+Allows create, view information
+Allows edit information
+Fully functional
+FE-7: Order product
+Implemented if time permits
+Allow create order
+Fully functional
+FE-8:View products by category.
+Implemented if time permits
+Implemented if time permits
+Implemented if time permits
+2.3. Limitations and Exclusions
+Website limitations that may generate unintended errors will be updated for the next maintenance.
+Business Context
+3.1. Stakeholder Profiles
+Stakeholder
+Major Value
+Attitudes
+Major Interests
+Constraints
+Manager
+Manager all of data, activities of web server include: finances, coffee, staffs, reports.
+ Always ready to receive user notifications and record to report back for star updates
+Save cost and time managing coffee, staffs.
+None identified
+Staff
+Receive and process orders from customers in the web page. Prepare coffee.Give coffee to shipper.
+Collect money.
+Concern about union relationships and possible downsizing; otherwise receptive
+Save cost and time to make coffee.Be careful to collect money.
+Constraint on life and professional responsibility
+Shipper
+Receive coffee and delivery to the customersCollect money.
+Careful to receive, delivery coffee to customer.
+Save time and cost to delivery coffee to customer.
+None identified
+Customer
+Order, pay, enjoy coffee, do feedback about the shipper, staff, beverage or web page.
+Not happy about the web work needed, recognizes the value to the store and staff.
+Save time and cost to enjoy the coffee.
+Users want to save time and minimize traffic risks
+3.2. Project Priorities
+Dimension
+Constraint
+Driver
+Degree of Freedom
+Features
+All features scheduled for release 1.0 must be fully operational
+
+
+Quality
+98% of user acceptance tests must pass; all security tests must pass.
+
+
+Schedule
+
+
+Release 1 planned to be available by end of next month (October), release 2 by end of December; overrun of up to 1 weeks acceptable without sponsor review.
+Cost
+
+
+Budget overrun up to 18% accept able without sponsor review.
+Staff
+
+Team size is half-time project manager, half-time BA, 3 developers, and 1 tester; additional developer and half-time tester available if necessary.
+
+3.3. Deployment Considerations
+The web server software is required to be upgraded to the latest version. Any relevant infrastructure changes must be made at the time of the system upgrade. Develop Team has to use videos no more than five minutes in length to train users (staff, manager, owner) in the Internet-based versions of COW.

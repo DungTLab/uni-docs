@@ -1,0 +1,68 @@
+# Conceptual ERD — Residential Community Management System
+
+## Mermaid Code
+
+```mermaid
+graph TD
+    %% Định dạng hình dạng: [] là Thực thể (Hình chữ nhật), {} là Mối quan hệ (Hình thoi)
+
+    USER["USER"]
+    RESIDENTIAL_CORE_RECORD["RESIDENTIAL_CORE_RECORD"]
+    RESIDENTIAL_RECORD_DETAIL["RESIDENTIAL_RECORD_DETAIL"]
+    ATTACHMENT["ATTACHMENT"]
+    WORKFLOW_STATUS["WORKFLOW_STATUS"]
+    TRANSACTION_PAYMENT["TRANSACTION_PAYMENT"]
+    NOTIFICATION_LOG["NOTIFICATION_LOG"]
+    AUDIT_LOG["AUDIT_LOG"]
+
+    %% Các khối hình thoi quan hệ
+    rel_submits{"submits"}
+    rel_contains{"contains"}
+    rel_attaches{"attaches"}
+    rel_tracks{"tracks"}
+    rel_executes{"executes"}
+    rel_settled_by{"settled_by"}
+    rel_pays{"pays"}
+    rel_receives{"receives"}
+    rel_triggers{"triggers"}
+
+    %% Kết nối 1-N
+    USER ---|1| rel_submits ---|N| RESIDENTIAL_CORE_RECORD
+    RESIDENTIAL_CORE_RECORD ---|1| rel_contains ---|N| RESIDENTIAL_RECORD_DETAIL
+    RESIDENTIAL_CORE_RECORD ---|1| rel_attaches ---|N| ATTACHMENT
+    RESIDENTIAL_CORE_RECORD ---|1| rel_tracks ---|N| WORKFLOW_STATUS
+    USER ---|1| rel_executes ---|N| WORKFLOW_STATUS
+    RESIDENTIAL_CORE_RECORD ---|1| rel_settled_by ---|N| TRANSACTION_PAYMENT
+    USER ---|1| rel_pays ---|N| TRANSACTION_PAYMENT
+    USER ---|1| rel_receives ---|N| NOTIFICATION_LOG
+    USER ---|1| rel_triggers ---|N| AUDIT_LOG
+
+```
+
+## Entity Description Table | Bảng mô tả Entity
+
+| # | Entity Name | Vietnamese Name | Description | Key Attributes | Main Relationships |
+|---|-------------|-----------------|-------------|----------------|--------------------|
+| 1 | USER | Người dùng | Central user repository storing profile info, credentials, and roles. | user_id PK, full_name, email, phone, password_hash, role_code, status, created_at | has many REQUEST, has many AUDIT_LOG |
+| 2 | RESIDENTIAL_CORE_RECORD | Bản ghi Cốt lõi | Core data record representing a primary asset or transaction in Residential Community Management System. | record_id PK, user_id FK, title, status_code, category, reference_code, created_at, updated_at | belongs to USER, has many RECORD_DETAIL, has many ATTACHMENT |
+| 3 | RESIDENTIAL_RECORD_DETAIL | Chi tiết Bản ghi | Extended parameters, attributes, and specifications of the record. | detail_id PK, record_id FK, attribute_key, attribute_value, data_type, is_mandatory | belongs to RESIDENTIAL_CORE_RECORD |
+| 4 | ATTACHMENT | Tài liệu Đính kèm | Digital files, contracts, certificates, and media attachments. | attachment_id PK, record_id FK, file_name, file_url, mime_type, file_size, checksum | belongs to RESIDENTIAL_CORE_RECORD |
+| 5 | WORKFLOW_STATUS | Trạng thái Luồng xử lý | Lifecycle state transitions and history tracking. | status_id PK, record_id FK, previous_status, new_status, changed_by_user_id FK, remarks, timestamp | belongs to RESIDENTIAL_CORE_RECORD, belongs to USER |
+| 6 | TRANSACTION_PAYMENT | Giao dịch Thanh toán | Financial billing transactions and payment gateway receipts. | payment_id PK, record_id FK, user_id FK, amount, currency, payment_status, gateway_trans_id, paid_at | belongs to RESIDENTIAL_CORE_RECORD, belongs to USER |
+| 7 | NOTIFICATION_LOG | Nhật ký Thông báo | System alerts, SMS messages, and email dispatch logs. | notification_id PK, user_id FK, channel, recipient, content_preview, delivery_status, sent_at | belongs to USER |
+| 8 | AUDIT_LOG | Nhật ký Kiểm toán | Security and compliance audit trail of critical system operations. | audit_id PK, user_id FK, action_performed, IP_address, target_entity, changes_json, timestamp | belongs to USER |
+
+## Relationship Description | Mô tả Quan hệ
+
+| # | From Entity | Cardinality | To Entity | Relationship Label | Business Explanation |
+|---|-------------|-------------|-----------|-------------------|----------------------|
+| 1 | USER | ||--o{ | RESIDENTIAL_CORE_RECORD | submits | Một người dùng có thể khởi tạo nhiều bản ghi Residential Community Management System. |
+| 2 | RESIDENTIAL_CORE_RECORD | ||--o{ | RESIDENTIAL_RECORD_DETAIL | contains | Một bản ghi cốt lõi bao gồm nhiều thông số chi tiết. |
+| 3 | RESIDENTIAL_CORE_RECORD | ||--o{ | ATTACHMENT | attaches | Một bản ghi có đính kèm nhiều tập tin và chứng từ. |
+| 4 | RESIDENTIAL_CORE_RECORD | ||--o{ | WORKFLOW_STATUS | tracks | Một bản ghi trải qua nhiều giai đoạn lịch sử trạng thái. |
+| 5 | USER | ||--o{ | WORKFLOW_STATUS | executes | Một người dùng cập nhật trạng thái luồng xử lý. |
+| 6 | RESIDENTIAL_CORE_RECORD | ||--o{ | TRANSACTION_PAYMENT | settled_by | Một bản ghi phát sinh giao dịch thanh toán. |
+| 7 | USER | ||--o{ | TRANSACTION_PAYMENT | pays | Một người dùng thực hiện thanh toán cho các đơn hàng. |
+| 8 | USER | ||--o{ | NOTIFICATION_LOG | receives | Một người dùng nhận nhiều thông báo gửi từ hệ thống. |
+| 9 | USER | ||--o{ | AUDIT_LOG | triggers | Hành động của người dùng được ghi lại trong nhật ký kiểm toán. |
+

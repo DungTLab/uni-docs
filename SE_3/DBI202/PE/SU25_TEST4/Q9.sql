@@ -1,0 +1,3 @@
+UPDATE DEPENDENT
+SET Bdate = CURRENT_DATE
+WHERE Relationship='Daughter';

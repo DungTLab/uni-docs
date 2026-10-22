@@ -1,0 +1,116 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36">
+  <diagram name="Page-1" id="Vuc_u0GcMRPEsKjaPSV-">
+    <mxGraphModel dx="2314" dy="1236" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#fff2cc;strokeColor=#d6b656;" value="Online Car Rental Management System" vertex="1">
+          <mxGeometry height="200" width="200" x="225" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="System Administrator" vertex="1">
+          <mxGeometry height="60" width="120" x="690" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Customer" vertex="1">
+          <mxGeometry height="60" width="120" x="-240" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Payment Gateway" vertex="1">
+          <mxGeometry height="60" width="120" x="600" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Staff" vertex="1">
+          <mxGeometry height="60" width="120" x="-220" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-6" edge="1" parent="1" source="5NAQNOLvt2gHdbzB7E-9-3" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0.375;entryY=0.003;entryDx=0;entryDy=0;entryPerimeter=0;" target="5NAQNOLvt2gHdbzB7E-9-1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="260" y="170" as="sourcePoint" />
+            <mxPoint x="310" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oFlKQirBrCl9GhbsUXpg-4" connectable="0" parent="5NAQNOLvt2gHdbzB7E-9-6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=30;" value="&lt;div&gt;available cars browssing, rental&lt;/div&gt;&lt;div&gt;periods, create bookings, and deposits online.&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.2153" y="2" as="geometry">
+            <mxPoint x="42" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-7" edge="1" parent="1" source="5NAQNOLvt2gHdbzB7E-9-1" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.231;exitY=0.082;exitDx=0;exitDy=0;exitPerimeter=0;" target="5NAQNOLvt2gHdbzB7E-9-3" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="110" y="340" as="sourcePoint" />
+            <mxPoint x="160" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oFlKQirBrCl9GhbsUXpg-5" connectable="0" parent="5NAQNOLvt2gHdbzB7E-9-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=30;" value="&lt;div&gt;notification status car&lt;/div&gt;&lt;div&gt;availability and booking status in real time,&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.0709" y="-4" as="geometry">
+            <mxPoint x="12" y="5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-8" edge="1" parent="1" source="5NAQNOLvt2gHdbzB7E-9-1" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="5NAQNOLvt2gHdbzB7E-9-2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="380" y="240" as="sourcePoint" />
+            <mxPoint x="430" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-9" edge="1" parent="1" source="5NAQNOLvt2gHdbzB7E-9-3" style="endArrow=classic;html=1;rounded=0;entryX=0.095;entryY=0.209;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" target="5NAQNOLvt2gHdbzB7E-9-1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="40" y="290" as="sourcePoint" />
+            <mxPoint x="90" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oFlKQirBrCl9GhbsUXpg-6" connectable="0" parent="5NAQNOLvt2gHdbzB7E-9-9" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=30;" value="&lt;div&gt;login information and a booking request&lt;/div&gt;&lt;div&gt;by a car and rental duration, confirm booking and&amp;nbsp;the status of their bookings&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.588" y="-2" as="geometry">
+            <mxPoint x="110" y="55" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-10" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" target="5NAQNOLvt2gHdbzB7E-9-3" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="230" y="305" as="sourcePoint" />
+            <mxPoint x="90" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-11" edge="1" parent="1" source="5NAQNOLvt2gHdbzB7E-9-2" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0.711;entryY=0.031;entryDx=0;entryDy=0;entryPerimeter=0;" target="5NAQNOLvt2gHdbzB7E-9-1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="380" y="220" as="sourcePoint" />
+            <mxPoint x="350" y="241" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-13" edge="1" parent="1" source="5NAQNOLvt2gHdbzB7E-9-1" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=1;exitDx=0;exitDy=0;" target="5NAQNOLvt2gHdbzB7E-9-4" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="350" y="441" as="sourcePoint" />
+            <mxPoint x="400" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-14" edge="1" parent="1" source="5NAQNOLvt2gHdbzB7E-9-5" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.042;entryY=0.687;entryDx=0;entryDy=0;entryPerimeter=0;" target="5NAQNOLvt2gHdbzB7E-9-1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="120" y="460" as="sourcePoint" />
+            <mxPoint x="170" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oFlKQirBrCl9GhbsUXpg-9" connectable="0" parent="5NAQNOLvt2gHdbzB7E-9-14" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-20;" value="&lt;div&gt;notified and car information,&lt;/div&gt;&lt;div&gt;&amp;nbsp;bookings status, and vehicles&amp;nbsp;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;inspection&lt;/span&gt;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;when they are returned.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.2897" y="3" as="geometry">
+            <mxPoint x="42" y="-17" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5NAQNOLvt2gHdbzB7E-9-15" edge="1" parent="1" source="5NAQNOLvt2gHdbzB7E-9-1" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="5NAQNOLvt2gHdbzB7E-9-5" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="230" y="500" as="sourcePoint" />
+            <mxPoint x="280" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oFlKQirBrCl9GhbsUXpg-10" connectable="0" parent="5NAQNOLvt2gHdbzB7E-9-15" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=-15;" value="&lt;div&gt;&amp;nbsp;fees of the booking. All rental&lt;/div&gt;&lt;div&gt;data of reporting and purposes.&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.3287" y="-1" as="geometry">
+            <mxPoint x="41" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oFlKQirBrCl9GhbsUXpg-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=30;" value="&amp;nbsp;payment request" vertex="1">
+          <mxGeometry height="30" width="110" x="460" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="oFlKQirBrCl9GhbsUXpg-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=25;" value="&lt;div&gt;Status car availability and the&lt;/div&gt;&lt;div&gt;&amp;nbsp;a deposit payment and notifications during the rental process..&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="360" x="-170" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="oFlKQirBrCl9GhbsUXpg-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=-25;" value="&lt;div&gt;&amp;nbsp;user accounts, system&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;data&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="260" x="380" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="oFlKQirBrCl9GhbsUXpg-12" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=-25;" value="booking statistics" vertex="1">
+          <mxGeometry height="30" width="140" x="460" y="190" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

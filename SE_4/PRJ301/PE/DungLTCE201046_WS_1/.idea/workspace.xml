@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f52ed7ac-326a-44dc-863e-20ab7f6eabc4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../0.DANH_GIA/FA25_PRJ301_PE_Convoi/FA25_PRJ301_PE_Convoi/src/main/java/controller/DepartureController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0.DANH_GIA/FA25_PRJ301_PE_Convoi/FA25_PRJ301_PE_Convoi/src/main/java/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0.DANH_GIA/FA25_PRJ301_PE_Convoi/FA25_PRJ301_PE_Convoi/src/main/java/controller/LogoutController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0.DANH_GIA/FA25_PRJ301_PE_Convoi/FA25_PRJ301_PE_Convoi/src/main/java/dao/CustomerDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0.DANH_GIA/FA25_PRJ301_PE_Convoi/FA25_PRJ301_PE_Convoi/src/main/java/dao/DepartureDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0.DANH_GIA/FA25_PRJ301_PE_Convoi/FA25_PRJ301_PE_Convoi/src/main/java/db/DBContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0.DANH_GIA/FA25_PRJ301_PE_Convoi/FA25_PRJ301_PE_Convoi/src/main/java/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0.DANH_GIA/FA25_PRJ301_PE_Convoi/FA25_PRJ301_PE_Convoi/src/main/java/model/Departure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0.DANH_GIA/FA25_PRJ301_PE_Convoi/FA25_PRJ301_PE_Convoi/src/main/java/model/Route.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0.DANH_GIA/FA25_PRJ301_PE_Convoi/FA25_PRJ301_PE_Convoi/src/main/webapp/META-INF/context.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0.DANH_GIA/FA25_PRJ301_PE_Convoi/FA25_PRJ301_PE_Convoi/src/main/webapp/WEB-INF/login.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../0.DANH_GIA/FA25_PRJ301_PE_Convoi/FA25_PRJ301_PE_Convoi/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/src/main/java/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/src/main/java/controller/LogoutController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/src/main/java/controller/StudentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/src/main/java/dao/StudentDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/src/main/java/db/DBContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/src/main/java/model/Major.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/src/main/java/model/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/src/main/webapp/META-INF/context.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/src/main/webapp/WEB-INF/view/auth/login.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/src/main/webapp/WEB-INF/view/profile/profile.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/src/main/webapp/assets/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/src/main/java/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/src/main/java/controller/LogoutController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/src/main/java/controller/StudentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/src/main/java/dao/StudentDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/src/main/java/db/DBContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/src/main/java/model/Major.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/src/main/java/model/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/src/main/webapp/META-INF/context.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/src/main/webapp/WEB-INF/view/auth/login.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/src/main/webapp/WEB-INF/view/profile/profile.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/src/main/webapp/assets/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SU25_Workshop2_Solution/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/0.DANH_GIA/25.3.FA25_HSF302_PE/FA25_HSF302_PE_HerculesGym/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/app/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/controller/AlbumServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/controller/ArtistServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/controller/GetImageServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/controller/LoginServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/controller/LogoutServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/dao/AlbumDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/dao/ArtistDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/db/DBContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/filter/AuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/model/Album.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/model/Artist.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/util/FileUploadUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/0.retro_prj301/src/main/java/util/PaginationUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/02.Hibernate intro 2/src/main/java/app/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/02.Hibernate intro 2/src/main/java/app/entities/Artist.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/02.Hibernate intro 2/src/main/java/app/repositories/ArtistRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/02.Hibernate intro 2/src/main/java/app/services/ArtistService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/02.Hibernate intro 2/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/04.3_layer_arch_auth/src/main/java/vn/edu/fpt/musicstore/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/04.3_layer_arch_auth/src/main/java/vn/edu/fpt/musicstore/controllers/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/04.3_layer_arch_auth/src/main/java/vn/edu/fpt/musicstore/entities/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/04.3_layer_arch_auth/src/main/java/vn/edu/fpt/musicstore/repositories/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/04.3_layer_arch_auth/src/main/java/vn/edu/fpt/musicstore/services/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/04.3_layer_arch_auth/src/main/resources/static/assets/bootstrap.bundle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/04.3_layer_arch_auth/src/main/resources/static/assets/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/04.3_layer_arch_auth/src/main/resources/templates/artist/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/04.3_layer_arch_auth/src/main/resources/templates/fragment.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/04.3_layer_arch_auth/src/main/resources/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/05.JavaFX/5.2_thymeleaf intro/src/main/java/vn/edu/fpt/musicstore/controllers/ArtistController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/05.JavaFX/5.2_thymeleaf intro/src/main/resources/templates/artist/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/2.spring-core/src/main/java/app/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/2.spring-core/src/main/java/config/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/2.spring-core/src/main/java/repositories/ArtistRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/2.spring-core/src/main/java/service/ArtistService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3.1.Thymeleaf_intro/3.1_thymeleaf intro/src/main/java/vn/edu/fpt/musicstore/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3.1.Thymeleaf_intro/3.1_thymeleaf intro/src/main/java/vn/edu/fpt/musicstore/controllers/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3.1.Thymeleaf_intro/3.1_thymeleaf intro/src/main/java/vn/edu/fpt/musicstore/entities/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3.1.Thymeleaf_intro/3.1_thymeleaf intro/src/main/resources/templates/home/classwork1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3.1.Thymeleaf_intro/3.1_thymeleaf intro/src/main/resources/templates/home/classwork2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3.1.Thymeleaf_intro/3.1_thymeleaf intro/src/main/resources/templates/home/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3.1.Thymeleaf_intro/3.1_thymeleaf intro/src/main/resources/templates/home/result1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3.1.Thymeleaf_intro/3.1_thymeleaf intro/src/main/resources/templates/home/result2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3.JavaFX/src/main/java/vn/edu/fpt/musicstore/SpringMusicStore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3.JavaFX/src/main/java/vn/edu/fpt/musicstore/controller/ArtistController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3.JavaFX/src/main/resources/vn/edu/fpt/musicstore/manage-artist.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3_layers_arch/src/main/resources/static/assets/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3_layers_arch/src/main/resources/static/assets/js/bootstrap.bundle.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3_layers_arch/src/main/resources/templates/artist/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3_layers_arch/src/main/resources/templates/artist/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/3_layers_arch/src/main/resources/templates/fragment/fragment.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/Welcome/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/Welcome/src/main/java/app/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/WelcomeFPTU/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../3.HSF302/LecturePrep/WelcomeFPTU/src/main/java/app/app/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../33.SP25/SE1907-PRO192/lab4_submission/NhanDTCE190741/CE190741_Lab04/CE190741_Lab04.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/0.retro_prj301/src/main/java/dao/GenreDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/JPA Intro/src/main/java/app/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/JPA Intro/src/main/java/entities/Artist.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/JPA Intro/src/main/java/service/AlbumService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/JPA Intro/src/main/java/service/ArtistService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/JPA Intro/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/hibernate-intro/src/main/java/app/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/hibernate-intro/src/main/java/app/entities/Artist.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/hibernate-intro/src/main/java/app/entities/Genre.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/hibernate-intro/src/main/java/app/repositories/GenreRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/hibernate-intro/src/main/java/app/services/ArtistService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/hibernate-intro/src/main/java/app/services/GenreService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/hibernate-intro/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/spring-core/src/main/java/Example.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/spring-core/src/main/java/app/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/spring-core/src/main/java/config/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/spring-core/src/main/java/repositories/AlbumRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/spring-core/src/main/java/repositories/ArtistRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/spring-core/src/main/java/service/ArtistService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/java/vn/edu/fptct/musicstore/controller/ArtistController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/java/vn/edu/fptct/musicstore/entities/Album.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/java/vn/edu/fptct/musicstore/entities/Artist.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/java/vn/edu/fptct/musicstore/repositories/AlbumRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/java/vn/edu/fptct/musicstore/repositories/ArtistRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/java/vn/edu/fptct/musicstore/services/AlbumService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/java/vn/edu/fptct/musicstore/services/ArtistService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/resources/templates/album/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/resources/templates/artist/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/resources/templates/artist/delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/resources/templates/artist/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/resources/templates/artist/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/resources/templates/artist/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../35.FA25/HSF302_SE1905/thymeleaf-intro/src/main/resources/templates/fragment/frag.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="34hRyippOhaAV2RgicYHyeS7PWp" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/FPTU/1.PRJ301/1.Labs/25.3.FA25_PRJ301_WS1",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-IU-252.25557.131" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f52ed7ac-326a-44dc-863e-20ab7f6eabc4" name="Changes" comment="" />
+      <created>1761664073456</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761664073456</updated>
+      <workItem from="1761664074554" duration="11000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

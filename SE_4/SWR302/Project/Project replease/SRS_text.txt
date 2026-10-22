@@ -1,0 +1,1320 @@
+Software Requirements Specification 
+for
+Website Nhà Sách Tích Hợp Mini Fahasa, Release 1.0
+Version 1.0 approved
+Prepared by Group 1
+June 29, 2026
+Table of Contents 
+Revision History4
+1. Introduction5
+1.1 Purpose5
+1.2 Document Conventions5
+1.3 Project Scope and Product Features6
+1.4 References7
+2. Overall Description7
+2.1 Product Perspective7
+2.2 User Classes and Characteristics7
+2.3 Operating Environment8
+2.4 Design and Implementation Constraints8
+2.5 Assumptions and Dependencies8
+3. System Features9
+3.1 Account & Access Management (FE-1)9
+3.2 Product Catalog Management (FE-2)11
+3.3 Shopping Cart & Order Management (FE-3)13
+3.4 Inventory Management (FE-4)17
+3.5 Payment Processing (FE-5)18
+3.6 Customer Support (FE-6)19
+3.7 System Administration (FE-7)22
+3.8 Reports & Statistics (FE-8)22
+4. Data Requirements23
+4.1 Logical Data Model23
+4.2 Data Dictionary23
+Bảng Account24
+Bảng Product25
+Bảng Order25
+Bảng OrderItem26
+Bảng Inventory27
+Bảng StockLog27
+Bảng SystemParameter28
+Bảng AuditLog29
+4.3 Reports30
+4.4 Data Integrity, Retention, and Disposal30
+5. External Interface Requirements31
+5.1 User Interfaces31
+Storefront (Giao diện Khách hàng):31
+Dashboard (Giao diện Nhân viên/Quản lý):31
+5.2 Software Interfaces32
+Google OAuth 2.0 API:32
+VNPay Sandbox API:32
+5.3 Hardware Interfaces32
+5.4 Communications Interfaces33
+6. Quality Attributes33
+6.1 Usability Requirements33
+6.2 Performance Requirements33
+6.3 Security Requirements33
+6.4 Safety Requirements34
+6.5 Availability Requirements34
+6.6 Robustness Requirements34
+Appendix A: Analysis Models34
+1. Use Case Diagram34
+2. Entity Relationship Diagram (ERD)34
+3. Checkout Flow (Activity Diagram)35
+4. State-Transition Diagrams (Lifecycles)36
+4.1 Order Lifecycle36
+4.2 Support Ticket Lifecycle39
+ 
+Revision History
+ 
+Name
+Date
+Reason For Changes
+Version
+Lê Tiến Dũng & Trần Huỳnh Giác
+23/06/2026
+Khởi tạo khung tài liệu SRS kết hợp các luật nghiệp vụ và danh sách Use Cases
+1.0 Draft
+Lê Tiến Dũng & Trần Huỳnh Giác
+29/06/2026
+Đồng bộ hóa toàn bộ mã số Use Case (t.k2qvj9n2h148), tích hợp vai trò Manager quản trị kho và hoàn thiện tài liệu theo template chuẩn
+1.0 Final
+Lê Tiến Dũng & Trần Huỳnh Giác
+30/06/2026
+Sửa lỗi ánh xạ Use Case từ 1-61, bổ sung các FR bị thiếu cho CS Staff, Admin và phân rã các yêu cầu quản lý tác giả/nhà xuất bản/thương hiệu
+1.1 Final
+ 
+ 
+ 
+1. Introduction
+1.1 Purpose
+Tài liệu Đặc tả Yêu cầu Phần mềm (SRS) này mô tả chi tiết các yêu cầu chức năng (functional requirements) và yêu cầu phi chức năng (non-functional requirements) cho phiên bản 1.0 của Hệ thống Website Nhà Sách Tích Hợp Mini Fahasa. Tài liệu này được biên soạn nhằm phục vụ các đối tượng:
+● Đội ngũ phát triển (Development Team): Dùng làm căn cứ kỹ thuật để thiết kế kiến trúc hệ thống, xây dựng cơ sở dữ liệu và hiện thực hóa các chức năng phần mềm.
+● Đội ngũ kiểm thử (Testing/QA Team): Dùng làm cơ sở để xây dựng các kịch bản kiểm thử (test cases).
+● Khách hàng & Các bên liên quan (Stakeholders): Dùng để kiểm tra, đối soát phạm vi bàn giao và làm căn cứ nghiệm thu hệ thống khi hoàn thành Release 1.0.
+ 
+1.2 Document Conventions
+Để đảm bảo tính thống nhất, dễ đọc và dễ đối soát, tài liệu SRS này áp dụng các quy ước sau:
+1. Quy ước mã hóa các yêu cầu (Requirement Tagging):
+○ Yêu cầu chức năng: FR-[Phân hệ]-[Số thứ tự] (Ví dụ: FR-ACC-01, FR-ORD-02).
+■ ACC (Account): Phân hệ quản lý tài khoản và phân quyền.
+■ PRO (Product): Phân hệ quản lý danh mục sản phẩm.
+■ ORD (Cart & Order): Phân hệ quản lý giỏ hàng và xử lý đơn hàng.
+■ INV (Inventory): Phân hệ quản lý kho và giao dịch kho.
+■ PAY (Payment): Phân hệ thanh toán.
+■ SUP (Support): Phân hệ hỗ trợ khách hàng và khiếu nại/đổi trả.
+■ ADM (Admin): Phân hệ quản trị hệ thống.
+○ Yêu cầu phi chức năng: NFR-[Loại yêu cầu]-[Số thứ tự] (Ví dụ: NFR-SEC-01).
+■ SEC (Security): Bảo mật.
+■ PER (Performance): Hiệu năng.
+■ USA (Usability): Khả năng sử dụng.
+■ AVA (Availability): Tính sẵn sàng.
+2. Tham chiếu Luật nghiệp vụ (Business Rules): Các mã như BR-01 đến BR-16 tham chiếu trực tiếp đến danh sách Business Rules của dự án.
+3. Mức độ ưu tiên (Priority Levels):
+○ High (Cao): Bắt buộc phải có để hệ thống vận hành cốt lõi.
+○ Medium (Trung bình): Các tính năng nâng cao (ví dụ: cổng VNPay, áp dụng voucher).
+○ Low (Thấp): Tính năng bổ trợ hoặc sẽ phát triển ở các release sau.
+ 
+1.3 Project Scope and Product Features
+Dự án Mini Fahasa là một hệ thống tích hợp thương mại điện tử storefront và quản trị kho ERP-Lite trực quan, vận hành trên hai giao diện chính:
+● Storefront (Kênh bán hàng trực tuyến): Giao diện Web tối giản dành cho Khách hàng duyệt, tìm kiếm, đặt mua Sách & Văn phòng phẩm trong cùng một đơn hàng, thanh toán trực tuyến hoặc COD, theo dõi đơn hàng và gửi yêu cầu khiếu nại.
+● Dashboard (Bảng điều khiển quản trị nội bộ): Giao diện dành cho đội ngũ vận hành (Admin, Manager, Nhân viên bán hàng, CSKH) để quản lý kho, xử lý đơn hàng, đổi trả và đối soát tồn kho thời gian thực.
+ 
+Tóm tắt các Feature Epics (FE):
+● FE-1: Account Management: Đăng ký (tuổi ), đăng nhập, Google OAuth 2.0, xem/sửa hồ sơ cá nhân và số dư tích lũy.
+● FE-2: Product Management: Quản lý sản phẩm (Book, Stationery), các danh mục đệ quy, quản lý tác giả, nhà xuất bản, thương hiệu, và cảnh báo xả kho tự động.
+● FE-3: Cart and Order Management: Quản lý giỏ hàng, áp mã ưu đãi sinh nhật/voucher/loyalty points, đặt hàng và quản lý toàn bộ vòng đời đơn hàng.
+● FE-4: Inventory Management: Quản lý tồn kho cho Manager, cảnh báo tồn kho thấp và nhật ký thay đổi tồn kho (Stock Transaction Log).
+● FE-5: Payment Processing: Xử lý chọn phương thức thanh toán, tích hợp cổng VNPay Sandbox.
+● FE-6: Customer Support: Gửi yêu cầu hỗ trợ (Ticket), CS Staff kiểm tra lịch sử, hóa đơn, tạo đơn đổi trả hộ khách hàng và thống kê hiệu suất.
+● FE-7: System Administration: Quản trị hệ thống, cấu hình tham số hệ thống và xem nhật ký hoạt động hệ thống (System Audit Log).
+● FE-8: Reports & Statistics: Xuất các báo cáo doanh thu, tồn kho, đơn hàng và đối soát thanh toán định kỳ cho Manager.
+ 
+1.4 References
+1. Vision and Scope Document (Tầm nhìn và Phạm vi dự án Mini Fahasa, nhóm 1).
+2. Business Rules Group 1 (BR-01 to BR-16) (Danh sách quy định nghiệp vụ).
+3. Use Cases Group 1 (UC-01 to UC-61) (Tài liệu ca sử dụng chuẩn tại tab t.k2qvj9n2h148).
+ 
+ 
+ 
+2. Overall Description
+2.1 Product Perspective
+Mini Fahasa là một hệ thống phần mềm mới nhằm thay thế phương thức quản lý bán hàng truyền thống (dùng Excel, sổ sách giấy) bằng cách cho phép khách hàng xem, đặt hàng trực tuyến và giao hàng tận nhà, đồng thời cung cấp một hệ thống quản lý ERP-Lite cho cửa hàng. Hệ thống giải quyết các vấn đề: sai lệch dữ liệu tồn kho, thất thoát, quy trình xử lý đơn hàng chậm chạp và thiếu kênh bán hàng online.
+ 
+Sơ đồ ngữ cảnh (Context Diagram) dưới đây thể hiện ranh giới tương tác dữ liệu giữa hệ thống và các đối tượng bên ngoài:
+ 
+ 
+2.2 User Classes and Characteristics
+● Guest (Khách vãng lai): Tần suất sử dụng: Không thường xuyên, mang tính chất ngẫu nhiên. Mức độ kỹ thuật: Cơ bản (kỹ năng sử dụng trình duyệt web thông thường). Yêu cầu đặc thù: Cần giao diện trực quan, tìm kiếm nhanh và luồng đăng ký/đăng nhập đơn giản.
+● Customer (Khách hàng): Tần suất sử dụng: Trung bình đến thường xuyên (khi có nhu cầu mua sắm). Mức độ kỹ thuật: Cơ bản (người tiêu dùng trực tuyến thông thường). Yêu cầu đặc thù: Đội ngũ phát triển cần giao diện Storefront trực quan, tải nhanh, bảo mật thông tin cá nhân và thanh toán rõ ràng.
+● Sale Staff (Nhân viên bán hàng): Tần suất sử dụng: Hằng ngày, liên tục với cường độ cao trong ca làm việc. Mức độ kỹ thuật: Trung bình. Yêu cầu đặc thù: Dashboard phải xử lý mượt mà, phản hồi nhanh, giao diện thao tác nhanh tối giản số click chuột để xử lý lượng đơn lớn.
+● CS Staff (Nhân viên CSKH): Tần suất sử dụng: Hằng ngày, liên tục trong ca làm việc. Mức độ kỹ thuật: Trung bình. Yêu cầu đặc thù: Cần công cụ quản lý ticket tập trung, hiển thị rõ ràng cảnh báo quá hạn SLA (2 ngày làm việc) và truy xuất nhanh lịch sử giao dịch của khách hàng.
+● Manager (Quản lý): Tần suất sử dụng: Hằng ngày hoặc định kỳ (cuối tuần/cuối tháng). Mức độ kỹ thuật: Trung bình (không yêu cầu kiến thức kỹ thuật sâu). Yêu cầu đặc thù: Cần các báo cáo dạng biểu đồ trực quan, đề xuất xả kho tự động chính xác và giao diện duyệt lệnh điều chuyển kho rõ ràng.
+● Admin (Quản trị viên): Tần suất sử dụng: Khi cần thiết. Mức độ kỹ thuật: Cao. Yêu cầu đặc thù: Giao diện quản lý tài khoản chặt chẽ, Audit Log chi tiết và không thể tự vô hiệu hóa tài khoản của chính mình.
+ 
+2.3 Operating Environment
+● Client (Frontend): Trình duyệt web hiện đại (Chrome, Firefox, Safari, Edge) hỗ trợ HTML5/CSS3. Tương thích hiển thị tốt trên Desktop, Tablet và Smartphone.
+● Server (Backend): Server chạy hệ điều hành Linux/Windows. Java Runtime Environment (JRE 17+).
+● Database: MySQL hoặc PostgreSQL.
+ 
+2.4 Design and Implementation Constraints
+● CO-1: Hệ thống Backend sử dụng Java Spring Boot, Frontend sử dụng ReactJS / HTML CSS JS thuần.
+● CO-2: Giao dịch liên quan đến kho hàng và thanh toán phải tuân thủ chuẩn ACID để đảm bảo tính toàn vẹn (Không được phép sai lệch dữ liệu).
+● CO-3: Không được phép lưu trữ thông tin cấu hình nhạy cảm (JWT Secret, API Keys) trực tiếp trong source code (Hard-code).
+ 
+2.5 Assumptions and Dependencies
+● AS-1: Server deployment production có đủ khả năng chịu tải ít nhất 100 concurrent users.
+● AS-2: Môi trường Sandbox của VNPay hoạt động ổn định trong suốt quá trình phát triển và kiểm thử.
+● DE-1: Tính năng Đăng nhập một lần (SSO) phụ thuộc vào API Google OAuth 2.0.
+● DE-2: Thanh toán trực tuyến phụ thuộc vào hệ thống VNPay.
+ 
+ 
+ 
+3. System Features
+3.1 Account & Access Management (FE-1)
+Description: Cung cấp chức năng cho người dùng đăng ký, đăng nhập, quản lý hồ sơ cá nhân và phân quyền hệ thống. Functional Requirements:
+FR-ACC-01 (UC-05 - Register Account)
+● Input: Họ tên, Email, Số điện thoại, Mật khẩu, Xác nhận mật khẩu, Ngày sinh (định dạng YYYY-MM-DD).
+● Validation Rules:
+○ Email phải đúng định dạng RFC 5322 (regex: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$) và chưa tồn tại trong hệ thống.
+○ Số điện thoại: 10 chữ số, bắt đầu bằng 0 (regex: ^0[0-9]{9}$).
+○ Mật khẩu: Tối thiểu 8 ký tự, chứa ít nhất 1 chữ hoa, 1 chữ thường và 1 chữ số.
+○ Ngày sinh: Hệ thống tính tuổi = (Ngày hiện tại − Ngày sinh) / 365.25. Phải  tuổi (BR-16).
+● Output (Happy Path): Tạo tài khoản thành công, gửi email xác nhận (nếu có), chuyển hướng đến trang Đăng nhập.
+● Error Codes:
+○ ERR-ACC-01: "Email đã được sử dụng bởi tài khoản khác."
+○ ERR-ACC-02: "Số điện thoại không đúng định dạng (10 chữ số, bắt đầu bằng 0)."
+○ ERR-ACC-03: "Mật khẩu phải có tối thiểu 8 ký tự, bao gồm chữ hoa, chữ thường và chữ số."
+○ ERR-ACC-04: "Bạn phải từ đủ 15 tuổi trở lên để đăng ký tài khoản." (BR-16)
+○ ERR-ACC-05: "Mật khẩu xác nhận không khớp."
+● Luật áp dụng: BR-16.
+ 
+FR-ACC-02 (UC-06 - Login & UC-09 - Logout)
+● Input: Email, Mật khẩu.
+● Output (Happy Path): Hệ thống xác thực thành công, cấp JWT Access Token (thời hạn 30 phút) và Refresh Token (thời hạn 7 ngày). Chuyển hướng: Customer  Storefront; Sale/CS/Manager/Admin  Dashboard.
+● Error Codes:
+○ ERR-ACC-06: "Email hoặc mật khẩu không chính xác."
+○ ERR-ACC-07: "Tài khoản của bạn đã bị vô hiệu hóa. Vui lòng liên hệ Admin."
+● Exception Flow: Nếu JWT Access Token hết hạn, Client tự động gửi Refresh Token để lấy Access Token mới. Nếu Refresh Token cũng hết hạn, chuyển hướng về trang Đăng nhập.
+ 
+FR-ACC-03 (UC-58 - Manage Customer Accounts & UC-59 - Manage Staff Accounts)
+● Phạm vi: Chỉ Admin mới có quyền thực hiện.
+● Chức năng: Admin có thể quản lý danh sách Customer (UC-58) và các tài khoản nhân viên nội bộ (UC-59).
+● Chi tiết quản lý Customer (UC-58): Xem danh sách khách hàng, khóa/mở khóa tài khoản khách hàng khi vi phạm chính sách, điều chỉnh điểm tích lũy thủ công (nếu có sự cố giao dịch).
+● Chi tiết quản lý Staff (UC-59): Tạo tài khoản nhân viên mới (Sale Staff, CS Staff, Manager), thiết lập vai trò (Role), vô hiệu hóa (Deactivate) tài khoản nhân viên hoặc đặt lại mật khẩu cho nhân viên.
+● Ràng buộc: Admin không thể tự vô hiệu hóa chính tài khoản của mình.
+● Error Codes:
+○ ERR-ACC-08: "Không thể vô hiệu hóa tài khoản Admin đang đăng nhập."
+ 
+FR-ACC-04 (Phân quyền RBAC)
+● Hệ thống phân quyền chặt chẽ dựa trên JWT role (Admin, Manager, Sale, CS, Customer) được cấu hình tại thời điểm Admin quản lý tài khoản nhân viên (UC-59).
+● Mỗi API endpoint phải kiểm tra JWT token và role trước khi thực thi logic nghiệp vụ.
+● Ma trận phân quyền (Permission Matrix):
+ 
+FR-ACC-05 (UC-10 - View/Edit Profile)
+● Phạm vi: Dành cho Customer đã đăng nhập.
+● Chức năng: Khách hàng tự xem và chỉnh sửa thông tin cá nhân.
+● Input: Họ tên, Số điện thoại, Địa chỉ giao hàng mặc định, Ngày sinh.
+● Ràng buộc: Khi cập nhật ngày sinh mới, vẫn phải đáp ứng quy định tuổi  (BR-16). Số điện thoại phải đúng định dạng 10 chữ số.
+● Output: Cập nhật thông tin thành công, lưu vào CSDL và phản hồi trạng thái cho Client.
+● Error Codes:
+○ ERR-ACC-09: "Thông tin cập nhật không hợp lệ (tuổi < 15 hoặc SĐT sai định dạng)."
+ 
+FR-ACC-06 (UC-11 - View Loyalty Points Balance)
+● Phạm vi: Dành cho Customer đã đăng nhập.
+● Chức năng: Khách hàng xem số dư điểm tích lũy hiện tại và lịch sử biến động điểm.
+● Output: Trả về số điểm hiện tại và danh sách lịch sử điểm tích lũy (ngày giao dịch, mã đơn hàng liên quan, số điểm cộng thêm/khấu trừ, lý do biến động).
+ 
+3.2 Product Catalog Management (FE-2)
+Description: Quản lý các sản phẩm bao gồm Sách và Văn phòng phẩm, danh mục và các đối tượng liên quan. Functional Requirements:
+FR-PRO-01 (UC-42 - Manage Product)
+● Phạm vi: Chỉ Manager mới có quyền thực hiện.
+● Chức năng: Thêm (Create), Sửa (Update), Xóa mềm (Soft Delete) các mặt hàng.
+● Input khi tạo Book: Tiêu đề, Giá bán (DECIMAL, ), Ảnh sản phẩm (tối đa 5 ảnh, mỗi ảnh , định dạng JPG/PNG), Danh mục (Category ID), Tác giả (Author ID), Nhà xuất bản (Publisher ID), ISBN, Mô tả.
+● Input khi tạo Stationery: Tiêu đề, Giá bán, Ảnh sản phẩm, Danh mục, Thương hiệu (Brand ID), Màu sắc, Chất liệu.
+● Validation Rules:
+○ Giá bán phải  VNĐ.
+○ Tiêu đề không được trùng lặp trong cùng một Category.
+● Error Codes:
+○ ERR-PRO-01: "Tiêu đề sản phẩm đã tồn tại trong danh mục này."
+○ ERR-PRO-02: "Giá bán phải lớn hơn 0."
+○ ERR-PRO-03: "Ảnh vượt quá dung lượng cho phép (tối đa 5MB/ảnh)."
+ 
+FR-PRO-02 (UC-43 - Manage Categories)
+● Manager có thể quản lý cấu trúc Category đệ quy đa tầng (Parent Category  Child Category).
+● Ràng buộc: Không được xóa Category nếu còn sản phẩm đang liên kết.
+● Error Codes:
+○ ERR-PRO-04: "Không thể xóa danh mục vì vẫn còn sản phẩm đang thuộc danh mục này."
+ 
+FR-PRO-02a (UC-44 - Manage Authors)
+● Chức năng: Manager thực hiện CRUD thông tin các tác giả viết sách.
+● Input: Tên tác giả, tiểu sử tóm tắt, năm sinh/năm mất.
+● Ràng buộc: Không được xóa tác giả nếu đang có sách liên kết trong hệ thống.
+ 
+FR-PRO-02b (UC-45 - Manage Publishers)
+● Chức năng: Manager thực hiện CRUD thông tin các nhà xuất bản sách.
+● Input: Tên nhà xuất bản, địa chỉ, số điện thoại liên hệ, mã số thuế.
+● Ràng buộc: Không được xóa nhà xuất bản nếu đang có sách liên kết trong hệ thống.
+ 
+FR-PRO-02c (UC-46 - Manage Brands)
+● Chức năng: Manager thực hiện CRUD thông tin các thương hiệu văn phòng phẩm.
+● Input: Tên thương hiệu, quốc gia xuất xứ, logo.
+● Ràng buộc: Không được xóa thương hiệu nếu đang có sản phẩm văn phòng phẩm liên kết.
+ 
+FR-PRO-03 (UC-01 - Browse Catalog, UC-02 - Search Products, UC-03 - View Details, UC-04 - Browse Categories)
+● Hiển thị danh sách sản phẩm có phân trang (mặc định 20 sản phẩm/trang).
+● Tự động gắn nhãn (Badge):
+○ "Sắp hết hàng": Khi StockQuantity $< 10% \times$ Quantity_of_Last_Import (BR-04).
+○ "Best Seller": Khi sản phẩm bán  chiếc/tháng (BR-13), phân loại theo 3 phân khúc giá (BR-05): Dưới 500k | 500k–1M | Trên 1M.
+● Bộ lọc: Theo Category (UC-04), Khoảng giá (Min–Max), Tác giả/Thương hiệu, Sắp xếp (Giá tăng/giảm, Mới nhất, Bán chạy nhất).
+● Luật áp dụng: BR-04, BR-05, BR-13.
+ 
+FR-PRO-04 (Auto Clearance Proposal)
+● Hệ thống chạy Background Job (Cronjob) vào lúc 00:00 mỗi ngày để quét toàn bộ sản phẩm nhằm phục vụ chính sách xả hàng tồn kho.
+● Điều kiện kích hoạt: Sản phẩm có giá < 500.000 VNĐ VÀ thời gian tồn kho thực tế > 1.5 x thời gian bán hết dự kiến (BR-06).
+● Hành vi: Hệ thống tự động tạo đề xuất chương trình giảm giá hoặc tặng kèm để xả kho, đồng thời gửi thông báo đề xuất này đến Manager trên Dashboard.
+● Ràng buộc phê duyệt: Manager phải duyệt (Approve) thủ công đề xuất này trên Dashboard thì chương trình xả kho mới được áp dụng. Hệ thống KHÔNG tự động thay đổi giá bán của sản phẩm khi chưa được phê duyệt.
+● Luật áp dụng: BR-06.
+ 
+3.3 Shopping Cart & Order Management (FE-3)
+Description: Quy trình từ quản lý giỏ hàng, áp mã ưu đãi, checkout đến xử lý vòng đời đơn hàng. Functional Requirements:
+FR-ORD-01 (UC-07 - View Cart & UC-08 - Update Cart)
+● Customer có thể xem giỏ hàng (UC-07) và cập nhật giỏ hàng (UC-08 - thêm sản phẩm mới vào giỏ, tăng/giảm số lượng sản phẩm, hoặc xóa sản phẩm khỏi giỏ hàng).
+● Cơ chế tồn kho: Tồn kho KHÔNG bị trừ khi sản phẩm nằm trong giỏ hàng. Tồn kho chỉ bị trừ tại thời điểm Checkout thành công. Nếu tồn kho  tại thời điểm Checkout, hệ thống báo lỗi.
+● Validation Rules:
+○ Số lượng thêm vào giỏ phải .
+○ Hệ thống hiển thị cảnh báo nếu số lượng trong giỏ  số lượng tồn kho hiện tại (nhưng vẫn cho phép giữ trong giỏ).
+● Error Codes:
+○ ERR-ORD-01: "Sản phẩm này hiện đã hết hàng."
+ 
+FR-ORD-02 (UC-12 - Place Order, UC-13 - Apply Discount Codes, UC-14 - Redeem Loyalty Points)
+Luồng Checkout được phân rã thành các bước tuần tự:
+● FR-CHK-01 (Xác thực tồn kho): Hệ thống khóa và kiểm tra lại tồn kho cho từng sản phẩm trong giỏ hàng tại thời điểm nhấn "Thanh toán". Nếu bất kỳ sản phẩm nào hết hàng, toàn bộ Checkout bị chặn và hiển thị danh sách sản phẩm không đủ hàng.
+○ ERR-CHK-01: "Sản phẩm [Tên SP] chỉ còn [X] chiếc, bạn đã chọn [Y] chiếc."
+● FR-CHK-02 (Tính toán ưu đãi): Hệ thống áp dụng giảm giá theo thứ tự ưu tiên sau:
+○ Bước 1: Kiểm tra sinh nhật  Nếu hôm nay là sinh nhật Customer VÀ đây là đơn đầu tiên trong ngày  Giảm 10% trên tổng đơn (BR-09).
+○ Bước 2: Nếu Customer KHÔNG dùng ưu đãi sinh nhật  Cho phép nhập tối đa 3 mã Voucher (UC-13). Logic tính: Cộng dồn (Additive) phần trăm giảm giá trên giá gốc, tổng giảm không vượt quá 10% giá trị đơn hàng (BR-14).
+○ Bước 3: Nếu Customer KHÔNG dùng ưu đãi sinh nhật VÀ KHÔNG dùng Voucher  Cho phép đổi Điểm tích lũy (UC-14,  điểm, quy đổi 100 điểm = 1.000 VNĐ, tối đa giảm 10% đơn hàng) (BR-11).
+○ Quy tắc loại trừ: Ưu đãi Sinh nhật, Voucher, và Đổi điểm là loại trừ lẫn nhau (Mutually Exclusive) — chỉ được chọn 1 trong 3 (BR-14).
+○ ERR-CHK-02: "Không thể sử dụng đồng thời mã giảm giá và ưu đãi sinh nhật."
+○ ERR-CHK-03: "Tổng giảm giá vượt quá 10% giá trị đơn hàng. Vui lòng bỏ bớt mã giảm giá."
+○ ERR-CHK-04: "Bạn cần tối thiểu 5.000 điểm để đổi voucher. Số điểm hiện tại: [X]."
+● FR-CHK-03 (Tạo đơn hàng): Sau khi tính toán xong, hệ thống thực hiện trong 1 Database Transaction (ACID):
+○ Trừ StockQuantity cho từng OrderItem.
+○ Tạo bản ghi Order (trạng thái = PENDING) và OrderItem.
+○ Cộng điểm tích lũy: Points += floor(TotalPrice / 1000) (BR-10).
+○ Ghi StockLog (type = ORDER_DEDUCT).
+○ Nếu bất kỳ bước nào thất bại  Rollback toàn bộ Transaction.
+○ ERR-CHK-05: "Đã có lỗi xảy ra khi xử lý đơn hàng. Vui lòng thử lại."
+● Luật áp dụng: BR-09, BR-10, BR-11, BR-14.
+ 
+FR-ORD-03 (UC-18 - Track Order Status & UC-19 - Cancel Order)
+● Customer theo dõi trạng thái đơn hàng trên Storefront (hiển thị timeline trạng thái) (UC-18).
+● Customer chỉ được phép hủy đơn khi trạng thái là PENDING (UC-19).
+● Khi hủy: Hệ thống hoàn lại tồn kho (StockLog type = ORDER_RETURN), hoàn điểm đã trừ, hoàn tiền nếu đã thanh toán VNPay.
+● Error Codes:
+○ ERR-ORD-02: "Không thể hủy đơn hàng đã được xác nhận hoặc đang giao."
+ 
+FR-ORD-04 (UC-23 - View Order List & UC-25 - Process Order Status)
+● Sale Staff trên Dashboard quản lý đơn hàng: Xem danh sách đơn (UC-23), xem chi tiết đơn (UC-24) và chuyển dịch trạng thái đơn hàng (UC-25) theo đúng quy trình tuần tự:
+○ PENDING  CONFIRMED (Xác nhận đơn sau khi kiểm tra tồn kho thực tế).
+○ CONFIRMED  SHIPPING (Bàn giao cho đơn vị vận chuyển).
+○ SHIPPING  DELIVERED (Khách hàng nhận hàng thành công).
+● Ràng buộc: Trạng thái chỉ được chuyển theo thứ tự tuần tự. Không được nhảy cóc (VD: PENDING  SHIPPING là không hợp lệ).
+● Error Codes:
+○ ERR-ORD-03: "Không thể chuyển trạng thái từ [Trạng thái A] sang [Trạng thái B]."
+ 
+FR-ORD-05 (UC-53 - Manage Holiday Campaign)
+● Phạm vi: Chỉ Manager mới có quyền thực hiện.
+● Chức năng: Tạo và quản lý các chương trình khuyến mãi vào các dịp Lễ Quốc gia (BR-15).
+● Input khi tạo chiến dịch: Tên chiến dịch khuyến mãi, Ngày bắt đầu (định dạng YYYY-MM-DD HH:mm), Ngày kết thúc, Danh sách các Sản phẩm/Danh mục áp dụng chương trình, Phần trăm giảm giá.
+● Ràng buộc:
+○ Sản phẩm có giá gốc  VNĐ: cho phép cấu hình giảm 10–15%.
+○ Sản phẩm có giá gốc  VNĐ: cho phép cấu hình giảm 5–10%.
+○ Khuyến mãi Lễ Quốc gia KHÔNG được cộng gộp với Voucher hoặc đổi điểm.
+● Luật áp dụng: BR-15.
+ 
+FR-ORD-06 (UC-16 - View Order History)
+● Phạm vi: Dành cho Customer đã đăng nhập.
+● Chức năng: Xem danh sách toàn bộ đơn hàng khách hàng đã từng đặt từ trước đến nay.
+● Output: Trả về danh sách đơn hàng có phân trang. Mỗi đơn hàng bao gồm: Mã đơn hàng (Order ID), Ngày đặt hàng, Tổng số tiền thanh toán, Phương thức thanh toán và Trạng thái hiện tại.
+ 
+FR-ORD-07 (UC-17 - View Order Details)
+● Phạm vi: Dành cho Customer đã đăng nhập.
+● Chức năng: Xem chi tiết về một đơn hàng cụ thể.
+● Output: Trả về các thông tin: Mã đơn hàng, Tên và số lượng từng sản phẩm trong đơn, Đơn giá lúc mua, Tổng tiền gốc, Số tiền giảm giá, Tổng tiền thanh toán cuối cùng, Địa chỉ giao hàng, Thông tin thanh toán, và Trình theo dõi lịch sử trạng thái đơn hàng (Timeline).
+ 
+FR-ORD-08 (UC-26 - Cancel Order by Sale Staff)
+● Phạm vi: Dành cho Sale Staff và Manager trên Dashboard.
+● Chức năng: Hủy đơn hàng của khách khi giao hàng thất bại hoặc có yêu cầu hủy đơn hợp lệ từ khách.
+● Ràng buộc: Chỉ được hủy khi đơn hàng ở trạng thái PENDING hoặc CONFIRMED.
+● Hành vi hệ thống:
+1. Chuyển trạng thái đơn hàng thành CANCELLED.
+2. Tự động hoàn lại số lượng tồn kho tương ứng của các mặt hàng trong đơn về kho vật lý.
+3. Ghi StockLog (type = ORDER_RETURN).
+4. Hoàn lại số điểm tích lũy khách hàng đã sử dụng (nếu có) và thu hồi số điểm đã cộng khi mua hàng.
+ 
+FR-ORD-09 (UC-32 - Manage Discount Code)
+● Phạm vi: Dành cho Sale Staff và Manager trên Dashboard.
+● Chức năng: Tạo mới, chỉnh sửa, xem danh sách và vô hiệu hóa các mã giảm giá (Voucher) trên hệ thống.
+● Input khi tạo Voucher: Mã voucher (chuỗi ký tự viết hoa không dấu, ví dụ: FAHASA20), Loại giảm giá (Phần trăm hoặc Số tiền cố định), Giá trị giảm giá, Ngày hết hạn, Giá trị đơn hàng tối thiểu để áp dụng, Số lượt sử dụng tối đa, Số tiền giảm giá tối đa.
+● Validation Rules:
+○ Giá trị giảm giá phải .
+○ Mã voucher không được trùng lặp với các mã đang hoạt động.
+○ Thời gian hết hạn phải lớn hơn ngày hiện tại.
+● Output: Mã voucher được lưu thành công, hiển thị ở trạng thái ACTIVE trên hệ thống.
+ 
+3.4 Inventory Management (FE-4)
+Description: Theo dõi và kiểm soát dòng luân chuyển hàng hóa thực tế để tránh thất thoát và sai lệch kho. Functional Requirements:
+FR-INV-01 (UC-47 - View Stock, UC-48 - Import Stock, UC-49 - Adjust Stock & UC-50 - Transfer Stock Between Branches)
+● Phạm vi: Chỉ Manager mới có quyền thực hiện (UC-47 để xem tồn kho).
+● Chức năng: Điều chỉnh tăng/giảm tồn kho thủ công (UC-49), luân chuyển hàng giữa các chi nhánh (UC-50, BR-07), xem báo cáo tồn kho (UC-55).
+● Validation Rules:
+○ Hàng mới nhập lần đầu (UC-48): Tối đa 100 đơn vị/chi nhánh. Ngoại lệ: SGK (Sách giáo khoa) tối đa 500 đơn vị/chi nhánh (BR-01).
+○ Công thức tính số lượng nhập bổ sung: Q = R x T (BR-02), trong đó R = Số lượng hàng bán được trong một tháng/ngày kể từ lần đầu nhập hàng, T = Thời gian bán hết dự kiến.
+○ Không cho phép giảm tồn kho xuống dưới 0.
+● Error Codes:
+○ ERR-INV-01: "Số lượng nhập lần đầu vượt quá giới hạn cho phép (100 đơn vị, SGK: 500 đơn vị)." (BR-01)
+○ ERR-INV-02: "Không thể giảm tồn kho xuống dưới 0."
+● Luật áp dụng: BR-01, BR-02, BR-07.
+ 
+FR-INV-02 (UC-51 - View Stock Transaction Logs)
+● Mọi thay đổi tồn kho đều bắt buộc phải ghi log (Audit Trail) vào bảng StockLog.
+● Các loại giao dịch: IMPORT (Nhập hàng), EXPORT (Xuất hàng/Luân chuyển), ORDER_DEDUCT (Trừ do đơn hàng), ORDER_RETURN (Hoàn do hủy đơn/đổi trả), DEFECTIVE_RETURN (Hàng lỗi trả về).
+● Thông tin ghi nhận: Mã sản phẩm, Loại giao dịch, Số lượng thay đổi (+/-), Người thực hiện (Account ID), Thời gian (Timestamp), Ghi chú (Reason).
+ 
+FR-INV-03 (UC-52 - View Stock Alerts - BR-04 Low Stock Warning)
+● Phạm vi: Dành cho Manager trên Dashboard.
+● Chức năng: Hiển thị danh sách cảnh báo tồn kho thấp để Manager kịp thời tạo lệnh nhập hàng bổ sung.
+● Điều kiện hiển thị: Khi StockQuantity < 10% * Quantity_of_Last_Import của chi nhánh hiện tại (BR-04).
+● Hành vi hệ thống: Tự động tạo cảnh báo đỏ (Alert) kế bên mặt hàng tại trang quản lý kho trên Dashboard. Gửi email cảnh báo định kỳ cho Manager vào cuối ngày nếu danh sách cảnh báo chưa được xử lý.
+● Luật áp dụng: BR-04.
+ 
+3.5 Payment Processing (FE-5)
+Description: Tích hợp và xử lý thanh toán cho đơn hàng. Functional Requirements:
+FR-PAY-01 (UC-15 - Process Payment)
+● Hệ thống cho phép Customer chọn phương thức thanh toán trong luồng đặt hàng.
+● Các tùy chọn:
+○ COD (Cash on Delivery): Đơn hàng được tạo với trạng thái PENDING, thanh toán khi nhận hàng.
+○ VNPay: Chuyển hướng sang cổng thanh toán VNPay Sandbox để thanh toán trực tuyến.
+ 
+FR-PAY-02 (UC-15 - Process Payment - Online VNPay Integration)
+● Luồng chính:
+1. Hệ thống tạo URL thanh toán VNPay với chữ ký SHA256/HMAC.
+2. Redirect Customer sang trang thanh toán VNPay Sandbox.
+3. Sau khi thanh toán, VNPay gửi IPN (Instant Payment Notification) callback về Backend.
+4. Backend xác thực chữ ký IPN, cập nhật trạng thái thanh toán.
+● Cơ chế Retry: Nếu gọi API VNPay bị Timeout ( giây), hệ thống thử gọi lại tối đa 3 lần, khoảng cách mỗi lần 2 giây.
+● Exception Flow:
+1. Nếu Customer tắt trình duyệt giữa chừng  Đơn hàng vẫn giữ trạng thái PENDING. Hệ thống chờ IPN callback từ VNPay trong vòng 15 phút. Nếu hết thời gian mà không nhận được callback  Tự động hủy đơn và hoàn tồn kho.
+2. Nếu 3 lần Retry đều thất bại  Hiển thị thông báo lỗi, giữ đơn ở trạng thái PENDING, cho phép Customer chọn lại phương thức thanh toán hoặc chuyển sang COD.
+● Error Codes:
+○ ERR-PAY-01: "Thanh toán VNPay không thành công. Vui lòng thử lại hoặc chọn phương thức COD."
+○ ERR-PAY-02: "Phiên thanh toán đã hết hạn. Vui lòng thực hiện lại."
+ 
+3.6 Customer Support (FE-6)
+Description: Xử lý các yêu cầu hỗ trợ, khiếu nại, và đổi/trả hàng. Functional Requirements:
+FR-SUP-01 (UC-20 - Submit Support Request)
+● Customer tạo Ticket yêu cầu hỗ trợ trên Storefront.
+● Input: Tiêu đề, Nội dung mô tả, Mã đơn hàng liên quan (tùy chọn), Ảnh đính kèm (tối đa 3 ảnh, mỗi ảnh , JPG/PNG).
+● Output: Ticket được tạo với trạng thái OPEN, hiển thị mã Ticket để Customer theo dõi (UC-21 - View Support Request Status).
+ 
+FR-SUP-02 (UC-22 - Request Return Or Exchange)
+● Điều kiện tiên quyết (Pre-conditions):
+1. Đơn hàng phải ở trạng thái DELIVERED.
+2. Thời hạn: Trong vòng 7 ngày lịch (Calendar days, kể cả T7, CN, và ngày lễ) kể từ ngày giao hàng thành công (BR-12).
+● Input bắt buộc:
+1. Mã đơn hàng.
+2. Lý do đổi/trả (chọn từ danh sách + ghi chú tùy chọn).
+3. Ảnh chụp hóa đơn (bắt buộc, tối đa 3 ảnh, mỗi ảnh , JPG/PNG).
+4. Ảnh chụp hàng hóa còn nguyên tem mác (bắt buộc, tối đa 3 ảnh, mỗi ảnh , JPG/PNG).
+● Luồng xử lý: CS Staff xác minh ảnh chứng từ  Nếu hợp lệ, tạo yêu cầu đổi/trả chờ Sale Staff hoặc Manager phê duyệt.
+● Error Codes:
+○ ERR-SUP-01: "Đã quá thời hạn 7 ngày kể từ ngày giao hàng. Không thể tạo yêu cầu đổi/trả."
+○ ERR-SUP-02: "Vui lòng tải lên ảnh chụp hóa đơn để xác minh."
+○ ERR-SUP-03: "Vui lòng tải lên ảnh chụp hàng hóa còn nguyên tem mác."
+○ ERR-SUP-04: "Ảnh vượt quá dung lượng cho phép (tối đa 5MB/ảnh, định dạng JPG/PNG)."
+● Luật áp dụng: BR-12.
+ 
+FR-SUP-03 (UC-33 - View Support Ticket List & UC-35 - Reply to Support Request)
+● CS Staff tiếp nhận Ticket (UC-34 để xem chi tiết), phản hồi và đóng Ticket.
+● SLA (Service Level Agreement): Mọi Ticket phải được phản hồi lần đầu trong vòng 2 ngày làm việc kể từ khi tạo (BR-08, UC-36).
+● Hệ thống cảnh báo: Nếu Ticket quá hạn 2 ngày mà chưa được phản hồi, hệ thống tự động gửi cảnh báo (Notification) đến CS Staff và Manager trên Dashboard.
+● Error Codes:
+○ ERR-SUP-05: "Ticket đã được đóng, không thể chỉnh sửa."
+● Luật áp dụng: BR-08.
+ 
+FR-SUP-04 (UC-27 - Process Return, UC-28 - Process Exchange, UC-29 - View Return & Exchange Requests, UC-30 - Approve Return/Exchange, UC-31 - Reject Return/Exchange Request, UC-38 - Verify Return/Exchange Status)
+● CS Staff thực hiện xác minh chứng từ đổi trả (thông qua UC-38 - Verify Return/Exchange Status). Nếu đủ điều kiện của BR-12, CS Staff tạo lệnh đổi/trả hàng ở trạng thái chờ duyệt.
+● Sale Staff hoặc Manager sử dụng giao diện Dashboard để xem danh sách các yêu cầu đổi trả (UC-29 - View Return & Exchange Requests).
+● Manager hoặc Sale Staff thực hiện phê duyệt (UC-30 - Approve Return/Exchange) hoặc từ chối (UC-31 - Reject Return/Exchange Request) yêu cầu đổi trả trên Dashboard.
+● Sau khi phê duyệt thành công:
+○ Luồng trả hàng: Cập nhật tồn kho (cộng lại kho sản phẩm), tạo StockLog ORDER_RETURN.
+○ Luồng đổi hàng: Trừ tồn kho cho sản phẩm thay thế, tạo StockLog ORDER_DEDUCT và ghi chú đổi hàng.
+ 
+FR-SUP-05 (UC-37 - View Support Ticket Statistics)
+● Phạm vi: Dành cho CS Staff và Manager trên Dashboard.
+● Chức năng: Xem biểu đồ báo cáo và các chỉ số thống kê ticket chăm sóc khách hàng.
+● Output: Hiển thị tổng số ticket theo trạng thái (OPEN, IN_PROGRESS, RESOLVED, CLOSED), tỷ lệ ticket quá hạn SLA 2 ngày làm việc (BR-08), và thời gian phản hồi trung bình của nhân viên.
+ 
+FR-SUP-06 (UC-39 - Initiate Return Or Exchange Request)
+● Phạm vi: Dành cho CS Staff.
+● Chức năng: CS Staff chủ động khởi tạo một yêu cầu đổi/trả hàng thay cho Customer (trong trường hợp khách hàng gọi điện trực tiếp lên tổng đài hỗ trợ và cung cấp đủ thông tin).
+● Hành vi hệ thống: CS Staff nhập mã đơn hàng và lý do, hệ thống tự động kiểm tra điều kiện giao hàng thành công dưới 7 ngày (BR-12), cho phép CS Staff bỏ qua bước tải ảnh hóa đơn nếu có thông tin đối soát nội bộ trên hệ thống, và khởi tạo ticket đổi trả chuyển sang trạng thái chờ duyệt.
+ 
+FR-SUP-07 (UC-40 - View Customer Transaction History)
+● Phạm vi: Dành cho CS Staff và Manager.
+● Chức năng: Xem lịch sử mua hàng, lịch sử thanh toán và lịch sử tích điểm của một khách hàng cụ thể để hỗ trợ xử lý khiếu nại.
+● Output: Hiển thị bảng tổng hợp lịch sử giao dịch: Danh sách đơn hàng đã mua, doanh thu đóng góp, lịch sử dùng điểm tích lũy, các khiếu nại trước đây.
+ 
+FR-SUP-08 (UC-41 - View Invoices And Order Details)
+● Phạm vi: Dành cho CS Staff và Manager.
+● Chức năng: Xem chi tiết hóa đơn tài chính và thông tin thanh toán của đơn hàng có khiếu nại.
+● Output: Hiển thị chi tiết hóa đơn (mã giao dịch VNPay, số tiền thanh toán thực tế, chiết khấu voucher, thuế GTGT nếu có) hỗ trợ việc hoàn tiền chính xác cho khách hàng.
+ 
+3.7 System Administration (FE-7)
+Description: Cấu hình tham số hệ thống và giám sát nhật ký hoạt động hệ thống. Functional Requirements:
+FR-ADM-01 (UC-60 - Configure System Parameters)
+● Phạm vi: Chỉ Admin mới có quyền thực hiện.
+● Chức năng: Admin cấu hình các tham số vận hành toàn hệ thống.
+● Input:
+○ Thời hạn đổi trả tối đa (ngày) (mặc định 7 ngày theo BR-12).
+○ Thời gian giới hạn xử lý ticket SLA (ngày làm việc) (mặc định 2 ngày theo BR-08).
+○ Ngưỡng doanh số tối thiểu của sản phẩm để đạt danh hiệu Best Seller (chiếc/tháng) (mặc định 50 chiếc theo BR-13).
+○ Độ tuổi tối thiểu đăng ký tài khoản (tuổi) (mặc định 15 theo BR-16).
+● Output: Cấu hình mới được áp dụng ngay lập tức cho toàn bộ hệ thống bán hàng và quản lý.
+ 
+FR-ADM-02 (UC-61 - View System Audit Log)
+● Phạm vi: Chỉ Admin mới có quyền thực hiện.
+● Chức năng: Giám sát nhật ký hoạt động hệ thống (System Audit Log) để phục vụ kiểm soát an ninh.
+● Output: Bảng danh sách log ghi nhận các hành động: Ai (Admin/Manager ID), làm hành động gì (tạo tài khoản nội bộ, thay đổi quyền, cấu hình tham số hệ thống, điều chỉnh kho thủ công lớn), vào lúc nào (timestamp), và địa chỉ IP truy cập.
+ 
+3.8 Reports & Statistics (FE-8)
+Description: Hỗ trợ Manager kết xuất và xem báo cáo tài chính, tồn kho và đơn hàng theo định kỳ. Functional Requirements:
+FR-REP-01 (UC-54. View Revenue Report, UC-55. View Stock Report, UC-56. View Order Report, UC-57. View Payment Reconciliation Report)
+● Phạm vi: Chỉ Manager mới có quyền thực hiện.
+● Chức năng: Kết xuất các loại báo cáo thống kê định kỳ vào cuối tháng (BR-03).
+● Các loại báo cáo và hành vi:
+1. Báo cáo Doanh số (UC-54): Tổng số doanh thu thu được theo ngày/tháng, tỷ lệ đóng góp của từng phương thức thanh toán, thống kê sản phẩm Best Seller theo 3 phân khúc giá (BR-05).
+2. Báo cáo Tồn kho (UC-55): Thống kê lượng sách tồn kho của từng chi nhánh, danh sách sản phẩm cảnh báo sắp hết hàng (BR-04), lịch sử StockLog.
+3. Báo cáo Đơn hàng (UC-56): Thống kê tổng số đơn hàng đã tạo, tỷ lệ đơn giao thành công, bị hủy, hoặc đổi trả.
+4. Báo cáo Đối soát thanh toán (UC-57): Thống kê doanh thu từ VNPay, đối chiếu chữ ký IPN để phát hiện các giao dịch sai lệch.
+● Input: Thời gian thống kê (Từ ngày - Đến ngày), Loại báo cáo cần kết xuất.
+● Output: Báo cáo hiển thị trực quan dưới dạng biểu đồ trên Dashboard, hỗ trợ tải file (PDF, Excel).
+ 
+ 
+ 
+4. Data Requirements
+4.1 Logical Data Model
+Mô hình dữ liệu logic gồm các thực thể cốt lõi:
+● Account & Role: Quản lý người dùng, mapping N-N với Role để phân quyền.
+● Product Hierarchy: Entity Product (Parent) kế thừa bởi Book và Stationery (Child). Liên kết tới Category (đệ quy cha-con), Author, Publisher, Brand.
+● Order & OrderItem: Order lưu thông tin tổng quát (tổng tiền, trạng thái, địa chỉ, voucher, tài khoản), OrderItem lưu chi tiết sản phẩm mua và số lượng. Order liên kết tùy chọn (Nullable) tới Voucher.
+● Inventory & StockLog: Entity Inventory lưu số lượng hiện tại theo từng chi nhánh (Branch), kèm last_import_quantity để tính ngưỡng cảnh báo (BR-04). StockLog lưu lịch sử xuất/nhập/điều chỉnh kèm lý do (reason).
+● Voucher: Lưu thông tin mã giảm giá (code, phần trăm, ngày hết hạn, giới hạn lượt dùng).
+● PointHistory: Lưu lịch sử biến động điểm tích lũy cho từng Customer.
+● SupportTicket: Lưu yêu cầu hỗ trợ, khiếu nại, đổi/trả của khách hàng.
+● Branch: Lưu thông tin các chi nhánh kho hàng.
+● Category: Lưu danh mục sản phẩm đệ quy (cha-con).
+● SystemParameter & AuditLog: Lưu các tham số cấu hình hệ thống và nhật ký bảo mật của quản trị viên.
+ 
+4.2 Data Dictionary
+Bảng Account
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+id
+INT
+✅
+PK, Auto Increment
+—
+Khóa chính
+email
+VARCHAR(100)
+✅
+UNIQUE, RFC 5322 format
+—
+Dùng để đăng nhập
+password
+VARCHAR(255)
+✅
+Min 8 ký tự, 1 chữ hoa, 1 chữ thường, 1 số
+—
+Lưu chuỗi băm BCrypt
+fullname
+VARCHAR(150)
+✅
+—
+—
+Họ tên người dùng
+phone
+VARCHAR(10)
+✅
+Regex: ^0[0-9]{9}$
+—
+Số điện thoại
+dob
+DATE
+✅
+Tuổi  (BR-16)
+—
+Định dạng YYYY-MM-DD
+points
+INT
+✅
+0
+Điểm tích lũy
+is_active
+BOOLEAN
+✅
+—
+TRUE
+FALSE = Tài khoản bị vô hiệu hóa
+created_at
+DATETIME
+✅
+—
+CURRENT_TIMESTAMP
+Ngày tạo tài khoản
+ 
+Bảng Role
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+id
+INT
+✅
+PK, Auto Increment
+—
+Khóa chính
+name
+VARCHAR(50)
+✅
+UNIQUE
+—
+Admin, Manager, Sale, CS, Customer
+ 
+Ghi chú: Account và Role có quan hệ N-N, được quản lý qua bảng trung gian Account_Role (account_id FK, role_id FK) — không cần cột role_id trực tiếp trong Account.
+ 
+Bảng Category
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+id
+INT
+✅
+PK, Auto Increment
+—
+Khóa chính
+parent_id
+INT
+❌
+FK  Category(id), Nullable
+NULL
+NULL = Danh mục gốc (Root)
+name
+VARCHAR(100)
+✅
+UNIQUE trong cùng parent
+—
+Tên danh mục
+ 
+Bảng Branch
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+id
+INT
+✅
+PK, Auto Increment
+—
+Khóa chính
+name
+VARCHAR(100)
+✅
+—
+—
+Tên chi nhánh kho
+address
+VARCHAR(500)
+✅
+—
+—
+Địa chỉ chi nhánh
+ 
+Bảng Product
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+id
+INT
+✅
+PK, Auto Increment
+—
+Khóa chính
+category_id
+INT
+✅
+FK  Category(id)
+—
+Danh mục liên kết
+title
+VARCHAR(255)
+✅
+UNIQUE trong cùng category
+—
+Tên sản phẩm
+price
+DECIMAL(12,2)
+✅
+—
+Tránh dùng FLOAT để ngăn sai số
+description
+TEXT
+❌
+—
+NULL
+Mô tả chi tiết
+is_deleted
+BOOLEAN
+✅
+—
+FALSE
+Xóa mềm
+created_at
+DATETIME
+✅
+—
+CURRENT_TIMESTAMP
+Ngày tạo
+ 
+Bảng Book (kế thừa Product)
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+product_id
+INT
+✅
+PK, FK  Product(id)
+—
+Khóa chính kiêm khóa ngoại
+author
+VARCHAR(150)
+✅
+—
+—
+Tên tác giả
+publisher
+VARCHAR(150)
+❌
+—
+NULL
+Tên nhà xuất bản
+isbn
+VARCHAR(20)
+❌
+UNIQUE
+NULL
+Mã ISBN
+ 
+Bảng Stationery (kế thừa Product)
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+product_id
+INT
+✅
+PK, FK  Product(id)
+—
+Khóa chính kiêm khóa ngoại
+brand
+VARCHAR(100)
+✅
+—
+—
+Thương hiệu
+color
+VARCHAR(50)
+❌
+—
+NULL
+Màu sắc
+material
+VARCHAR(100)
+❌
+—
+NULL
+Chất liệu
+ 
+Bảng Voucher
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+id
+INT
+✅
+PK, Auto Increment
+—
+Khóa chính
+code
+VARCHAR(50)
+✅
+UNIQUE
+—
+Mã voucher (VD: FAHASA20)
+discount_percent
+DECIMAL(5,2)
+✅
+,
+—
+Phần trăm giảm giá
+max_discount_amount
+DECIMAL(12,2)
+❌
+NULL
+Số tiền giảm tối đa (NULL = không giới hạn)
+start_date
+DATE
+✅
+—
+—
+Ngày bắt đầu hiệu lực
+expiry_date
+DATE
+✅
+ start_date
+—
+Ngày hết hạn
+usage_limit
+INT
+✅
+—
+Số lượt sử dụng tối đa (0 = không giới hạn)
+usage_count
+INT
+✅
+0
+Số lượt đã sử dụng
+is_active
+BOOLEAN
+✅
+—
+TRUE
+FALSE = Voucher bị vô hiệu hóa
+ 
+Bảng Order
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+id
+INT
+✅
+PK, Auto Increment
+—
+Khóa chính
+account_id
+INT
+✅
+FK  Account(id)
+—
+Người đặt hàng
+voucher_id
+INT
+❌
+FK  Voucher(id), Nullable
+NULL
+Mã voucher đã áp dụng (nếu có)
+total_price
+DECIMAL(12,2)
+✅
+—
+Tổng tiền sau giảm giá
+status
+ENUM
+✅
+PENDING, CONFIRMED, SHIPPING, DELIVERED, CANCELLED
+PENDING
+Trạng thái đơn hàng
+payment_method
+ENUM
+✅
+COD, VNPAY
+—
+Phương thức thanh toán
+shipping_address
+VARCHAR(500)
+✅
+—
+—
+Địa chỉ nhận hàng
+created_at
+DATETIME
+✅
+—
+CURRENT_TIMESTAMP
+Thời điểm tạo
+ 
+Bảng OrderItem
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+id
+INT
+✅
+PK, Auto Increment
+—
+Khóa chính
+order_id
+INT
+✅
+FK  Order(id)
+—
+Mã đơn hàng
+product_id
+INT
+✅
+FK  Product(id)
+—
+Mã sản phẩm
+quantity
+INT
+✅
+—
+Số lượng sản phẩm mua
+price
+DECIMAL(12,2)
+✅
+—
+Đơn giá tại thời điểm mua (snapshot)
+ 
+Bảng PointHistory
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+id
+INT
+✅
+PK, Auto Increment
+—
+Khóa chính
+account_id
+INT
+✅
+FK  Account(id)
+—
+Tài khoản biến động điểm
+order_id
+INT
+❌
+FK  Order(id), Nullable
+NULL
+Đơn hàng liên quan (nếu có)
+points_change
+INT
+✅
+—
+—
+Số điểm thay đổi (+ cộng, - trừ)
+reason
+VARCHAR(255)
+✅
+—
+—
+Lý do: "Đặt hàng #X", "Đổi voucher", "Hoàn điểm hủy đơn"
+created_at
+DATETIME
+✅
+—
+CURRENT_TIMESTAMP
+Thời điểm biến động
+ 
+Bảng Inventory
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+product_id
+INT
+✅
+PK, FK  Product(id)
+—
+Mã sản phẩm
+branch_id
+INT
+✅
+PK, FK  Branch(id)
+—
+Mã chi nhánh kho
+stock_quantity
+INT
+✅
+0
+Số lượng tồn kho thực tế
+last_import_quantity
+INT
+❌
+—
+NULL
+Số lượng lần nhập cuối. Dùng tính ngưỡng "Sắp hết hàng" = 10% × giá trị này (BR-04)
+ 
+Bảng StockLog
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+id
+INT
+✅
+PK, Auto Increment
+—
+Khóa chính
+product_id
+INT
+✅
+FK  Product(id)
+—
+Mã sản phẩm biến động
+type
+ENUM
+✅
+IMPORT, EXPORT, ORDER_DEDUCT, ORDER_RETURN, DEFECTIVE_RETURN
+—
+Loại giao dịch biến động
+quantity_change
+INT
+✅
+—
+—
+Số lượng thay đổi (+ hoặc -)
+executor_id
+INT
+✅
+FK  Account(id)
+—
+Người thực hiện giao dịch
+reason
+VARCHAR(500)
+❌
+—
+NULL
+Ghi chú lý do biến động (VD: "Hủy đơn #123", "Hàng lỗi từ NCC")
+created_at
+DATETIME
+✅
+—
+CURRENT_TIMESTAMP
+Thời gian biến động
+ 
+Bảng SupportTicket
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+id
+INT
+✅
+PK, Auto Increment
+—
+Khóa chính
+account_id
+INT
+✅
+FK  Account(id)
+—
+Khách hàng tạo Ticket
+order_id
+INT
+❌
+FK  Order(id), Nullable
+NULL
+Đơn hàng liên quan (tùy chọn)
+subject
+VARCHAR(255)
+✅
+—
+—
+Tiêu đề yêu cầu
+description
+TEXT
+✅
+—
+—
+Nội dung chi tiết
+status
+ENUM
+✅
+OPEN, IN_PROGRESS, RESOLVED, CLOSED
+OPEN
+Trạng thái Ticket
+created_by_staff
+INT
+❌
+FK  Account(id), Nullable
+NULL
+CS Staff tạo hộ (UC-39). NULL = Customer tự tạo
+created_at
+DATETIME
+✅
+—
+CURRENT_TIMESTAMP
+Thời điểm tạo
+ 
+Bảng SystemParameter
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+id
+INT
+✅
+PK, Auto Increment
+—
+Khóa chính
+param_key
+VARCHAR(100)
+✅
+UNIQUE
+—
+Tên hằng số (VD: LIMIT_AGE, SLA_DAYS)
+param_value
+VARCHAR(255)
+✅
+—
+—
+Giá trị cấu hình hệ thống
+description
+VARCHAR(500)
+❌
+—
+NULL
+Mô tả chức năng tham số
+updated_at
+DATETIME
+✅
+—
+CURRENT_TIMESTAMP
+Thời điểm cập nhật cuối
+ 
+Bảng AuditLog
+ 
+Trường
+Kiểu dữ liệu
+Bắt buộc
+Ràng buộc
+Giá trị mặc định
+Ghi chú
+id
+INT
+✅
+PK, Auto Increment
+—
+Khóa chính
+actor_id
+INT
+✅
+FK  Account(id)
+—
+Người thực hiện hành động
+action
+VARCHAR(150)
+✅
+—
+—
+Tên hành động thực hiện
+details
+TEXT
+✅
+—
+—
+Mô tả chi tiết log hoạt động
+ip_address
+VARCHAR(50)
+❌
+—
+NULL
+Địa chỉ IP truy cập
+created_at
+DATETIME
+✅
+—
+CURRENT_TIMESTAMP
+Thời gian ghi nhận log
+ 
+4.3 Reports
+Theo quy định BR-03, hệ thống phải tự động thống kê mặt hàng bán được và Manager có quyền xuất các báo cáo vào ngày cuối cùng của mỗi tháng:
+● Báo cáo Doanh số (`UC-54`): Tổng doanh thu theo ngày/tháng/năm, tỷ trọng phương thức thanh toán (COD vs VNPay), thống kê sản phẩm Best Seller theo 3 phân khúc giá (BR-05, BR-13).
+● Báo cáo Tồn kho (`UC-55`): Thống kê lượng tồn kho của từng chi nhánh, danh sách sản phẩm sắp hết hàng (dưới 10% lượng nhập gần nhất theo BR-04) và lịch sử StockLog.
+● Báo cáo Đơn hàng (`UC-56`): Tổng số đơn hàng theo trạng thái (PENDING/CONFIRMED/SHIPPING/DELIVERED/CANCELLED), tỷ lệ đơn giao thành công, tỷ lệ hủy đơn (Cancellation Rate), thời gian xử lý trung bình.
+● Báo cáo Đối soát Thanh toán (`UC-57`): Tổng doanh thu từ VNPay so với tổng tiền đơn hàng DELIVERED, danh sách giao dịch chưa nhận IPN callback (trạng thái treo), phát hiện sai lệch giữa hệ thống nội bộ và cổng thanh toán.
+ 
+4.4 Data Integrity, Retention, and Disposal
+● DIS-01: Tất cả các thao tác liên quan đến tạo Đơn hàng (giảm StockQuantity, tạo Order, tạo OrderItem) và Hủy đơn hàng phải thực thi trong một Database Transaction. Nếu xảy ra lỗi sẽ tự động rollback.
+● DIS-02: Lịch sử đơn hàng, thanh toán và StockLog không bao giờ bị xóa hoàn toàn khỏi CSDL (Soft Delete hoặc Archive) nhằm mục đích đối soát tài chính và kiểm toán.
+● DIS-03: Bảng AuditLog là Immutable (không cho phép UPDATE hoặc DELETE), chỉ INSERT.
+ 
+ 
+ 
+5. External Interface Requirements
+5.1 User Interfaces
+Storefront (Giao diện Khách hàng):
+● Thiết kế theo phong cách tối giản (Minimalist), nền trắng chủ đạo (#FFFFFF), hình ảnh sản phẩm nổi bật.
+● Các màn hình chính:
+○ [UI-SF-HOME] Trang chủ: Banner khuyến mãi, Sản phẩm nổi bật, Best Seller.
+○ [UI-SF-SEARCH] Tìm kiếm & Lọc sản phẩm: Bộ lọc Category, Khoảng giá, Tác giả/Thương hiệu.
+○ [UI-SF-DETAIL] Chi tiết sản phẩm: Ảnh, Mô tả, Giá, Nút "Thêm vào giỏ", Badge "Best Seller" / "Sắp hết hàng".
+○ [UI-SF-CART] Giỏ hàng: Danh sách sản phẩm, Tổng tiền tạm tính, Nút "Thanh toán".
+○ [UI-SF-CHECKOUT] Checkout: Form địa chỉ giao hàng, Chọn phương thức thanh toán, Nhập Voucher/Đổi điểm.
+○ [UI-SF-TRACKING] Theo dõi đơn hàng: Timeline trạng thái (PENDING  DELIVERED).
+○ [UI-SF-TICKET] Gửi yêu cầu hỗ trợ / Đổi trả.
+○ [UI-SF-PROFILE] Xem/Sửa hồ sơ cá nhân và số dư điểm tích lũy.
+● Client-side Validation: Tất cả các form nhập liệu phải kiểm tra validation ở phía Client (JavaScript) trước khi gửi request lên Server. Bao gồm: Email format, SĐT format, độ mạnh mật khẩu, giới hạn dung lượng ảnh.
+ 
+Dashboard (Giao diện Nhân viên/Quản lý):
+● Giao diện Sidebar trái chứa menu điều hướng.
+● Các màn hình chính:
+○ [UI-DB-ORDER] Quản lý đơn hàng: Bảng danh sách đơn, lọc theo trạng thái, nút chuyển trạng thái.
+○ [UI-DB-PRODUCT] Quản lý sản phẩm: CRUD sản phẩm, upload ảnh.
+○ [UI-DB-INVENTORY] Quản lý kho: Bảng tồn kho theo chi nhánh, form điều chỉnh, lịch sử StockLog, cảnh báo tồn kho thấp.
+○ [UI-DB-TICKET] Quản lý Ticket hỗ trợ: Danh sách Ticket, badge cảnh báo SLA quá hạn, thống kê ticket.
+○ [UI-DB-REPORT] Báo cáo: Biểu đồ doanh thu, Best Seller, Tồn kho, Đơn hàng, Đối soát thanh toán.
+○ [UI-DB-ACCOUNT] Quản lý tài khoản (chỉ Admin).
+○ [UI-DB-CONFIG] Cấu hình tham số hệ thống (chỉ Admin).
+○ [UI-DB-AUDIT] Xem nhật ký hệ thống (chỉ Admin).
+ 
+5.2 Software Interfaces
+Google OAuth 2.0 API:
+● Mục đích: Cho phép Customer đăng nhập bằng tài khoản Google (SSO) (UC-06).
+● Giao thức: OAuth 2.0 Authorization Code Flow.
+● Endpoint: https://accounts.google.com/o/oauth2/v2/auth
+● Dữ liệu nhận về: email, name, profile_picture.
+● Ràng buộc: Phải đăng ký OAuth 2.0 Credentials trên Google Cloud Console. Client ID và Client Secret lưu trong Environment Variables (CO-3).
+ 
+VNPay Sandbox API:
+● Mục đích: Xử lý thanh toán trực tuyến (môi trường thử nghiệm) (UC-15).
+● Giao thức: HTTPS POST/GET với chữ ký SHA256/HMAC.
+● Timeout: 10 giây cho mỗi request.
+● Retry Policy: Tối đa 3 lần retry, khoảng cách 2 giây giữa mỗi lần.
+● IPN Webhook: Backend phải expose endpoint /api/v1/payment/vnpay-ipn để nhận Instant Payment Notification callback từ VNPay.
+● Ràng buộc: VNPay API Key và Secret Hash lưu trong Environment Variables (CO-3). Backend phải xác thực chữ ký IPN trước khi cập nhật trạng thái thanh toán.
+ 
+5.3 Hardware Interfaces
+Không yêu cầu giao tiếp phần cứng đặc biệt ở phía Client. Ở phía Server, phần cứng cần đảm bảo yêu cầu CPU và RAM đáp ứng Java Spring Boot, tải tối đa 100 kết nối cùng lúc.
+ 
+5.4 Communications Interfaces
+● Mọi kết nối giữa Client và Server phải qua HTTPS (HTTP không mã hóa bị chặn trong môi trường Production).
+● API Backend cung cấp dưới dạng RESTful JSON. Xác thực dựa trên HTTP Header Authorization: Bearer <JWT>.
+● CORS Policy: Backend chỉ chấp nhận request từ domain Frontend đã được cấu hình trong whitelist.
+ 
+ 
+ 
+6. Quality Attributes
+6.1 Usability Requirements
+● USE-01: Hệ thống hỗ trợ Responsive Design, có thể thao tác dễ dàng trên cả Desktop, Tablet và Mobile.
+● USE-02: Sale Staff phải có khả năng xác nhận đơn hàng chỉ với tối đa 2 click chuột từ danh sách đơn hàng để đạt chỉ tiêu BO-2 (tăng tốc độ xử lý).
+ 
+6.2 Performance Requirements
+● PER-01: Hệ thống phải phản hồi các yêu cầu tìm kiếm và duyệt danh mục sản phẩm dưới 2 giây.
+● PER-02: Xử lý luồng Checkout (bao gồm cả ghi DB và gọi API bên thứ 3) không vượt quá 5 giây.
+ 
+6.3 Security Requirements
+● SEC-01: Mật khẩu lưu trong CSDL phải được mã hóa một chiều (ví dụ: BCrypt).
+● SEC-02: API endpoints phải kiểm tra JWT và vai trò (RBAC) trước khi cho phép thực thi logic.
+● SEC-03: Chặn thao tác "Read-only" thành "Write" đối với CS Staff ở cấp độ API.
+ 
+6.4 Safety Requirements
+● SAF-01: Cơ chế khóa bi quan (Pessimistic Locking) hoặc khóa lạc quan (Optimistic Locking) phải được áp dụng trên bảng Inventory để tránh lỗi Race Condition khi nhiều khách hàng mua cùng lúc một sản phẩm chỉ còn 1 kho.
+ 
+6.5 Availability Requirements
+● AVL-01: Hệ thống Backend và Database phải đạt độ sẵn sàng tối thiểu 99.9% (ngoại trừ thời gian bảo trì có thông báo trước).
+ 
+6.6 Robustness Requirements
+● ROB-01: Nếu API VNPay phản hồi timeout, hệ thống tự động giữ trạng thái đơn hàng là PENDING và cảnh báo để khách hàng thử lại hoặc chuyển sang COD.
+ 
+ 
+ 
+Appendix A: Analysis Models
+1. Use Case Diagram
+Biểu diễn các Actors (Guest, Customer, Sale Staff, CS Staff, Manager, Admin) tương tác với các Use Cases thuộc hệ thống. Xem chi tiết bằng file Use_Case_Diagram.html đính kèm trong bộ hồ sơ.
+ 
+2. Entity Relationship Diagram (ERD)
+Sơ đồ thực thể kết nối (Logical Data Model) thể hiện cấu trúc cơ sở dữ liệu cốt lõi của hệ thống Mini Fahasa.
+ 
+ 
+          erDiagram         ACCOUNT ||--o{ ORDER : places         ACCOUNT ||--o{ SUPPORT_TICKET : submits         ACCOUNT }|--|{ ROLE : has                  CATEGORY ||--o{ PRODUCT : contains         PRODUCT ||--o{ INVENTORY : stocked_in         PRODUCT ||--o{ ORDER_ITEM : included_in         ORDER ||--|{ ORDER_ITEM : has                  PRODUCT ||--|| BOOK : is_a         PRODUCT ||--|| STATIONERY : is_a                  INVENTORY ||--o{ STOCK_LOG : tracks         ORDER ||--o{ STOCK_LOG : triggers                  SYSTEM_PARAMETER         AUDIT_LOG                  ACCOUNT {             int id PK             string email "Unique"             string password             string fullname             string phone             date dob             int points         }         ROLE {             int id PK             string name "Admin, Manager, Sale, CS, Customer"         }         PRODUCT {             int id PK             int category_id FK             int supplier_id FK "Nullable"             string title             float price             string sku "Unique, Nullable"             string image_url "Nullable"             boolean is_active             datetime created_at         }         BOOK {             int product_id PK, FK             int publisher_id FK "Nullable"             string translator "Nullable"             int publication_year "Nullable"             int number_of_pages "Nullable"             string cover_type "Nullable"             string language         }         STATIONERY {             int product_id PK, FK             int brand_id FK "Nullable"             string origin "Nullable"             string material "Nullable"             string color "Nullable"         }         ORDER {             int id PK             int account_id FK             float total_price             string status "PENDING, CONFIRMED, SHIPPING, DELIVERED, CANCELLED"             string payment_method "COD, VNPAY"         }         ORDER_ITEM {             int id PK             int order_id FK             int product_id FK             int quantity             float price         }         INVENTORY {             int product_id PK, FK             int branch_id PK             int stock_quantity         }         STOCK_LOG {             int id PK             int product_id FK             string type "IMPORT, EXPORT, ORDER_DEDUCT, ORDER_RETURN, DEFECTIVE_RETURN"             int quantity_change             datetime created_at         }         SUPPORT_TICKET {             int id PK             int account_id FK             int order_id FK "Nullable"             string subject             string status "OPEN, IN_PROGRESS, RESOLVED, CLOSED"         }         SYSTEM_PARAMETER {             int id PK             string param_key             string param_value             string description         }         AUDIT_LOG {             int id PK             int actor_id FK             string action             string details             datetime created_at         }    
+          erDiagram         ACCOUNT ||--o{ ORDER : places         ACCOUNT ||--o{ SUPPORT_TICKET : submits         ACCOUNT }|--|{ ROLE : has         ACCOUNT ||--o{ POINT_HISTORY : earns_spends         CATEGORY ||--o{ PRODUCT : contains            CATEGORY ||--o{ CATEGORY : sub_category         PRODUCT ||--o{ INVENTORY : stocked_in            PRODUCT ||--o{ ORDER_ITEM : included_in     ORDER ||--|{ ORDER_ITEM : has     ORDER }o--o| VOUCHER : uses     ORDER ||--o{ POINT_HISTORY : triggers         PRODUCT ||--o| BOOK : is_a         PRODUCT ||--o| STATIONERY : is_a        BRANCH ||--o{ INVENTORY : holds         INVENTORY ||--o{ STOCK_LOG : tracks        ORDER ||--o{ STOCK_LOG : triggers               ACCOUNT {             int id PK             string email             string password             string fullname             string phone             date dob             int points             boolean is_active             datetime created_at     }     ROLE {             int id PK             string name     }         POINT_HISTORY {             int id PK             int account_id FK             int order_id FK             int points_change             string reason             datetime created_at     }         VOUCHER {             int id PK             string code             decimal discount_percent             decimal max_discount         date expiry_date             int usage_limit             boolean is_active     }         CATEGORY {             int id PK             int parent_id FK             string name     }     BRANCH {             int id PK             string name             string address     }         PRODUCT {             int id PK             int category_id FK             string title             decimal price             string description             boolean is_deleted             datetime created_at     }     BOOK {             int product_id PK             string author             string isbn     }         STATIONERY {             int product_id PK             string brand             string color     }     ORDER {             int id PK             int account_id FK             int voucher_id FK             decimal total_price             string status             string payment_method             datetime created_at     }         ORDER_ITEM {             int id PK             int order_id FK             int product_id FK             int quantity             decimal price     }         INVENTORY {             int product_id PK             int branch_id PK             int stock_quantity             int last_import         }            STOCK_LOG {             int id PK             int product_id FK             string type             int quantity_change             int executor_id FK             string reason             datetime created_at     }         SUPPORT_TICKET {             int id PK             int account_id FK             int order_id FK             string subject             string status             int staff_id FK             datetime created_at     }         SYSTEM_PARAMETER {             int id PK             string param_key             string param_value             string description     }         AUDIT_LOG {             int id PK             int actor_id FK             string action             string details             datetime created_at     }      
+3. Checkout Flow (Activity Diagram)
+Sơ đồ luồng hoạt động cho quá trình thanh toán, thể hiện việc áp dụng các luật nghiệp vụ ưu đãi (BR-09, BR-10, BR-14) và xác thực tồn kho, thanh toán (VNPay / COD).
+ 
+ 
+📋 Raw Mermaid Code (Copy để paste vào Draw.io)
+          stateDiagram-v2     state "View Cart" as ViewCart     state "Validate Stock" as ValidateStock        state "Show Out-of-Stock Items" as ShowOOS     state "Apply Discounts" as ApplyDiscounts        state discount_choice <<choice>>        state "Birthday Discount -10%" as Birthday     state "Voucher: max 3, cap 10%" as Voucher     state "Redeem Points: max 10%" as Points        state "Select Payment Method" as Payment        state payment_choice <<choice>>     state "Process VNPay API" as VNPay        state vnpay_result <<choice>>     state "VNPay Timeout - Retry 3x" as VNPayRetry     state retry_result <<choice>>     state "Create Order & Deduct Inventory" as CreateOrder     state db_result <<choice>>     state "Order Success" as Success     state "Checkout Failed" as Failed     state "Browser Closed Mid-Payment" as BrowserClosed     state "Wait IPN 15min" as WaitIPN     state ipn_result <<choice>>           [*] --> ViewCart         ViewCart --> ValidateStock : Click Checkout         ValidateStock --> ShowOOS : Any stock = 0         ValidateStock --> ApplyDiscounts : All stock OK         ShowOOS --> Failed         ApplyDiscounts --> discount_choice            discount_choice --> Birthday : Is birthday         discount_choice --> Voucher : Has vouchers         discount_choice --> Points : Has points         discount_choice --> Payment : No discount         Birthday --> Payment         Voucher --> Payment     Points --> Payment         Payment --> payment_choice         payment_choice --> CreateOrder : COD         payment_choice --> VNPay : VNPay        VNPay --> vnpay_result         vnpay_result --> CreateOrder : Confirmed         vnpay_result --> VNPayRetry : Timeout         vnpay_result --> BrowserClosed : User closed         VNPayRetry --> retry_result         retry_result --> CreateOrder : Retry success         retry_result --> Failed : 3 retries failed         BrowserClosed --> WaitIPN         WaitIPN --> ipn_result         ipn_result --> CreateOrder : IPN received         ipn_result --> Failed : Timeout 15min         CreateOrder --> db_result         db_result --> Success : Commit OK            db_result --> Failed : Rollback Error         Success --> [*]     Failed --> [*]      
+4. State-Transition Diagrams (Lifecycles)
+Mô hình vòng đời trạng thái của các thực thể cốt lõi trong hệ thống.
+ 
+4.1 Order Lifecycle
+Vòng đời của một đơn hàng, từ lúc đặt thành công đến khi giao hàng hoặc bị hủy/đổi trả (BR-12).
+ 
+ 
+📋 Raw Mermaid Code (Copy để paste vào Draw.io)
+          stateDiagram-v2     [*] --> PENDING : Order Created     state "PENDING" as PENDING     state "CONFIRMED" as CONFIRMED     state "SHIPPING" as SHIPPING     state "DELIVERED" as DELIVERED     state "RETURN_EXCHANGE" as RETURN_EXCHANGE     state "CANCELLED" as CANCELLED     state return_decision <<choice>>                  PENDING --> CONFIRMED : Sale Staff confirms         PENDING --> CANCELLED : Customer/Staff cancels         CONFIRMED --> SHIPPING : Handed to delivery         SHIPPING --> DELIVERED : Received by Customer         SHIPPING --> CANCELLED : Delivery failed         DELIVERED --> RETURN_EXCHANGE : Customer requests return         DELIVERED --> [*] : Complete            RETURN_EXCHANGE --> return_decision : CS Staff verifies         return_decision --> CANCELLED : Return approved         return_decision --> DELIVERED : Return rejected         CANCELLED --> [*]      
+4.2 Support Ticket Lifecycle
+Vòng đời của một yêu cầu hỗ trợ (Support Ticket).
+ 
+ 
+📋 Raw Mermaid Code (Copy để paste vào Draw.io)
+          stateDiagram-v2     [*] --> OPEN : Customer/CS Staff creates        state "OPEN" as OPEN     state "IN_PROGRESS" as IN_PROGRESS        state "RESOLVED" as RESOLVED     state "CLOSED" as CLOSED     state sla_check <<choice>>           OPEN --> sla_check : Check SLA         sla_check --> IN_PROGRESS : CS Staff picks up         sla_check --> IN_PROGRESS : SLA breached (Auto-alert)         IN_PROGRESS --> RESOLVED : CS Staff provides solution         RESOLVED --> CLOSED : Customer accepts / 7 days auto-close         RESOLVED --> IN_PROGRESS : Customer rejects solution     CLOSED --> [*]      
+(Ghi chú: Lược đồ trên tương ứng với quy trình xử lý SLA 2 ngày làm việc của FR-SUP-03)

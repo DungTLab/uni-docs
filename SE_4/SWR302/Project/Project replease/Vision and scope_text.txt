@@ -1,0 +1,221 @@
+Vision and Scope Document
+for
+Mini Fahasa
+Integrated E-commerce Storefront and ERP-Lite Management System
+ 
+Revision History
+Name
+Date
+Reason For Changes
+Version
+All Team
+29/05/2026
+Initial draft
+1.0 draft 1
+ 
+ 
+Business Requirements
+1.1. Background
+Traditional bookstores in Vietnam, exemplified by major retail chains such as Fahasa, continue to rely heavily on manual management processes using Excel spreadsheets and paper-based ledgers to track inventory, orders, and revenue.
+With thousands of diverse Stock Keeping Units (SKUs) spanning books, notebooks, school supplies, and office stationery, this manual approach creates several critical operational problems:
+·     Inventory Data Discrepancies: Without automated reconciliation mechanisms, phantom stock frequently appears in records. Items may be shown as available when they are actually out of stock, or vice versa, leading to order fulfillment failures and customer dissatisfaction.
+·     Loss and Fraud Exposure: The absence of stock transaction logs makes it impossible to trace who imported or exported goods, in what quantity, and when. This creates significant vulnerability to inventory shrinkage and internal fraud.
+·     Slow Order Processing: Staff members must manually search across multiple Excel files to locate product information, verify stock availability, and process orders. This results in prolonged service times and poor customer experience.
+·     No Online Sales Channel: Customers are required to visit physical store locations in person to make purchases, severely limiting the business's market reach and growth potential.
+The Mini Fahasa project was initiated to build an integrated system comprising a Storefront (a customer-facing online shopping interface) and a Dashboard (an internal ERP-Lite management control panel) to comprehensively address these challenges. The Storefront interface is designed with a clean, white background that makes book covers and stationery product images stand out prominently, delivering an intuitive and visually appealing shopping experience for end users.
+ 
+1.2. Business Opportunity
+·     Remote All-in-One Shopping Demand: Students and office workers increasingly prefer online ordering over visiting physical stores, particularly for essential items such as textbooks, reference books, notebooks, pens, and office supplies. Mini Fahasa enables customers to purchase both Books and Stationery within a single unified order, eliminating the need for multiple shopping trips.
+·     Inventory Management Optimization: A warehouse management system with detailed stock transaction logs enables bookstores to maintain tight control over the flow of goods, prevent inventory losses, and provide robust support for accounting reconciliation and auditing.
+·     Increased Staff Productivity: Automating the order processing workflow from order receipt through confirmation to shipping significantly reduces manual operations and minimizes human errors in day-to-day operations.
+·     New Revenue Channel Expansion: An online sales channel opens up a market that is no longer constrained by the geographical location of the physical store, enabling the business to reach customers across a much wider area.
+ 
+1.3. Business Objectives
+BO-1: Improve Order Processing Efficiency Reduce the average order processing time by 20% within 6 months after the system is deployed.
+BO-2: Improve Inventory Accuracy Reduce the discrepancy rate between physical inventory and system inventory to below 5% within 6 months after the system becomes operational.
+BO-3: Increase Online Sales Growth Increase online sales so that they account for at least 12%–15% of total monthly sales within the first year of system operation.
+BO-4: Increase Electronic Payment Adoption Increase the proportion of electronic payment transactions to at least 40% of all completed orders within one year.
+ 
+1.4. Success Metrics
+SM-1: The average order processing time is reduced from approximately 10 minutes to 8 minutes per order.
+SM-2: Monthly inventory audits show an inventory discrepancy rate of less than 5%. The inventory records in the system match the physical inventory for at least 95% of products.
+SM-3: Online sales account for at least 15% of total monthly sales within the first year. The data is measured using the system's monthly sales reports.
+SM-4: At least 40% of completed orders are paid using electronic payment methods such as QR code payments or e-wallets. The data is measured using the system's sales reports.
+ 
+Vision Statement
+For students, office workers, and bookstore chain managers who need a reliable and efficient way to buy and sell books and stationery, Mini Fahasa is an integrated E-commerce and ERP-Lite Resource Management platform that enables customers to conveniently shop for Books and Stationery online in a single order, while equipping the internal operations team with a powerful Dashboard to manage orders, inventory, and customer support in real time. Unlike traditional manual management using Excel spreadsheets, Mini Fahasa ensures absolute data integrity through atomic transaction mechanisms (ACID), comprehensive stock transaction logging, and multi-layered security combining JWT authentication with Role-Based Access Control (RBAC).
+ 
+Business Risks
+Business risks are evaluated using the following formula:
+Exposure = Probability × Impact
+·     Probability: The likelihood that a risk will occur (0.0–1.0).
+·     Impact: The severity of the consequences if the risk occurs (1–10).
+·     Exposure: A calculated value used to prioritize risks based on their overall significance.
+ 
+R01 – Development Schedule Delay
+Exposure: 4.8
+Probability: 0.6
+Impact: 8
+The project is developed by a small team whose members perform multiple responsibilities throughout the development lifecycle. Delays in requirements analysis, implementation, or testing may postpone system deployment and reduce the time available for quality assurance and user acceptance testing. This may also delay the delivery of planned enhancements.
+Mitigation Strategy
+·     Define a realistic project schedule with clear milestones.
+·     Prioritize core business functions before optional features.
+·     Conduct weekly progress reviews to identify issues early.
+ 
+R02 – Inventory Data Inconsistency
+Exposure: 3.6
+Probability: 0.4
+Impact: 9
+Inventory quantities must be updated consistently whenever orders are confirmed, canceled, or returned. Any failure in synchronizing inventory transactions may result in inaccurate stock levels, leading to overselling, incorrect inventory reports, and reduced customer confidence.
+Mitigation Strategy
+·     Perform inventory updates within database transactions.
+·     Validate inventory before confirming an order.
+·     Record inventory changes in system logs for auditing and recovery.
+ 
+R03 – Requirement Changes (Scope Creep)
+Exposure: 3.5
+Probability: 0.5
+Impact: 7
+During development, the business owner or stakeholders may request additional features or modifications that were not included in the original project scope. Frequent requirement changes may increase development effort, delay delivery, and affect the stability of completed modules.
+Mitigation Strategy
+·     Establish a clearly defined project scope before development begins.
+·     Evaluate all change requests based on business value and project timeline.
+·     Schedule non-essential features for future releases instead of the current version.
+ 
+Business Assumptions and Dependencies
+Assumptions
+·     AS-1: The development team possesses solid working knowledge of Java Spring Boot for backend development, React or HTML/CSS/JavaScript for frontend development, and MySQL or PostgreSQL for database management.
+·     AS-2: The VNPay Sandbox environment will remain stable and accessible throughout the entire development and testing phases of the project.
+·     AS-3: The production deployment server will have sufficient hardware configuration to support at least 100 concurrent users without performance degradation.
+·     AS-4: All internal users, including Sale Staff, CS Staff, and Managers, will receive adequate training on Dashboard usage before the system enters official production operation.
+Dependencies
+·     DE-1: The online payment functionality is directly dependent on the API availability and operational policies of the VNPay payment gateway in its Sandbox version.
+·     DE-2: The Google Single Sign-On (SSO) login feature requires successful registration of OAuth 2.0 Credentials through the Google Cloud Console platform.
+·     DE-3: A comprehensive set of sample product data, including books and stationery items, must be pre-loaded into the database prior to the commencement of the integration testing phase.
+ 
+Scope and Limitations
+2.1. Major Features
+·     FE-1: Account Management. Customer self-registration and login (including date of birth validation to enforce that only customers aged 15 years or older can create an account); comprehensive Role-Based Access Control (RBAC) system supporting five distinct roles (Admin, Manager, Sale Staff, CS Staff, Customer); Google OAuth 2.0 single sign-on integration for streamlined authentication.
+·     FE-2: Product Management. Full CRUD operations for products with an inheritance-based data model supporting Book and Stationery; hierarchical parent-child Category management; management of supplementary information (Author, Publisher, Brand); automatic classification of "Best Seller" products (achieving >50 sales transactions in a month) into three price segments (below 500,000 VND, 500,000-1,000,000 VND, and above 1,000,000 VND) and tracking product expected sell-out period to support promotional decisions.
+·     FE-3: Cart and Order Management. Complete shopping cart; checkout flow; order lifecycle state management (PENDING, CONFIRMED, SHIPPING, DELIVERED, RETURNED, EXCHANGED, CANCELLED); holiday campaign promotion engine (applying 10-15% discount for products < 1,000,000 VND and 5-10% for products > 1,000,000 VND during national holidays); discount code system supporting up to 3 codes per invoice (total discount <=10% of order value, mutually exclusive with birthday discounts and point redemptions); integrated loyalty points system (earning 1 point per 1,000 VND spent; redemptions >=5,000 points at 100 points = 1,000 VND capped at 10% order value) and automatic 10% birthday discount on first order of the day.
+·     FE-4: Inventory Management. Real-time stock quantity viewing by product and branch; manual stock adjustments and branch-to-branch inventory transfers; enforcement of import limits for first-time stocked products (max 100 units/branch, except textbooks up to 500 units) and support for calculating import quantity using Q = R × T; automated "Low Stock" flagging if a branch's inventory falls below 10% of the most recent imported quantity; detailed stock transaction logging (IMPORT, EXPORT, RETURN, DEFECTIVE).
+·     FE-5: Payment Processing. Cash on Delivery (COD) payment support; VNPay payment gateway integration operating in Sandbox mode; complete payment transaction history tracking and simulated automated payment reconciliation using mock settlement reports.
+·     FE-6: Customer Support. Customer support request submission; CS Staff response via Support Replies; ticket tracking, management, and statistics on the Dashboard to enforce the 2-working-day resolution SLA for complaints; workflow for CS Staff to verify and initiate return/exchange requests (within 7 calendar days from purchase) for approval by Sale Staff or Managers.
+ 
+2.2. Scope of Initial and Subsequent Releases
+The following table outlines the planned feature rollout across three sequential releases:
+Feature
+Release 1 (POC)
+Release 2 (Core)
+Release 3 (Expansion)
+FE-1: Account Management
+Basic customer login and registration with date of birth (DOB) and age check >= 15
+Full RBAC authorization (Admin, Manager, Sale, CS, Customer roles)
+Google OAuth 2.0 SSO integration
+FE-2: Product Management
+Basic Book CRUD operations
+Product inheritance (Book/Stationery); Recursive Category hierarchy
+Author, Publisher, and Brand management; automatic Best Seller classification and price segmentation
+FE-3: Cart and Order
+View and add products to shopping cart
+Complete Checkout flow; Order and OrderItem persistence; Order lifecycle management (including RETURNED/EXCHANGED); Loyalty point earning
+Advanced coupon checkout engine (up to 3 codes, combinations, birthday/loyalty redemption rules); Holiday promotion campaign engine
+FE-4: Inventory Management
+View current stock quantities by branch
+Manual stock adjustment (increase/decrease); branch-to-branch inventory transfer; automatic Low Stock flagging
+Stock Transaction logging with full audit trail; import quantity calculator (Q = R x T)
+FE-5: Payment
+Cash on Delivery (COD) only
+VNPay Sandbox payment gateway integration
+Automated payment reconciliation (simulated via mock transaction reports)
+FE-6: Customer Support
+Customer submits Support Requests
+CS Staff responds with Support Replies; ticket tracking for the 2-working-day complaint SLA
+Support dashboard with ticket statistics; integrated return/exchange ticket approval workflow
+ 
+ 
+2.3. Limitations and Exclusions
+The following capabilities and features are explicitly excluded from the scope of the Mini Fahasa project:
+·     No Multi-language Support: The system provides a single-language user interface only. No language switching or internationalization (i18n) functionality is included.
+·     No Real Shipping Integration: The system does not connect with third-party shipping carriers such as GHN, GHTK, or VNPost. Delivery status updates are performed manually by Sale Staff within the Dashboard.
+·     Payment Gateway in Sandbox Mode Only: The VNPay payment integration operates exclusively in test (Sandbox) mode. No real monetary transactions will be processed through the system.
+·     No Product Review or Rating System: The current version does not include functionality for customers to submit product reviews, ratings, or comments.
+·     No Real-time Live Chat: The customer support module operates on a ticket-based model where customers submit requests and staff respond asynchronously. Real-time live chat functionality is not included.
+Any additional bugs or limitations discovered during system usage will be documented and addressed in subsequent maintenance releases.
+ 
+Business Context
+3.1. Stakeholder Profiles
+Stakeholder
+Major Value
+Attitudes
+Major Interests
+Constraintsreport
+Manager / Admin
+Full control over all system data including products, inventory, orders, revenue reports, staff accounts, and access permissions. Ensures absolute data integrity across all business modules.
+Strongly supportive of digital transformation to replace manual Excel-based processes. Demands high accuracy, transparency, and robust security for all business-critical data.
+Reduce operational costs; prevent inventory shrinkage and fraud; obtain accurate real-time reports for informed business decision-making.
+Requires dedicated training on Dashboard administrative features before production deployment.
+Sale Staff
+Receives and processes customer orders through the Dashboard in real time: confirms orders, updates shipping status, and handles cancellations with zero data latency.
+Expects a simple, fast, and responsive Dashboard interface with no processing delays. Values automation that reduces repetitive manual tasks.
+Accelerate order processing speed; minimize manual data entry; access accurate real-time inventory data when confirming orders.
+Fixed working hours; must handle high daily order volumes efficiently within operational constraints.
+CS Staff
+Handles customer support requests and complaints. Accesses customer purchase history and invoice details to resolve reported issues effectively and promptly.
+Values having a centralized ticket management system over handling scattered phone calls and emails. Needs quick access to relevant order and customer information.
+Resolve customer complaints quickly and thoroughly within the 2-working-day SLA; view complete order history; initiate return/exchange requests on behalf of customers.
+No authorization to directly modify order data or inventory records; can only submit return/exchange requests for Manager or Sale Staff approval.
+Customer
+Browses, searches, and purchases books and stationery online through the Storefront. Pays via Cash on Delivery or VNPay. Submits support requests when issues arise with orders or products.
+Expects an attractive, intuitive, and fast-loading shopping interface. Willing to adopt online shopping if the user experience is pleasant and pricing is competitive with physical stores.
+Save time on shopping; find products easily through search and filtering; complete secure and reliable payment transactions; receive prompt and helpful responses to support inquiries.
+Requires stable internet connection, account registration for ordering and tracking, and reliance on product reviews when deciding.
+ 
+ 
+3.2. Project Priorities
+Dimension
+Constraint
+Driver
+Degree of Freedom
+Features
+ 
+ Advanced features scheduled for Release 3 may be cut back or postponed if the development team does not have sufficient time to complete them before the final project presentation. 
+Quality
+ All core functionalities (Releases 1 and 2) must function reliably during the project demonstration. No system crashes or inconsistencies in order or inventory data are acceptable throughout the presentation. 
+ 
+Schedule
+The report submission deadline and the final project presentation date are fixed by the course instructor and cannot be changed. 
+ 
+Cost
+The project budget is zero (VND 0). Only open-source technologies, free libraries, and Sandbox or free-tier environments are permitted throughout the project.
+ 
+ 
+Staff
+The development team consists of five fixed members from the project group, with no additional personnel. The development team consists of five fixed members from the project group, with no additional personnel. 
+ 
+ 
+ 
+ 
+3.3. Deployment Considerations
+·     Deployment Environment: The Backend application built with Spring Boot requires a server with Java Runtime Environment (JRE 17 or higher). The Frontend application requires Node.js for development and build processes. A MySQL or PostgreSQL database server must be installed and properly configured prior to system deployment.
+·     Initial Data Seeding: A comprehensive set of sample data including product categories, book entries, and stationery items must be imported into the database via SQL scripts or application-level seed data files before the system enters operational use.
+·     Internal User Training: The development team must prepare user documentation or short instructional videos, each no longer than five minutes, to train Sale Staff, CS Staff, and Managers on how to effectively use the administrative Dashboard before production launch.
+·     Security Configuration: Prior to production deployment, all sensitive configuration parameters must be set through Environment Variables, including the JWT Secret Key, VNPay API credentials, and Google OAuth 2.0 Client ID and Client Secret. Under no circumstances should sensitive information be hard-coded in the application source code.
+·     Upgrades and Maintenance: All framework updates for Spring Boot and React, as well as third-party library dependency upgrades, must be thoroughly tested for backward compatibility before being applied to the production environment.
+ 
+Stakeholder
+Major Value
+Attitudes
+Major Interests
+Constraintsreport
+Admin
+Configures system configurations, manages employee accounts, and enforces security and role-based access control (RBAC).
+ Highly focused on security, stability, database reliability, and ensuring staff access matches their specific duties.
+Efficient user account management, secure settings configurations (such as VNPay
+or Google SSO), and data protection.
+Requires technical knowledge for system configuration and credentials management.
+Manager
+Controls product/stationery catalog, manages inter-branch inventory, sets up promo campaigns, and views financial/revenue reports. 
+Strongly supportive of digital tools to replace Excel spreadsheets. Demands simple, intuitive, and clear sales dashboard views. 
+ Reduce stock discrepancies, optimize stock transfer between branches, launch simple promotions, and monitor daily revenue 
+Requires basic training on Dashboard features; lacks deep technical background. 

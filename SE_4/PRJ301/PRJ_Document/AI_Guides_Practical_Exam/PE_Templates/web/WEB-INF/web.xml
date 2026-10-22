@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+         
+    <!-- CẤU HÌNH SERVLET (Chỉ dùng nếu đi thi bắt buộc xài web.xml thay vì @WebServlet) -->
+    <!-- 1. Cấu hình cho Servlet hiển thị danh sách -->
+    <servlet>
+        <servlet-name>BaseController</servlet-name>
+        <servlet-class>controller.BaseController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BaseController</servlet-name>
+        <url-pattern>/base</url-pattern>
+    </servlet-mapping>
+    
+    <!-- CẤU HÌNH TRANG CHỦ -->
+    <welcome-file-list>
+        <!-- Khi người dùng truy cập thư mục gốc, file này sẽ tự chạy -->
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    
+    <!-- CẤU HÌNH THỜI GIAN SỐNG CỦA SESSION (Dùng cho đề Q3 bắt Login) -->
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

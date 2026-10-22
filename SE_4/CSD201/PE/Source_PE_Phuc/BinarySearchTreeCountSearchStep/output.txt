@@ -1,0 +1,11 @@
+Search 20:
+Found
+Steps: 3
+
+Search 60:
+Found
+Steps: 3
+
+Search 90:
+Not Found
+Steps: 3

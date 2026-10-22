@@ -1,0 +1,89 @@
+Business Rules for Mini Fahasa website
+ID
+Rule Definition
+Type ofRule
+Static or Dynamic
+Source
+BR-01
+Hàng mới nhập về lần đầu không được phép vượt ngưỡng 100 trên mỗi chi nhánh (với SGK dùng trong chương trình phổ thông là 500)
+Constraint 
+Dynamic 
+Store Manager
+BR -02
+Hàng hóa nhập về phải đảm bảo theo công thức:
+Q = (R * T)
+R : số lượng hàng bán được trong một tháng/ngày kể từ lần đầu nhập hàng
+T : thời gian bán hết dự kiến 
+Computation 
+Static
+Store Manager
+BR -03
+Vào ngày cuối của mỗi tháng phải có thống kê các mặt hàng, nhóm hàng hóa bán được để lên chiến lược kinh doanh
+Action Enables
+Static
+Store Manager
+BR -04
+Nếu hàng tồn kho của một chi nhánh giảm dưới 10% so với lần nhập gần nhất, thì trạng thái tồn kho của mặt hàng đó được coi là "Sắp hết hàng" 
+Inference
+Dynamic 
+Store Manager
+BR -05
+Best Seller phải được chia ra theo các phân khúc giá dưới 500.000 VND, từ 500.000 đến 1.000.000 VND, và trên 1.000.000 VND
+Constraint
+Dynamic 
+Sales Manager 
+BR -06
+Nếu những mặt hàng giá trị thấp dưới 500.000 đồng không bán được quá 1,5 lần thời gian bán hết dự kiến thì phải có chương trình giảm giá hoặc tặng kèm để xả kho.
+Action Enables 
+Dynamic 
+Sales Manager 
+BR -07
+Hàng hóa có thể được vận chuyển giữa các chi nhánh để tránh nhập hàng dư thừa
+Action Enables
+Dynamic 
+Operations Manager 
+BR -08
+Khiếu nại của khách hàng về hàng hóa phải được xử lý trong vòng 2 ngày (trừ thứ 7 và chủ nhật và các ngày lễ)
+Constraint 
+Static
+Customer Service Manager 
+BR -09
+Với mỗi khách hàng đã đăng ký thành viên khi mua sắm trong ngày sinh nhật thì được giảm giá 10% cho lần mua sắm đầu tiên trong ngày
+Action Enables 
+Dynamic 
+Marketing Manager 
+BR -10
+Khi khách hàng mua sắm sẽ được tích điểm vào tài khoản theo tỷ lệ 1.000 VND = 1 điểm (phần dư dưới 1.000 VND của đơn hàng sẽ không được tính điểm).
+Computation 
+Dynamic 
+Finance Manager 
+BR -11
+Khi điểm của khách hàng từ 5000 điểm trở lên sẽ có thể quy đổi điểm thành voucher 100 điểm = 1000 VND mỗi lần giảm giá không quá 10% giá trị đơn hàng
+Computation 
+Dynamic 
+Finance Manager 
+BR -12
+Khách hàng được phép đổi trả trong vòng 7 ngày từ ngày mua (kể cả thứ 7, chủ nhật và các ngày lễ) nếu có đủ hóa đơn, hàng hóa còn nguyên tem mác.
+Constraint 
+Static
+Customer Service Manager 
+BR -13
+Nếu doanh số sau 1 tháng của một mặt hàng trên 50 lượt bán thì mặt hàng đó được coi là best seller
+Inference
+Dynamic 
+Store Manager
+BR -14
+Mỗi hóa đơn chỉ được áp tối đa 3 mã giảm giá và không giảm quá 10% (không áp dụng đồng thời mã giảm giá với ưu đãi sinh nhật và trừ điểm)
+Constraint 
+Static
+Finance Manager 
+BR -15
+Vào các dịp lễ của Quốc Gia (Quốc Khánh, CMT8 Thành công, ...) phải có các chương trình khuyến mãi giảm giá từ 10-15% cho mặt hàng dưới 1 triệu đồng, 5-10% cho mặt hàng trên một triệu đồng.
+Action Enables 
+Static
+Marketing Manager 
+BR-16
+Chỉ khách hàng trên 15 tuổi mới được phép tạo tài khoản
+Fact
+Static
+Operations Manager 

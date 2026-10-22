@@ -1,0 +1,9 @@
+Add a vehicle.
+-------------------
+Add a vehicle.
+-------------------
+Remove a vehicle.
+-------------------
+List of vehicles:
+30-K1-555.66;Toyota;Vios;2020;Tran Thi B
+-------------------

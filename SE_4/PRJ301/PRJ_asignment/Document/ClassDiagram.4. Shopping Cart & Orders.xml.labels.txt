@@ -1,0 +1,66 @@
+﻿> OrderStatus
+PENDING
+CONFIRMED
+SHIPPING
+DELIVERED
+CANCELLED
+> PaymentMethod
+COD
+VNPAY
+MOMO
+> Discount
+- code : String
+- discountPercent : BigDecimal
+- maxDiscountAmount : BigDecimal
+- startDate : LocalDateTime
+- endDate : LocalDateTime
+- isActive : Boolean
++ isValid() : : Boolean
+> CartItem
+- quantity : Integer
+- addedAt : LocalDateTime
++ calculatePrice() : : Integer
++ getQuantity() : : Integer
+> Order
+- totalAmount : BigDecimal
+- status : OrderStatus
+- shippingAddress : String
++ calculateTotal() : : BigDecimal
++ applyDiscount(discount: Discount) : : void
++ confirmOrder() : : void
++ shipOrder() : : void
++ deliverOrder() : : void
++ cancelOrder() : : void
+> OrderItem
+- unitPrice : BigDecimal
+- subTotal : BigDecimal
+> Payment
+- paymentMethod : PaymentMethod
+- transactionId : String
+- paymentStatus : String
+- paidAt : LocalDateTime
+@OneToOne
+1
+0..1
+@OneToMany
+0..*
+@ManyToOne
+@ManyToOne (Customer)
+@ManyToOne (Staff)
+> Product
+- title : String
+- description : String
+- price : BigDecimal
+- sku : String
++ changePrice(newPrice: BigDecimal) : : void
+> Cart
+- sessionId : String
++ clearCart() : : void
++ getters/setters()
+> User
+- username : String
+- passwordHash : String
+- email : String
+- authProvider : String
++ login(password: String) : : Boolean
++ lockAccount() : : void

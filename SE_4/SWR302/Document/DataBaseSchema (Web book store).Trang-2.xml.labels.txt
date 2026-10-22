@@ -1,0 +1,112 @@
+﻿Roles
+PK
+Id INT IDENTITY(1,1)
+Name NVARCHAR(50)
+Description NVARCHAR(255)
+Discounts
+ProductId INT FOREIGN KEY REFERENCES Products(Id)
+DiscountPercent DECIMAL(5,2)
+MaxDiscountAmount DECIMAL(18,2)
+StartDate DATETIME
+EndDate DATETIME
+IsActive BIT
+Users
+RoleId INT FOREIGN KEY REFERENCES Roles(Id)
+Username NVARCHAR(100)
+PasswordHash NVARCHAR(255)
+Email NVARCHAR(100)
+AuthProvider NVARCHAR(50)
+CreatedAt DATETIME
+UserProfiles
+UserId INT FOREIGN KEY REFERENCES Users(Id)
+FullName NVARCHAR(100)
+Phone NVARCHAR(20)
+Address NVARCHAR(MAX)
+AvatarUrl NVARCHAR(255)
+Carts
+SessionId NVARCHAR(255)
+Orders
+DiscountId INT FOREIGN KEY REFERENCES Discounts(Id)
+TotalAmount DECIMAL(18,2)
+Status NVARCHAR(50)
+ShippingAddress NVARCHAR(MAX)
+SellerId INT FOREIGN KEY REFERENCES Users(Id)
+SupportRequests
+Subject NVARCHAR(255)
+Message NVARCHAR(MAX)
+CartItems
+CartId INT FOREIGN KEY REFERENCES Carts(Id)
+Quantity INT
+AddedAt DATETIME
+OrderItems
+OrderId INT FOREIGN KEY REFERENCES Orders(Id)
+UnitPrice DECIMAL(18,2)
+SubTotal DECIMAL(18,2)
+Categories
+ParentId INT FOREIGN KEY REFERENCES Categories(Id)
+Name NVARCHAR(100)
+parent_child
+Suppliers
+Name NVARCHAR(255)
+ContactEmail NVARCHAR(100)
+ContactPhone NVARCHAR(20)
+Publishers
+Name NVARCHAR(255) NOT NULL
+Address NVARCHAR(500)
+CreatedAt DATETIME DEFAULT GETDATE()
+Brands
+OriginCountry NVARCHAR(100)
+Books
+ProductId INT
+AuthorID NVARCHAR(255)
+PublisherId INT FOREIGN KEY REFERENCES Publishers(Id)
+Translator NVARCHAR(255)
+PublicationYear INT
+NumberOfPages INT
+CoverType NVARCHAR(50)
+Language NVARCHAR(100) DEFAULT N'Tiáº¿ng Viá»‡t'
+Weight DECIMAL(10,2)
+Dimensions NVARCHAR(100)
+FOREIGN KEY (ProductId) REFERENCES Products(Id) ON DELETE CASCADE
+Stationeries
+BrandId INT FOREIGN KEY REFERENCES Brands(Id)
+Origin NVARCHAR(100)
+Material NVARCHAR(255)
+Color NVARCHAR(100)
+Specifications NVARCHAR(MAX)
+Warning NVARCHAR(500)
+StockTransactions
+HandledByUserId INT FOREIGN KEY REFERENCES Users(Id)
+SupplierId INT FOREIGN KEY REFERENCES Suppliers(Id)
+TransactionType NVARCHAR(20)
+TransactionDate DATETIME
+Products
+CategoryId INT FOREIGN KEY REFERENCES Categories(Id)
+Title NVARCHAR(255)
+Description NVARCHAR(MAX)
+Price DECIMAL(18,2)
+Sku NVARCHAR(50)
+has
+creates
+contains
+include
+has profile
+places
+Inventory
+QuantityInStock INT
+LastUpdated DATETIME
+is sold as
+handled by
+makes
+publishes
+supplies
+is part of
+Authors
+AuthorId INT IDENTITY(1,1)
+FullName NVARCHAR(255) NOT NULL
+Biography NVARCHAR(MAX)
+Contributor
+ProductID INT
+AuthorID INT
+FOREIGN KEY (ProductId) REFERENCES Products(Id)
+FOREIGN KEY (AuthorId) REFERENCES Authors(Id)

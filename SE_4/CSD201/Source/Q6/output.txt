@@ -1,0 +1,28 @@
+Add literature (GoneWithTheWind,Novel,MargaretMithcell)
+Add literature (AVisitFromTheGoonSquad,Novel,JenniferEgan)
+Quotes(What is broken ...,5,[Literature (GoneWithTheWind,Novel,MargaretMithcell)])
+Quotes(Now you are ...,20,[Literature (GoneWithTheWind,Novel,MargaretMithcell)])
+Quotes(If I had ...,29,[Literature (AVisitFromTheGoonSquad,Novel,JenniferEgan)])
+---Literature---
+Literature (GoneWithTheWind,Novel,MargaretMithcell)
+Literature (AVisitFromTheGoonSquad,Novel,JenniferEgan)
+------
+---Quotes---Quotes(What is broken ...,5,[Literature (GoneWithTheWind,Novel,MargaretMithcell)])
+Quotes(Now you are ...,20,[Literature (GoneWithTheWind,Novel,MargaretMithcell)])
+Quotes(If I had ...,29,[Literature (AVisitFromTheGoonSquad,Novel,JenniferEgan)])
+------
+---SearchFirst---
+Quotes (What is broken ..., broken, 3 )
+Quotes (Now you are ..., broken, Not Found! )
+Quotes (If I had ..., broken, Not Found! )
+------
+---SearchSecond---
+Quotes (What is broken ..., you, Not Found! )
+Quotes (Now you are ..., you, 33 )
+Quotes (If I had ..., you, 57 )
+------
+---SearchLast---
+Quotes (What is broken ..., to, Not Found! )
+Quotes (Now you are ..., to, 16 )
+Quotes (If I had ..., to, 2 )
+------

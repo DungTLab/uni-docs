@@ -1,0 +1,11 @@
+After inserting 10:
+10 
+
+After inserting 20:
+10 20 
+
+Rotation:
+Left
+
+After inserting 30:
+20 10 30

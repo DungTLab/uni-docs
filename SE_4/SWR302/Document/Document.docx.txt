@@ -1,0 +1,412 @@
+﻿BẢN ĐẶC TẢ TIẾN ĐỘ DỰ ÁN "MINI FAHASA"
+BẢN ĐẶC TẢ TIẾN ĐỘ DỰ ÁN "MINI FAHASA"
+Mô hình áp dụng: Waterfall (Thác nước) Thời gian: 8 Tuần Nhân sự: 5 Sinh viên (Java Web Developer)
+⚠️ ĐIỀU KIỆN TIÊN QUYẾT (BẮT BUỘC)
+Trước khi bước vào Giai đoạn 1, toàn bộ 5 thành viên phải thống nhất công cụ làm việc chung để tránh mất code hoặc giẫm chân nhau:
+Quản lý Source Code: Bắt buộc sử dụng Git và tạo kho lưu trữ chung trên GitHub/GitLab. Tuyệt đối không gửi file code qua Zalo hay USB.
+Quản lý Công việc: Sử dụng Trello (chia cột: Todo, In Progress, Review, Done).
+Môi trường: Dùng chung IDE (IntelliJ hoặc Eclipse), chung hệ quản trị CSDL (MySQL/SQL Server).
+
+📍 GIAI ĐOẠN 1: KHỞI TẠO & PHÂN TÍCH YÊU CẦU (TUẦN 1)
+Nguyên tắc Waterfall: Không mở trình duyệt lên code khi chưa có tài liệu.
+1. Hành động cụ thể:
+Viết tài liệu SRS (Software Requirements Specification): Tạo file Google Docs dùng chung. Ghi chép rõ ràng tính năng nào SẼ LÀM (In-scope) và KHÔNG LÀM (Out-of-scope).
+Vẽ Biểu đồ Use Case: Sử dụng draw.io (diagrams.net) để phác thảo các tình huống sử dụng:
+Khách hàng: Đăng nhập, Xem danh sách sách, Xem chi tiết, Thêm giỏ hàng, Thanh toán COD.
+Admin: Đăng nhập, Quản lý sách (CRUD), Quản lý danh mục, Quản lý đơn hàng.
+2. Phân vai thực thi:
+Cả 5 thành viên cùng họp mặt, bàn bạc và "chốt sổ" các luồng nghiệp vụ (Ví dụ: Khách chưa đăng nhập thì có được xem giỏ hàng không?). Thư ký nhóm ghi chú trực tiếp vào file SRS.
+
+📍 GIAI ĐOẠN 2: THIẾT KẾ HỆ THỐNG (TUẦN 2)
+Chuyển ngữ từ yêu cầu văn bản sang bản vẽ kỹ thuật.
+1. Hành động cụ thể:
+Thiết kế Database (ERD): Vẽ sơ đồ thực thể liên kết cho các bảng cốt lõi: Users, Categories, Books, Orders, Order_Details. Xác định rõ Khóa chính (PK) và Khóa ngoại (FK). Sau đó, xuất ra file database_init.sql.
+Thiết kế Giao diện (UI/UX): Phác thảo Wireframe trên Figma (hoặc giấy) cho các trang quan trọng: Trang chủ, Chi tiết sản phẩm, Giỏ hàng, Bảng điều khiển Admin. Xác định bố cục và màu chủ đạo.
+Thiết kế Kiến trúc: Thống nhất áp dụng mô hình MVC (Model - View - Controller).
+2. Phân vai thực thi:
+Team Front-end (2 người): Tìm kiếm và tùy biến template HTML/CSS/Bootstrap có sẵn cho giống layout Fahasa.
+Team Database (3 người): Dựng ERD, chạy file SQL tạo bảng thực tế trong MySQL, và chèn (insert) khoảng 20-30 dòng dữ liệu mẫu (sách, danh mục).
+
+📍 GIAI ĐOẠN 3: THỰC THI & VIẾT CODE (TUẦN 3, 4, 5, 6)
+Giai đoạn "đổ mồ hôi". Tài liệu đã chốt, tuyệt đối từ chối mọi yêu cầu thêm tính năng mới.
+1. Lộ trình cụ thể:
+Tuần 3: Khởi tạo Project Java Web (Servlet/JSP). Cấu hình kết nối JDBC. Hoàn thiện luồng Đăng ký & Đăng nhập.
+Tuần 4: Hoàn thiện phân hệ Admin (Thêm/Sửa/Xóa/Xem Sách và Danh mục).
+Tuần 5: Hoàn thiện phân hệ Khách hàng (Hiển thị danh sách từ Database lên giao diện, phân trang, tìm kiếm cơ bản, xem chi tiết).
+Tuần 6: Xử lý nghiệp vụ khó nhất: Giỏ hàng (sử dụng Session) và luồng Thanh toán (Lưu dữ liệu Đơn hàng/Chi tiết đơn hàng xuống Database).
+2. Phân vai thực thi:
+Thành viên 1 (Project Manager + Database): Quản lý tiến độ Trello, duyệt code (Review Pull Request trên GitHub), hỗ trợ viết các câu SQL phức tạp.
+Thành viên 2 & 3 (Front-end): Nhúng mã JSP/JSTL vào file HTML tĩnh để render dữ liệu động. Viết JavaScript để kiểm tra lỗi nhập liệu (Validation) ở phía client.
+Thành viên 4 & 5 (Back-end): Xây dựng các lớp Servlet (Controller) và DAO (Model). Xử lý logic tính toán (tổng tiền, trừ tồn kho), nhận request và trả response về cho View.
+
+📍 GIAI ĐOẠN 4: KIỂM THỬ (TUẦN 7)
+Nguyên tắc Waterfall: Code xong toàn bộ mới bắt đầu Test.
+1. Hành động cụ thể:
+Tạo bảng tính "Bug Tracking" (Theo dõi lỗi) với các cột: Mã lỗi, Mô tả, Các bước tái hiện, Người báo cáo, Người sửa, Trạng thái.
+Thực hiện các kịch bản test "phá hoại": Nhập chữ vào ô giá tiền, đặt số lượng âm, thanh toán khi giỏ hàng trống, v.v.
+2. Phân vai thực thi:
+Áp dụng Test chéo (Cross-testing): 2 bạn Front-end đi test luồng xử lý của Back-end và ngược lại. Ai phụ trách module nào thì nhận bug và tự fix module đó.
+
+📍 GIAI ĐOẠN 5: TRIỂN KHAI & ĐÓNG GÓI (TUẦN 8)
+Nghiệm thu và chuẩn bị báo cáo.
+1. Hành động cụ thể:
+Code Freeze (Đóng băng mã nguồn): Ngừng mọi hoạt động viết code mới, chỉ sửa lỗi nghiêm trọng (Crash).
+Đóng gói (Packaging): Build dự án thành file .war chuẩn bị cho việc chạy trên server thật (Tomcat).
+Tài liệu hóa: Cập nhật lại tài liệu SRS và ERD ở Tuần 1 & 2 cho khớp với sản phẩm thực tế cuối cùng. Đóng cuốn báo cáo.
+Chuẩn bị Demo: Thiết kế Slide thuyết trình, phân công kịch bản rành mạch (Người thuyết trình, người thao tác chuột demo tính năng).
+
+
+ĐẶC TẢ YÊU CẦU PHẦN MỀM (SRS)
+ĐẶC TẢ YÊU CẦU PHẦN MỀM (SRS)
+Dự án: Ứng dụng Web bán sách trực tuyến (Mini Fahasa)
+Mô hình Kiến trúc: MVC (Model - View - Controller)
+Công nghệ: Java Core, Java Servlet/JSP, JDBC, MySQL, HTML/CSS/Bootstrap
+1. Giới thiệu (Introduction)
+Mục đích tài liệu: Tài liệu này cung cấp mô tả chi tiết về các yêu cầu chức năng và phi chức năng cho dự án ứng dụng web "Mini Fahasa". Tài liệu đóng vai trò là cơ sở để thiết kế cơ sở dữ liệu, phân chia công việc lập trình và xây dựng các kịch bản kiểm thử (test cases) cho nhóm phát triển gồm 5 sinh viên.
+Phạm vi dự án: Dự án tập trung xây dựng một hệ thống thương mại điện tử cốt lõi trong thời gian 2 tháng. Các tính năng nằm trong phạm vi (In-scope) bao gồm: duyệt sản phẩm, quản lý giỏ hàng, thanh toán khi nhận hàng (COD) cho khách hàng, và các chức năng quản lý kho sách, danh mục, đơn hàng cơ bản dành cho quản trị viên.
+2. Mô tả tổng quan (Overall Description)
+Đối tượng người dùng (User classes):
+Khách hàng (Customer): Bao gồm khách vãng lai và thành viên đã đăng ký. Họ sử dụng hệ thống để tìm kiếm sách, xem chi tiết, thêm vào giỏ hàng và tiến hành đặt hàng.
+Quản trị viên (Admin): Nhân sự có quyền truy cập vào hệ thống nội bộ (trang Admin) để thêm/sửa/xóa sách, danh mục sách và cập nhật trạng thái xử lý của các đơn hàng.
+Guest:
+Môi trường hoạt động: * Hệ thống chạy trên nền tảng Web, tương thích với các trình duyệt hiện đại (Chrome, Firefox, Edge, Safari).
+Phía máy chủ (Server-side): Chạy trên Apache Tomcat server.
+Hệ quản trị cơ sở dữ liệu: MySQL.
+Giao diện người dùng: Thiết kế dựa trên thuần HTML, CSS và framework Bootstrap để đảm bảo tính gọn nhẹ và thân thiện.
+3. Yêu cầu chức năng (Functional Requirements)
+Đây là các chức năng cốt lõi bắt buộc hệ thống phải đáp ứng.
+Tên chức năng
+Mô tả
+Đầu vào (Input)
+Đầu ra (Output)
+Đăng ký / Đăng nhập / Đăng xuất
+Cho phép người dùng tạo tài khoản, truy cập hệ thống và kết thúc phiên làm việc (Session).
+Thông tin cá nhân (Username, Password, Email...). Trạng thái click Đăng xuất.
+Tài khoản được tạo thành công. Session được khởi tạo hoặc hủy bỏ. Chuyển hướng trang phù hợp.
+Hiển thị sách ở trang chủ
+Hiển thị danh sách các cuốn sách hiện có kèm chức năng phân trang (Pagination).
+Tham số trang hiện tại (page number).
+Danh sách sách của trang tương ứng (Tên, Ảnh, Giá).
+Lọc và Tìm kiếm sách
+Tìm sách theo tên hoặc lọc theo danh mục cụ thể.
+Từ khóa tìm kiếm (Text) hoặc ID Danh mục (Category_ID).
+Danh sách các cuốn sách khớp với điều kiện tìm kiếm/lọc.
+Xem chi tiết sách
+Hiển thị thông tin đầy đủ của một cuốn sách.
+ID của cuốn sách được chọn.
+Giao diện chi tiết: Tên, ảnh minh họa, giá, mô tả, số lượng tồn kho.
+Quản lý Giỏ hàng (Cart)
+Cho phép thêm sách, cập nhật số lượng hoặc xóa sách khỏi giỏ hàng.
+ID sách, số lượng cần mua, hành động (Thêm/Sửa/Xóa).
+Giỏ hàng được cập nhật (lưu trong Session). Hiển thị tổng tiền mới.
+Thanh toán (Checkout)
+Thực hiện quy trình đặt hàng với phương thức COD (Thanh toán khi nhận hàng).
+Thông tin giao hàng (Tên, Địa chỉ, SĐT). Dữ liệu từ Giỏ hàng.
+Thông báo đặt hàng thành công. Dữ liệu đơn hàng được lưu xuống Database. Giỏ hàng bị làm trống.
+Đăng nhập Admin
+Xác thực quyền truy cập vào khu vực quản trị.
+Tên đăng nhập và Mật khẩu của Admin.
+Phiên làm việc (Session) cấp quyền Admin. Truy cập trang Dashboard.
+Quản lý Danh mục (CRUD)
+Cho phép Admin Thêm mới, Xem, Sửa, Xóa danh mục sách.
+Thông tin danh mục (Tên danh mục). Hành động tương ứng.
+Database được cập nhật. Giao diện hiển thị danh sách danh mục mới nhất.
+Quản lý Sách (CRUD)
+Cho phép Admin quản lý kho sách, bao gồm tính năng upload ảnh cơ bản.
+Các trường thông tin sách (Tên, Giá, Mô tả, Tồn kho, File ảnh, ID Danh mục).
+Database cập nhật sách. Ảnh được lưu trữ trên server/thư mục cục bộ.
+Quản lý Đơn hàng
+Xem danh sách khách đặt hàng và thay đổi trạng thái xử lý đơn.
+Hành động chọn đơn hàng, Trạng thái cập nhật (Pending -> Shipping -> Delivered).
+Trạng thái đơn hàng trong Database được thay đổi. Giao diện hiển thị trạng thái mới.
+4. Yêu cầu phi chức năng (Non-functional Requirements)
+Hiệu suất (Performance): Thời gian tải trang (Page load time) của các thao tác truy vấn dữ liệu thông thường không được vượt quá 3 giây. Việc phân trang (Pagination) cần giới hạn số lượng sách tải mỗi trang (ví dụ: 12-16 cuốn/trang) để tối ưu hiệu suất truy vấn.
+Bảo mật (Security): Mật khẩu người dùng tuyệt đối không được lưu dưới dạng plain-text (văn bản thuần) mà phải được băm (Hashing) cơ bản (ví dụ sử dụng BCrypt hoặc SHA-256) trước khi đưa vào CSDL. Sử dụng PreparedStatement trong JDBC để ngăn chặn lỗi bảo mật SQL Injection.
+Tính dễ sử dụng (Usability): Giao diện (UI) cần gọn gàng, có khả năng đáp ứng cơ bản trên các kích thước màn hình máy tính (sử dụng Grid system của Bootstrap). Các form nhập liệu phải có tính năng validate cơ bản (không để trống, đúng định dạng số, email) để báo lỗi rõ ràng cho người dùng.
+5. Ràng buộc cơ sở dữ liệu (Database Constraints)
+Để hỗ trợ kiến trúc MVC và phục vụ đầy đủ các chức năng trên, cấu trúc Cơ sở dữ liệu quan hệ (MySQL) nên bao gồm các bảng cốt lõi với khóa chính (PK) và khóa ngoại (FK) như sau:
+Bảng Users (Người dùng):
+User_ID (INT, Tự tăng) - PK
+Username, Password_Hash, Email, FullName, Address, Phone
+Role (INT hoặc VARCHAR: để phân biệt Admin và Customer)
+Bảng Categories (Danh mục):
+Category_ID (INT, Tự tăng) - PK
+Category_Name
+Bảng Books (Sách):
+Book_ID (INT, Tự tăng) - PK
+Title, Author, Price, Description, Stock_Quantity, Image_URL
+Category_ID (INT) - FK liên kết với bảng Categories
+Bảng Orders (Đơn hàng):
+Order_ID (INT, Tự tăng) - PK
+User_ID (INT) - FK liên kết với bảng Users
+Order_Date, Total_Amount, Status (Pending/Shipping/Delivered)
+Shipping_Address, Shipping_Phone
+Bảng Order_Details (Chi tiết đơn hàng):
+Detail_ID (INT, Tự tăng) - PK
+Order_ID (INT) - FK liên kết với bảng Orders
+Book_ID (INT) - FK liên kết với bảng Books
+Quantity, Unit_Price
+Code SQL
+-- ==============================================
+-- 1. BẢNG ĐỘC LẬP (Không tham chiếu khóa ngoại)
+-- ==============================================
+CREATE TABLE Roles (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(50),
+    Description NVARCHAR(255)
+);
+
+CREATE TABLE Categories (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    ParentId INT FOREIGN KEY REFERENCES Categories(Id),
+    Name NVARCHAR(100)
+);
+
+CREATE TABLE Suppliers (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(255),
+    ContactEmail NVARCHAR(100),
+    ContactPhone NVARCHAR(20),
+    Address NVARCHAR(MAX)
+);
+
+CREATE TABLE Discounts (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Code NVARCHAR(50),
+    DiscountPercent DECIMAL(5,2),
+    MaxDiscountAmount DECIMAL(18,2),
+    StartDate DATETIME,
+    EndDate DATETIME,
+    IsActive BIT
+);
+
+-- ==============================================
+-- 2. BẢNG PHỤ THUỘC LEVEL 1 
+-- ==============================================
+CREATE TABLE Users (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    RoleId INT FOREIGN KEY REFERENCES Roles(Id),
+    Username NVARCHAR(100),
+    PasswordHash NVARCHAR(255),
+    Email NVARCHAR(100),
+    AuthProvider NVARCHAR(50),
+    CreatedAt DATETIME,
+    IsActive BIT
+);
+
+CREATE TABLE Authors (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    FullName NVARCHAR(255) NOT NULL,
+    Biography NVARCHAR(MAX),
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Publishers (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(255) NOT NULL,
+    Address NVARCHAR(500),
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Brands (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(255) NOT NULL,
+    OriginCountry NVARCHAR(100),
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Books (
+    ProductId INT PRIMARY KEY,
+    AuthorId INT FOREIGN KEY REFERENCES Authors(Id),
+    PublisherId INT FOREIGN KEY REFERENCES Publishers(Id),
+    Translator NVARCHAR(255),
+    PublicationYear INT,
+    NumberOfPages INT,
+    CoverType NVARCHAR(50),
+    Language NVARCHAR(100) DEFAULT N'Tiếng Việt',
+    Weight DECIMAL(10,2),
+    Dimensions NVARCHAR(100),
+    FOREIGN KEY (ProductId) REFERENCES Products(Id) ON DELETE CASCADE
+);
+
+CREATE TABLE Stationeries (
+    ProductId INT PRIMARY KEY,
+    BrandId INT FOREIGN KEY REFERENCES Brands(Id),
+    Origin NVARCHAR(100),
+    Material NVARCHAR(255),
+    Color NVARCHAR(100),
+    Weight DECIMAL(10,2),
+    Dimensions NVARCHAR(100),
+    Specifications NVARCHAR(MAX),
+    Warning NVARCHAR(500),
+    FOREIGN KEY (ProductId) REFERENCES Products(Id) ON DELETE CASCADE
+);
+
+
+-- ==============================================
+-- 3. BẢNG PHỤ THUỘC LEVEL 2 (Tham chiếu Users & Products)
+-- ==============================================
+CREATE TABLE UserProfiles (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UserId INT FOREIGN KEY REFERENCES Users(Id),
+    FullName NVARCHAR(100),
+    Phone NVARCHAR(20),
+    Address NVARCHAR(MAX),
+    AvatarUrl NVARCHAR(255)
+);
+
+CREATE TABLE Inventory (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    ProductId INT FOREIGN KEY REFERENCES Products(Id),
+    QuantityInStock INT,
+    WarehouseLocation NVARCHAR(100),
+    LastUpdated DATETIME
+);
+
+CREATE TABLE StockTransactions (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    ProductId INT FOREIGN KEY REFERENCES Products(Id),
+    HandledByUserId INT FOREIGN KEY REFERENCES Users(Id),
+    SupplierId INT FOREIGN KEY REFERENCES Suppliers(Id),
+    TransactionType NVARCHAR(20),
+    Quantity INT,
+    TransactionDate DATETIME
+);
+
+CREATE TABLE Carts (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UserId INT FOREIGN KEY REFERENCES Users(Id),
+    SessionId NVARCHAR(255),
+    CreatedAt DATETIME
+);
+
+CREATE TABLE Orders (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UserId INT FOREIGN KEY REFERENCES Users(Id),
+    DiscountId INT FOREIGN KEY REFERENCES Discounts(Id),
+    ProcessedByUserId INT FOREIGN KEY REFERENCES Users(Id), -- Thêm dấu vết Sale Staff
+    TotalAmount DECIMAL(18,2),
+    Status NVARCHAR(50),
+    ShippingAddress NVARCHAR(MAX),
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE SupportRequests (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UserId INT FOREIGN KEY REFERENCES Users(Id),
+    HandledByUserId INT FOREIGN KEY REFERENCES Users(Id), -- Thêm dấu vết CS Staff
+    Subject NVARCHAR(255),
+    Message NVARCHAR(MAX),
+    Status NVARCHAR(50),
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+-- ==============================================
+-- 4. BẢNG PHỤ THUỘC LEVEL 3 (Tham chiếu Order & Cart)
+-- ==============================================
+CREATE TABLE CartItems (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    CartId INT FOREIGN KEY REFERENCES Carts(Id),
+    ProductId INT FOREIGN KEY REFERENCES Products(Id),
+    Quantity INT,
+    AddedAt DATETIME
+);
+
+CREATE TABLE OrderItems (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    OrderId INT FOREIGN KEY REFERENCES Orders(Id),
+    ProductId INT FOREIGN KEY REFERENCES Products(Id),
+    Quantity INT,
+    UnitPrice DECIMAL(18,2),
+    SubTotal DECIMAL(18,2)
+);
+
+Class
+📦 MODULE 1: AUTHENTICATION & USER (Quản lý Tài khoản)
+1. Class User Thực hiện các thao tác liên quan đến bảo mật và trạng thái tài khoản.
+boolean login(String rawPassword): Kiểm tra mật khẩu nhập vào có khớp với passwordHash không (dùng BCrypt).
+void changePassword(String oldPassword, String newPassword): Đổi mật khẩu.
+void lockAccount(): Khóa tài khoản (set isActive = false).
+void unlockAccount(): Mở khóa tài khoản.
+boolean hasRole(String roleName): Kiểm tra user có quyền cụ thể không.
+2. Class UserProfile Thao tác với thông tin cá nhân hiển thị.
+void updateProfile(String fullName, String phone, String address): Cập nhật thông tin cơ bản.
+void updateAvatar(String newAvatarUrl): Đổi ảnh đại diện.
+
+📦 MODULE 2: CATALOG (Quản lý Sản phẩm)
+3. Class Category
+void addSubCategory(Category child): Thêm danh mục con vào danh mục hiện tại.
+void removeSubCategory(Category child): Xóa danh mục con.
+void deactivate(): Ẩn danh mục (không xóa vật lý).
+4. Class Product (Abstract Class) Hàm chung cho cả Sách và Văn phòng phẩm.
+void changePrice(BigDecimal newPrice): Cập nhật giá bán.
+void updateDescription(String newDescription): Cập nhật mô tả.
+void deactivate(): Ngừng kinh doanh mặt hàng này.
+void activate(): Mở bán lại.
+5. Class Book (Kế thừa Product)
+void updateBookDetails(Integer pubYear, String coverType, Double weight, String dimensions): Cập nhật các thông số đặc thù của sách.
+6. Class Stationery (Kế thừa Product)
+void updateStationeryDetails(String color, String material, String specs): Cập nhật thông số văn phòng phẩm.
+
+📦 MODULE 3: INVENTORY & PROCUREMENT (Kho bãi & Nhập hàng)
+7. Class Inventory Chịu trách nhiệm trực tiếp về số lượng vật lý.
+void increaseStock(Integer quantity): Tăng tồn kho (Khi nhập hàng hoặc khách hủy đơn).
+boolean decreaseStock(Integer quantity): Giảm tồn kho. (Phải kiểm tra nếu số lượng tồn < quantity thì throw Exception).
+boolean isAvailable(Integer requiredQuantity): Kiểm tra xem kho còn đủ hàng để bán không.
+void updateLocation(String newLocation): Đổi vị trí lưu kho.
+8. Class StockTransaction Lịch sử không bị thay đổi, chỉ tạo mới.
+static StockTransaction createImport(Product p, Integer qty, Supplier s, User staff): Hàm factory tạo giao dịch nhập kho.
+static StockTransaction createExport(Product p, Integer qty, User staff): Hàm factory tạo giao dịch xuất kho.
+
+📦 MODULE 4: CART & ORDER (Giỏ hàng & Mua sắm)
+9. Class Cart
+void addItem(Product product, Integer quantity): Thêm hàng. Nếu sản phẩm đã có trong giỏ, tự động cộng dồn quantity.
+void removeItem(Long cartItemId): Xóa một món khỏi giỏ.
+void updateItemQuantity(Long cartItemId, Integer newQuantity): Sửa số lượng của một món.
+void clearCart(): Làm trống giỏ hàng sau khi đặt đơn thành công.
+BigDecimal calculateTotal(): Loop qua các CartItem để tính tổng tiền giỏ hàng.
+10. Class CartItem
+void increaseQuantity(Integer addQty): Cộng thêm số lượng.
+BigDecimal getSubTotal(): Tính thành tiền = quantity * product.sellingPrice.
+11. Class Discount
+boolean isValid(BigDecimal orderTotal): Kiểm tra mã còn hạn không, còn lượt dùng không, và hóa đơn có đạt min_order_value không.
+BigDecimal calculateDiscountAmount(BigDecimal orderTotal): Tính ra số tiền được giảm thực tế (dựa trên % hoặc số tiền fix, không vượt quá maxDiscountAmount).
+void decrementUsage(): Trừ đi 1 lượt sử dụng sau khi khách áp mã thành công.
+12. Class Order Lớp phức tạp nhất, chứa State Machine (Máy trạng thái).
+void addOrderItem(Product product, Integer quantity, BigDecimal priceAtPurchase): Chuyển item từ Cart sang Order.
+void applyDiscount(Discount discount): Gắn mã giảm giá và gọi hàm tính lại finalAmount.
+void processOrder(User saleStaff): Chuyển trạng thái từ PENDING sang CONFIRMED và ghi nhận nhân viên xử lý.
+void shipOrder(): Chuyển sang SHIPPING.
+void cancelOrder(): Hủy đơn, hàm này phải trigger logic cộng lại hàng vào Inventory.
+13. Class Payment
+void markAsSuccess(String transactionId): Đánh dấu thanh toán thành công (Khi VNPay trả callback về).
+void markAsFailed(): Đánh dấu thanh toán thất bại.
+
+📦 MODULE 5: CUSTOMER SUPPORT (Chăm sóc khách hàng)
+14. Class SupportRequest
+void assignTo(User csStaff): Gán ticket hỗ trợ này cho một nhân viên CS cụ thể.
+void addReply(SupportReply reply): Thêm tin nhắn chat vào ticket.
+void markAsResolved(): Đóng khiếu nại (Đổi trạng thái thành RESOLVED).
+
+💡 LỜI KHUYÊN KIẾN TRÚC TỪ SENIOR: "Fat Model, Skinny Service"
+Trong Spring Boot, các bạn sinh viên rất hay mắc lỗi Anemic Domain Model (Mô hình miền thiếu máu) — tức là vứt toàn bộ code tính toán vào các class xxxService.java, còn các class Entity chỉ toàn get/set ngu ngốc.
+Với danh sách Method trên, tôi khuyên nhóm bạn áp dụng tư duy "Fat Model, Skinny Service":
+Trong Entity (Order.java, Cart.java): Đặt các hàm xử lý logic nội tại như calculateTotal(), applyDiscount(), increaseStock().
+Trong Service (OrderService.java): Chỉ làm nhiệm vụ điều phối (Orchestration). Ví dụ:Java
+@Transactional
+public void checkout(Long cartId) {
+    Cart cart = cartRepository.findById(cartId);
+    Order order = new Order();
+    // ... copy items từ cart sang order ...
+    order.calculateTotal(); 
+    orderRepository.save(order);
+    cart.clearCart(); // Logic tự dọn dẹp nằm trong Entity Cart
+}
+
+
+
+
+
+
+Idea
+

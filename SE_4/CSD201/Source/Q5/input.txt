@@ -1,0 +1,16 @@
+4
+AddBook
+978-0-13-468599-1
+Effective Java
+Joshua Bloch
+2018
+950,000
+AddBook
+978-0-596-00797-3
+Head First Java
+Kathy Sierra
+2005
+500,000
+RemoveBook
+978-0-596-00797-3
+PrintAll

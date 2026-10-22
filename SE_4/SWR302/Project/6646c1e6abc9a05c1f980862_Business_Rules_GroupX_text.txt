@@ -1,0 +1,87 @@
+﻿Business Rules for Coffee Ordering Websites
+ID
+Rule Definition
+Type ofRule
+Static or Dynamic
+Source
+BR-01
+All products sold at the store have information on the website.
+Fact
+Dynamic
+Manager
+BR -02
+All promotions are publicly available to customers.
+Fact
+Dynamic
+Manager
+BR -03
+All meals in a single order must be paid for by using the same payment method.
+Constraint
+Static
+Manager
+BR -04
+Each bill at the checkout contains information of the payer.
+Fact
+Static
+Manager
+BR -05
+When making a purchase, customers are required to log in and provide information such as name and address.
+Constraint
+Static
+Manager
+BR -06
+If user accounts that have been inactive for two years will be deleted.
+Inference
+Static
+Manager
+BR -07
+Product prices will be updated immediately according to the store owner's policy.
+Constraint
+Static
+Manager
+BR -08
+Each employee has its own account and is used for timekeeping and sales.
+Constraint
+Dynamic
+Manager
+BR -09
+At the beginning of the session, the employee log in to his / her account.
+Constraint
+Static
+Manager
+BR -10
+Cash in / out is summarized at the end of the day (cashier is responsible).
+Constraint
+Static
+Manager
+BR -11
+After filling out the order information, the order will be packed, barcode printed, ...
+Action Enables
+Dynamic
+Manager
+BR -12
+If the employee enters the wrong password more than 5 times, temporarily lock the employee's account.
+Inference
+Static
+Manager
+BR -13
+Store sales will be summarized on the 26th of each month.
+Constraint
+Static
+Manager
+BR -14
+When editing or deleting product information, the account mustbe the admin /manager account.
+Constraint
+Static
+Manager
+BR -15
+Total customer payment is calculated using the formula:(Product price * quantity * (100% -% promotion) + 10% (VAT)
+Computation
+Dynamic
+Manager,tax department
+BR-16
+Basic salary of employees is calculated by the formula:(22,000 * working hours) + bonus - (number of mistakes recorded * 20,000)
+Computation
+Dynamic
+Manager
+

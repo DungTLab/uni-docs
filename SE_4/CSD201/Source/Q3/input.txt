@@ -1,0 +1,10 @@
+9
+PrintVehicle
+AddVehicleType,VT-01,Motorbike
+AddVehicleType,VT-02,Car
+AddVehicle,29-H1-12345,8,VT-01
+AddVehicle,30-K2-67890,9,VT-02
+PrintVehicle
+PrintVehicleType
+SearchVehicle,29-H1-12345
+ClearVehicle

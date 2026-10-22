@@ -1,0 +1,85 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package com.mycompany.aureliabooks.controller;
+
+import com.mycompany.aureliabooks.dao.ProductDAO;
+import com.mycompany.aureliabooks.model.Product;
+
+import java.io.IOException;
+import java.util.List;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Home Page Controller. Handles home page routing, loads active products to
+ * display on home page. Created like NetBeans Maven template.
+ *
+ * @author DungLT
+ */
+@WebServlet(name = "HomeController", urlPatterns = {"/home", ""})
+public class HomeController extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            ProductDAO productDAO = new ProductDAO();
+
+            // 3. Handle pagination: 3 products per page
+            int productsPerPage = 3;
+            int currentPage = 1;
+            String pageParam = request.getParameter("page");
+            if (pageParam != null && !pageParam.isEmpty()) {
+                try {
+                    currentPage = Integer.parseInt(pageParam);
+                } catch (NumberFormatException e) {
+                    currentPage = 1;
+                }
+            }
+            currentPage = Math.max(1, currentPage);
+
+            // 4. Count total active products across all categories for total pages calculation
+            int totalBooks = productDAO.countTopSellingProductsOfMonth();
+            int totalPages = (int) Math.ceil((double) totalBooks / productsPerPage);
+            if (currentPage > totalPages && totalPages > 0) {
+                currentPage = totalPages;
+            }
+
+            // Tính offset sau khi đã đưa trang yêu cầu về phạm vi hợp lệ
+            int offset = Math.max(0, (currentPage - 1) * productsPerPage);
+
+            // Chỉ hiển thị tối đa 2 trang ở mỗi phía của trang hiện tại
+            int windowSize = 2;
+            int startPage = Math.max(1, currentPage - windowSize);
+            int endPage = Math.min(totalPages, currentPage + windowSize);
+
+            // 5. Load top selling products of the month (across all categories)
+            List<HashMap<String, Object>> listTopSaleProducts = productDAO.getTopSellingProductsOfMonth(offset, productsPerPage);
+            request.setAttribute("listTopSaleProducts", listTopSaleProducts);
+            request.setAttribute("currentPage", currentPage);
+            request.setAttribute("totalPages", totalPages);
+            request.setAttribute("startPage", startPage);
+            request.setAttribute("endPage", endPage);
+
+            // Forward request to index.jsp view
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Lỗi tải dữ liệu trang chủ: " + e.getMessage());
+            request.getRequestDispatcher("/WEB-INF/error/500.jsp").forward(request, response);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
+}
